@@ -16,10 +16,10 @@ export function WasteValueSection() {
             transition={{ duration: 0.6 }}
             className="flex flex-col gap-6"
           >
-            <span className="text-sm font-bold tracking-wide text-[#000]">
+            <span className="text-sm font-semibold tracking-wider text-primary">
               Value Proposition
             </span>
-            <h2 className="text-2xl md:text-[32px] lg:text-[40px] font-bold tracking-tight text-primary-dark leading-[1.3]">
+            <h2 className="text-4xl font-bold tracking-tight text-primary-dark md:text-5xl lg:text-6xl">
               Turning Waste into Value
             </h2>
             <div className="mt-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white">
