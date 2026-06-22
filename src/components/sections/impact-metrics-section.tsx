@@ -37,11 +37,11 @@ function AnimatedCounter({ end, suffix = "", label }: CounterProps) {
   }, [end, isInView])
 
   return (
-    <div ref={ref} className="flex flex-col gap-2">
-      <div className="text-4xl font-bold text-primary-dark md:text-5xl lg:text-6xl">
+    <div ref={ref} className="flex flex-col gap-3 border border-zinc-200 rounded-xl p-6">
+      <div className="text-3xl font-bold text-primary-dark md:text-4xl">
         {count.toLocaleString()}{suffix}
       </div>
-      <div className="text-sm font-medium text-muted uppercase tracking-wider">
+      <div className="text-sm font-semibold text-[#000]">
         {label}
       </div>
     </div>
@@ -57,22 +57,22 @@ export function ImpactMetricsSection() {
   ]
 
   return (
-    <section id="impact" className="border-t border-zinc-200 py-24 md:py-32">
+    <section id="impact" className="py-16 md:py-20">
       <Container>
         <div className="grid gap-12 md:grid-cols-2">
           <div>
-            <span className="text-sm font-semibold uppercase tracking-wider text-primary mb-4 block">
+            <span className="text-sm font-bold tracking-wide text-[#000] mb-4 block">
               Impact
             </span>
-            <h2 className="text-4xl font-bold tracking-tight text-primary-dark md:text-5xl">
+            <h2 className="text-2xl md:text-[32px] lg:text-[40px] font-bold tracking-tight text-primary-dark leading-[1.3]">
               Measurable outcomes from our work
             </h2>
-            <p className="mt-6 text-lg text-muted max-w-lg">
-              Our processes have a direct, verifiable impact on reducing waste and supporting local agricultural communities.
+            <p className="mt-6 text-base text-muted max-w-lg">
+              Real data demonstrating the scale of our contribution to Africa's circular bio-economy.
             </p>
           </div>
           
-          <div className="grid grid-cols-2 gap-x-8 gap-y-12 items-center">
+          <div className="grid grid-cols-2 gap-4 items-stretch">
             {metrics.map((metric, idx) => (
               <AnimatedCounter
                 key={idx}

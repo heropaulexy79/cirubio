@@ -50,7 +50,7 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative min-h-[500px] w-full overflow-hidden rounded-[2rem] bg-primary-dark md:min-h-[580px] md:rounded-[3rem] flex items-center justify-center pt-[72px]"
+          className="relative min-h-[500px] w-full overflow-hidden rounded-2xl bg-primary-dark md:min-h-[580px] md:rounded-2xl flex items-center justify-center pt-[72px]"
         >
           {/* Background Image Slider / Overlay */}
           <div className="absolute inset-0">
@@ -79,7 +79,7 @@ export function HeroSection() {
                 transition={{ duration: 0.6 }}
                 className="flex flex-col items-center"
               >
-                <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-[4.2rem] leading-[1.1] whitespace-pre-line">
+                <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-[4.2rem] leading-[1.6] whitespace-pre-line">
                   {SLIDES[currentSlide].title}
                 </h1>
                 

@@ -6,20 +6,54 @@ import { Container } from "@/components/ui/container"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { cn } from "@/lib/utils"
 
+const PlantIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M2 14h20"></path><path d="M10 21v-7"></path><path d="M10 14a6 6 0 0 1 6-6 15 15 0 0 1 5-2 15 15 0 0 1-2 5 6 6 0 0 1-6 6"></path><path d="M10 14a6 6 0 0 0-6-6 15 15 0 0 0-5-2 15 15 0 0 0 2 5 6 6 0 0 0 6 6"></path>
+  </svg>
+)
+
+const DropIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path>
+  </svg>
+)
+
+const BugIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect width="8" height="14" x="8" y="6" rx="4"></rect>
+    <path d="m19 7-3 2"></path><path d="m5 7 3 2"></path>
+    <path d="m19 19-3-2"></path><path d="m5 19 3-2"></path>
+    <path d="M20 13h-4"></path><path d="M4 13h4"></path>
+    <path d="m9 4 1 2"></path><path d="m15 4-1 2"></path>
+  </svg>
+)
+
+const ChevronRightIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="m9 18 6-6-6-6"></path>
+  </svg>
+)
+
 const products = [
   {
+    category: "Protein",
+    icon: BugIcon,
     title: "Insect Protein Meal",
-    description: "High-quality, sustainable protein source for animal feed, derived from Black Soldier Fly larvae. Our premium meal provides essential amino acids specifically optimized for aquaculture and poultry diets, drastically reducing reliance on traditional soy and fishmeal.",
+    description: "Sustainable, nutrient-rich Full-Fat and Defatted Black Soldier Fly Larvae Meal for aquaculture, poultry, and livestock feed.",
     image: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80&w=1200",
   },
   {
-    title: "Organic Fertilizer",
-    description: "Nutrient-rich frass that drastically improves soil health and crop yields without synthetic chemicals. Fortified with natural biomes that enhance root development and drought resilience across diverse agricultural landscapes.",
+    category: "Fertiliser",
+    icon: PlantIcon,
+    title: "Organic Fertiliser",
+    description: "Bio-augmented fertiliser supporting regenerative agriculture.",
     image: "https://images.unsplash.com/photo-1416879598555-2575dcbcff55?auto=format&fit=crop&q=80&w=1200",
   },
   {
-    title: "Eco-Biomaterials",
-    description: "Chitin and chitosan extracts used in agriculture, water treatment, and pharmaceuticals. We isolate these high-value compounds to offer sustainable alternatives to synthetic polymers in industrial applications.",
+    category: "Oils",
+    icon: DropIcon,
+    title: "Functional Oils",
+    description: "BSF-derived oils for animal nutrition, feed formulation, and industrial applications.",
     image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1200",
   },
 ]
@@ -55,7 +89,7 @@ function ExpandableCard({
   const rotateY = isActive ? ((mousePos.x - cardCenter.x) / cardCenter.x) * 3 : 0
 
   // Layout flex transition values
-  const flexValue = isActive ? 4 : 1
+  const flexValue = isActive ? 1.5 : 1
   const scaleValue = !isActive && isHoveredAny ? 0.95 : 1
   const opacityValue = !isActive && isHoveredAny ? 0.65 : 1
 
@@ -81,7 +115,7 @@ function ExpandableCard({
         rotateY: { type: "spring", stiffness: 300, damping: 30 },
       }}
       className={cn(
-        "relative h-[250px] md:h-[325px] overflow-hidden rounded-[2rem] cursor-pointer origin-center shadow-xl",
+        "relative h-[200px] md:h-[240px] overflow-hidden rounded-xl cursor-pointer origin-center shadow-xl",
         "min-w-0"
       )}
       style={{
@@ -133,50 +167,60 @@ function ExpandableCard({
       />
 
       {/* Content Container */}
-      <motion.div layout className="absolute inset-x-0 bottom-0 z-20 p-6 md:p-10 flex flex-col justify-end min-h-[60%]">
+      <motion.div layout className="absolute inset-x-0 bottom-0 z-20 p-6 flex flex-col justify-end min-h-[60%] w-full">
         <LayoutGroup>
-          <motion.h3
-            layout
-            className="text-2xl md:text-3xl font-bold text-white mb-2"
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {product.title}
-          </motion.h3>
-
-          <AnimatePresence>
-            {isActive && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="overflow-hidden"
+          <div className="flex flex-col text-left items-start w-full">
+            {isActive ? (
+              <motion.span
+                layoutId={`cat-icon-${product.title}`}
+                className="text-sm font-bold text-white mb-3"
               >
-                <div className="flex flex-col gap-6 pt-3">
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10, transition: { duration: 0.3 } }}
-                    transition={{ duration: 0.5, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-white/90 text-sm md:text-base leading-relaxed max-w-[500px]"
-                  >
-                    {product.description}
-                  </motion.p>
-                  
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10, transition: { duration: 0.3 } }}
-                    transition={{ duration: 0.5, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <button className="bg-white text-black hover:bg-zinc-200 transition-colors h-[48px] px-8 text-sm font-semibold rounded-full w-max">
-                      Discover Product
-                    </button>
-                  </motion.div>
-                </div>
+                {product.category}
+              </motion.span>
+            ) : (
+              <motion.div
+                layoutId={`cat-icon-${product.title}`}
+                className="mb-3 text-white"
+              >
+                <product.icon />
               </motion.div>
             )}
-          </AnimatePresence>
+
+            <motion.h3
+              layout
+              className={cn(
+                "font-bold text-white mb-2 leading-tight transition-all duration-500",
+                isActive ? "text-3xl md:text-4xl" : "text-lg md:text-xl"
+              )}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {product.title}
+            </motion.h3>
+
+            <motion.p
+              layout
+              className="text-white/90 text-sm leading-relaxed max-w-[500px]"
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {product.description}
+            </motion.p>
+
+            <AnimatePresence>
+              {isActive && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                  animate={{ opacity: 1, height: "auto", marginTop: 24 }}
+                  exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="overflow-hidden"
+                >
+                  <button className="flex items-center gap-2 text-white hover:text-white/80 transition-colors text-base font-semibold">
+                    Learn more <ChevronRightIcon />
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </LayoutGroup>
       </motion.div>
     </motion.div>
@@ -184,10 +228,10 @@ function ExpandableCard({
 }
 
 export function ProductsSection() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [hoveredIndex, setHoveredIndex] = useState<number>(0)
 
   return (
-    <section className="bg-white py-24 md:py-32">
+    <section className="border-t border-zinc-200 bg-white py-16 md:py-20">
       <Container>
         <SectionHeading
           label="Products"
@@ -197,15 +241,18 @@ export function ProductsSection() {
         />
 
         <LayoutGroup>
-          <div className="flex flex-col lg:flex-row gap-4 md:gap-6 w-full h-[750px] lg:h-[325px]">
+          <div
+            className="flex flex-col lg:flex-row gap-4 md:gap-6 w-full h-[650px] lg:h-[270px]"
+            onMouseLeave={() => setHoveredIndex(0)}
+          >
             {products.map((product, idx) => (
               <ExpandableCard
                 key={product.title}
                 product={product}
                 isActive={hoveredIndex === idx}
-                isHoveredAny={hoveredIndex !== null}
+                isHoveredAny={true}
                 onHoverEnter={() => setHoveredIndex(idx)}
-                onHoverLeave={() => setHoveredIndex(null)}
+                onHoverLeave={() => { }}
               />
             ))}
           </div>

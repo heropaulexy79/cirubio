@@ -29,7 +29,7 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section id="services" className="bg-primary-light/30 py-24 md:py-32">
+    <section id="services" className="border-t border-b border-zinc-200 bg-white py-16 md:py-20">
       <Container>
         <SectionHeading
           label="Services"
@@ -47,7 +47,7 @@ export function ServicesSection() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-xl"
+              className="flex flex-col overflow-hidden rounded-xl bg-white transition-shadow hover:shadow-xl cursor-pointer border-none"
             >
               <div className="h-48 w-full overflow-hidden">
                 <img
@@ -56,17 +56,13 @@ export function ServicesSection() {
                   className="h-full w-full object-cover"
                 />
               </div>
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="mb-3 text-xl font-bold text-primary-dark">
+              <div className="flex flex-1 flex-col pt-5">
+                <h3 className="mb-3 text-xl font-bold text-primary-dark leading-[1.3]">
                   {service.title}
                 </h3>
                 <p className="text-muted flex-1 text-sm leading-relaxed">
                   {service.description}
                 </p>
-                <div className="mt-6 flex items-center font-semibold text-primary transition-colors hover:text-primary-dark">
-                  <span>Explore service</span>
-                  <span className="ml-2 text-lg">→</span>
-                </div>
               </div>
             </motion.div>
           ))}

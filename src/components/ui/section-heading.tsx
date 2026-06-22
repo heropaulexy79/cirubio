@@ -25,11 +25,11 @@ export function SectionHeading({
       {...props}
     >
       {label && (
-        <span className="text-sm font-semibold uppercase tracking-wider text-muted">
+        <span className="block mb-4 text-sm font-bold tracking-wide text-[#000000]">
           {label}
         </span>
       )}
-      <h2 className="text-2xl md:text-[32px] lg:text-[40px] font-bold tracking-tight text-primary-dark leading-[1.2]">
+      <h2 className="text-2xl md:text-[32px] lg:text-[40px] font-bold tracking-tight text-primary-dark leading-[1.3]">
         {title}
       </h2>
       {description && (

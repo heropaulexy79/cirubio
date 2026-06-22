@@ -49,7 +49,7 @@ export function FeaturesSection() {
   }
 
   return (
-    <section className="py-24 md:py-32 bg-white">
+    <section className="py-16 md:py-20 bg-white">
       <Container>
         <div className="mb-20">
           <SectionHeading
@@ -77,7 +77,7 @@ export function FeaturesSection() {
                 <div className="text-[#0A5C19] mb-6">
                   <Icon size={36} strokeWidth={1.5} />
                 </div>
-                <h3 className="text-[22px] font-bold text-[#0A5C19] whitespace-pre-line leading-[1.3] mb-4">
+                <h3 className="text-[22px] font-bold text-[#0A5024] whitespace-pre-line leading-[1.3] mb-4">
                   {feature.title}
                 </h3>
                 <p className="text-[#333333] leading-relaxed text-sm">

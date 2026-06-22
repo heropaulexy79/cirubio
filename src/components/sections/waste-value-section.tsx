@@ -6,7 +6,7 @@ import { RefreshCcw } from "lucide-react"
 
 export function WasteValueSection() {
   return (
-    <section id="solutions" className="bg-primary-light py-24 md:py-32">
+    <section id="solutions" className="bg-primary-light py-16 md:py-20">
       <Container>
         <div className="grid gap-12 md:grid-cols-2 md:gap-24">
           <motion.div
@@ -16,10 +16,10 @@ export function WasteValueSection() {
             transition={{ duration: 0.6 }}
             className="flex flex-col gap-6"
           >
-            <span className="text-sm font-semibold tracking-wider text-primary">
+            <span className="text-sm font-bold tracking-wide text-[#000]">
               Value Proposition
             </span>
-            <h2 className="text-4xl font-bold tracking-tight text-primary-dark md:text-5xl lg:text-6xl">
+            <h2 className="text-2xl md:text-[32px] lg:text-[40px] font-bold tracking-tight text-primary-dark leading-[1.3]">
               Turning Waste into Value
             </h2>
             <div className="mt-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white">

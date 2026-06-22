@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Geist } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -25,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${geist.variable} scroll-smooth`}>
-      <body className={`${inter.variable} antialiased min-h-screen bg-background text-foreground flex flex-col`}>
+    <html lang="en" className={`${montserrat.variable} scroll-smooth`} suppressHydrationWarning>
+      <body className={`${montserrat.variable} font-sans antialiased min-h-screen bg-background text-foreground flex flex-col`}>
         {children}
       </body>
     </html>

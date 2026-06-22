@@ -94,14 +94,7 @@ export function FloatingNav() {
         <div className="flex items-center gap-10 xl:gap-14">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <div className="flex items-center justify-center">
-              <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 0C8.95431 0 0 8.95431 0 20C0 31.0457 8.95431 40 20 40C31.0457 40 40 31.0457 40 20H32C32 26.6274 26.6274 32 20 32C13.3726 32 8 26.6274 8 20C8 13.3726 13.3726 8 20 8V0Z" fill="#1F3D20"/>
-                <circle cx="28" cy="12" r="6" fill="#D4AF37"/>
-                <path d="M12 20H28V28H12V20Z" fill="#3B7D3A"/>
-              </svg>
-            </div>
-            <span className="text-[22px] font-bold text-primary-dark tracking-tight">Grub Bio</span>
+            <img src="/GRUB LOGO FINAL.png" alt="Grub Bio Logo" className="h-10 w-auto object-contain" />
           </a>
 
           {/* Desktop Nav */}

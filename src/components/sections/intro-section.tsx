@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/container"
 
 export function IntroSection() {
   return (
-    <section id="about" className="pt-16 pb-24 md:pb-32 bg-white">
+    <section id="about" className="py-16 md:py-20 bg-white">
       <Container>
         {/* Divider */}
         <div className="w-full h-[1px] bg-zinc-200 mb-16 md:mb-24" />
@@ -21,7 +21,7 @@ export function IntroSection() {
             <p className="text-sm font-bold tracking-wider text-[#1B1B1B] mb-4 xl:mb-6">
               About Us
             </p>
-            <h2 className="text-2xl md:text-[32px] lg:text-[40px] font-bold tracking-tight text-[#0A5C19] leading-[1.2] max-w-[1300px]">
+            <h2 className="text-2xl md:text-[32px] lg:text-[40px] font-bold tracking-tight text-[#0A5024] leading-[1.3] max-w-[1300px]">
               Driving Innovation at the Intersection of Organic Waste Management, Sustainable Agriculture and Climate Resilience
             </h2>
           </motion.div>
@@ -53,7 +53,7 @@ export function IntroSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="group relative overflow-hidden rounded-[1rem] bg-zinc-100 shadow-md h-full"
+            className="group relative overflow-hidden rounded-2xl bg-zinc-100 shadow-md h-full"
           >
             <div className="h-full w-full overflow-hidden relative">
               <img

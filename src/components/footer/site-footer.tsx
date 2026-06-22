@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 
 export function NewsletterSection() {
   return (
-    <section className="border-t border-zinc-200 py-24">
+    <section className="py-24">
       <Container>
         <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
           <h2 className="mb-6 text-3xl font-bold tracking-tight text-primary-dark md:text-4xl">
@@ -54,10 +54,7 @@ export function SiteFooter() {
         <div className="grid gap-12 md:grid-cols-4 lg:gap-16">
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 mb-6 text-white">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary font-bold text-white">
-                C
-              </div>
-              <span className="text-xl font-bold">CiruBio</span>
+              <img src="/GRUB LOGO FINAL.png" alt="Grub Bio Logo" className="h-12 w-auto object-contain" />
             </div>
             <p className="text-sm leading-relaxed mb-6">
               Advancing Africa's transition to a bio-circular economy through innovative organic waste management.
