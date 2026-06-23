@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils"
 
-interface SectionHeadingProps extends React.HTMLAttributes<HTMLDivElement> {
+interface SectionHeadingProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   label?: string
   title: React.ReactNode
   description?: React.ReactNode
