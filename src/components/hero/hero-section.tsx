@@ -79,7 +79,7 @@ export function HeroSection() {
                 transition={{ duration: 0.6 }}
                 className="flex flex-col items-center"
               >
-                <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-[4.2rem] leading-[1.6] whitespace-pre-line">
+                <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-[4.2rem] leading-[1.1] whitespace-pre-line">
                   {SLIDES[currentSlide].title}
                 </h1>
                 

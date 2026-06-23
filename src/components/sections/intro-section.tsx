@@ -21,7 +21,7 @@ export function IntroSection() {
             <p className="text-sm font-bold tracking-wider text-[#1B1B1B] mb-4 xl:mb-6">
               About Us
             </p>
-            <h2 className="text-2xl md:text-[32px] lg:text-[40px] font-bold tracking-tight text-[#0A5024] leading-[1.3] max-w-[1300px]">
+            <h2 className="text-3xl md:text-[40px] lg:text-[48px] font-bold tracking-tight text-[#0A5024] leading-[1.3] max-w-[1300px]">
               Driving Innovation at the Intersection of Organic Waste Management, Sustainable Agriculture and Climate Resilience
             </h2>
           </motion.div>
