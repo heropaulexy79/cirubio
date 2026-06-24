@@ -6,10 +6,9 @@ import { Container } from "@/components/ui/container"
 export function IntroSection() {
   return (
     <section id="about" className="py-16 md:py-20 bg-white">
+      {/* Full-width Divider */}
+      <div className="w-full h-[1px] bg-zinc-200 mb-16 md:mb-24" />
       <Container>
-        {/* Divider */}
-        <div className="w-full h-[1px] bg-zinc-200 mb-16 md:mb-24" />
-        
         {/* Full-width header */}
         <div className="w-full mb-12 md:mb-16">
           <motion.div
@@ -18,7 +17,7 @@ export function IntroSection() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-sm font-bold tracking-wider text-[#1B1B1B] mb-4 xl:mb-6">
+            <p className="text-sm font-bold tracking-wider text-black mb-4 xl:mb-6">
               About Us
             </p>
             <h2 className="text-3xl md:text-[40px] lg:text-[48px] font-bold tracking-tight text-[#0A5024] leading-[1.3] max-w-[1300px]">
@@ -37,7 +36,7 @@ export function IntroSection() {
             className="flex flex-col"
           >
             <div className="flex flex-col h-full justify-between">
-              <p className="text-sm md:text-base text-zinc-700 leading-relaxed mb-8">
+              <p className="text-sm md:text-base text-black leading-relaxed mb-8">
                 We are building a new generation of bio-refineries that combine Black Soldier Fly biotechnology, automated production systems, and real-time environmental intelligence to upcycle organic waste into high-value resources for agriculture and industry. Our goal is to unlock the value trapped in organic waste while supporting sustainable agriculture, reducing carbon emissions, providing transparent ESG insights, and fostering a truly circular economy across Africa.
               </p>
               <div>

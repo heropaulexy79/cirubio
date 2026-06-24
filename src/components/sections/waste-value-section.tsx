@@ -34,7 +34,7 @@ export function WasteValueSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex items-center"
           >
-            <p className="text-sm md:text-base text-zinc-700 leading-relaxed mb-8">
+            <p className="text-sm md:text-base text-black leading-relaxed mb-8">
               By harnessing the power of nature, particularly the Black Soldier Fly
               larvae, we convert organic waste into premium products. This not only
               diverts waste from landfills but also creates sustainable alternatives

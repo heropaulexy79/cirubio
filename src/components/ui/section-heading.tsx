@@ -33,7 +33,7 @@ export function SectionHeading({
         {title}
       </h2>
       {description && (
-        <p className="max-w-[700px] text-base text-muted">{description}</p>
+        <p className="max-w-[700px] text-base text-black">{description}</p>
       )}
     </div>
   )
