@@ -40,7 +40,7 @@ const products = [
     icon: BugIcon,
     title: "Insect Protein Meal",
     description: "Sustainable, nutrient-rich Full-Fat and Defatted Black Soldier Fly Larvae Meal for aquaculture, poultry, and livestock feed.",
-    image: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80&w=1200",
+    image: "/Insect Protein Meal.jpeg",
   },
   {
     category: "Fertiliser",

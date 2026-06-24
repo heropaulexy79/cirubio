@@ -56,7 +56,7 @@ export function IntroSection() {
           >
             <div className="h-full w-full overflow-hidden relative">
               <img
-                src="https://images.unsplash.com/photo-1592982537447-6f2a6a0a3023?auto=format&fit=crop&q=80&w=1200"
+                src="/ABout Us img.jpg"
                 alt="Sustainable agriculture facility"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
