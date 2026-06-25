@@ -8,22 +8,22 @@ const services = [
   {
     title: "Organic Waste Recycling",
     description: "End-to-end collection and processing of organic waste streams for food and beverage manufacturers.",
-    image: "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&q=80&w=600",
+    image: "/Organic Waste Cycling.jpeg",
   },
   {
     title: "ESG Sustainability Reporting",
     description: "Detailed analytics and transparent tracing to verify your waste diversion and carbon emission reductions.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600",
+    image: "/ESG & Sustainability Reporting.jpeg",
   },
   {
     title: "Carbon Emission Reduction Consulting",
     description: "Advisory services on circular practices to meet your critical science-based climate targets.",
-    image: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&q=80&w=600",
+    image: "/Carbon-emssion tracking avoidance.jpeg",
   },
   {
     title: "Circular Bioeconomy Partnerships",
     description: "Tailored off-take agreements and integration of bio-materials into your sustainable supply chains.",
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=600",
+    image: "/CIrcular Economy Partnerships.jpeg",
   },
 ]
 
