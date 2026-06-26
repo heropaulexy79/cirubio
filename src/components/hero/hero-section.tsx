@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const SLIDES = [
   {
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=2000",
+    image: "/slider1.jpeg",
     title: "Advancing Africa's\ntransition to a bio-\ncircular economy",
     subtext: "Transforming organic waste into sustainable resources that power agriculture, strengthen food systems, and accelerate climate action across Africa.",
     buttons: [
@@ -14,7 +14,7 @@ const SLIDES = [
     ]
   },
   {
-    image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80&w=2000",
+    image: "/slider2.jpeg",
     title: "Turning Waste\n into High Value\n Resources",
     subtext: "Transforming organic waste into sustainable resources that power agriculture, strengthen food systems, and accelerate climate action across Africa.",
     buttons: [
@@ -22,7 +22,7 @@ const SLIDES = [
     ]
   },
   {
-    image: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80&w=2000",
+    image: "/slider3.jpeg",
     title: "Build Climate-\nSmart Agriculture\nfor Africa",
     subtext: "Transforming organic waste into sustainable resources that power agriculture, strengthen food systems, and accelerate climate action across Africa.",
     buttons: [
@@ -64,7 +64,7 @@ export function HeroSection() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1.5, ease: "easeInOut" }}
                 alt="Sustainability"
-                className="absolute inset-0 h-full w-full object-cover mix-blend-overlay opacity-80 z-10"
+                className="absolute inset-0 h-full w-full object-cover z-10"
               />
             </AnimatePresence>
           </div>
