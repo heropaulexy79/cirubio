@@ -47,14 +47,14 @@ const products = [
     icon: PlantIcon,
     title: "Organic Fertiliser",
     description: "Bio-augmented fertiliser supporting regenerative agriculture.",
-    image: "https://images.unsplash.com/photo-1416879598555-2575dcbcff55?auto=format&fit=crop&q=80&w=1200",
+    image: "/Organic fertilizers.jpg.jpeg",
   },
   {
     category: "Oils",
     icon: DropIcon,
     title: "Functional Oils",
     description: "BSF-derived oils for animal nutrition, feed formulation, and industrial applications.",
-    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1200",
+    image: "/Functional Oils.jpg",
   },
 ]
 

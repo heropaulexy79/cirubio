@@ -43,7 +43,7 @@ export function DataSustainabilitySection() {
                 </div>
               </div>
               <img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200"
+                src="/technology-dashboard.jpg"
                 alt="Data dashboard"
                 className="w-full object-cover opacity-90 mix-blend-screen"
               />
