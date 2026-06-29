@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 export function DataSustainabilitySection() {
   return (
@@ -42,10 +43,12 @@ export function DataSustainabilitySection() {
                   <div className="h-3 w-3 rounded-full bg-green-500/80" />
                 </div>
               </div>
-              <img
+              <Image
                 src="/technology-dashboard.jpg"
                 alt="Data dashboard"
-                className="w-full object-cover opacity-90 mix-blend-screen"
+                width={1200}
+                height={800}
+                className="w-full h-auto object-cover opacity-90 mix-blend-screen"
               />
             </div>
           </motion.div>

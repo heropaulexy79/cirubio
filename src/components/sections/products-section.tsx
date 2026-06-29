@@ -5,6 +5,7 @@ import { motion, AnimatePresence, LayoutGroup } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 const PlantIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -136,10 +137,11 @@ function ExpandableCard({
           ease: [0.22, 1, 0.36, 1]
         }}
       >
-        <img
+        <Image
           src={product.image}
           alt={product.title}
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
         />
       </motion.div>
 
