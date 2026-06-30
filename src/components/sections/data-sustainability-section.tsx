@@ -20,7 +20,7 @@ export function DataSustainabilitySection() {
             <SectionHeading
               label="Our Technology"
               title="Data-driven sustainability"
-              description="Empower your organization with real-time analytics. Our dashboard provides comprehensive insights into waste diversion rates, carbon footprint reduction, and overall sustainability performance."
+              description="Access real-time insights into waste diverted, carbon-emission avoidance, contributions to SDGs, resource recovery and circular economy performance through our Digital Sustainability Platform."
             />
             <div className="mt-10">
               <Button>Explore Platform</Button>

@@ -16,7 +16,7 @@ const SLIDES = [
   {
     image: "/slider2.jpeg",
     title: "Turning Waste\n into High Value\n Resources",
-    subtext: "Transforming organic waste into sustainable resources that power agriculture, strengthen food systems, and accelerate climate action across Africa.",
+    subtext: "We upcycle organic waste into sustainable protein ingredients, organic fertilisers, and functional oils, creating value for industries while reducing environmental impact.",
     buttons: [
       { text: "Discover our Products", variant: "solid" }
     ]
@@ -24,7 +24,7 @@ const SLIDES = [
   {
     image: "/slider3.jpeg",
     title: "Build Climate-\nSmart Agriculture\nfor Africa",
-    subtext: "Transforming organic waste into sustainable resources that power agriculture, strengthen food systems, and accelerate climate action across Africa.",
+    subtext: "Through innovative bio-refining technology and data-driven sustainability solutions, we help businesses reduce emissions, improve resource efficiency, and achieve measurable ESG outcomes.",
     buttons: [
       { text: "View Our Impact", variant: "solid" },
       { text: "Explore Our Technology", variant: "outline" }

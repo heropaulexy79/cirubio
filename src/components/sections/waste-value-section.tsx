@@ -35,11 +35,7 @@ export function WasteValueSection() {
             className="flex items-center"
           >
             <p className="text-sm md:text-base text-black leading-relaxed mb-8">
-              By harnessing the power of nature, particularly the Black Soldier Fly
-              larvae, we convert organic waste into premium products. This not only
-              diverts waste from landfills but also creates sustainable alternatives
-              for protein meal and organic fertilizer, closing the loop in the
-              agricultural supply chain.
+              Grub Bio leverages Black Soldier Fly biotechnology, circular bio-manufacturing, and digital sustainability intelligence to upcycle organic waste into high-value alternative proteins, organic fertilisers, and functional oils for agriculture, aquaculture, livestock production, and industrial applications. Through our integrated SaaS platform, we provide stakeholders with real-time environmental intelligence, enabling transparent tracking of waste diversion, carbon-emission avoidance, resource recovery, and ESG performance.
             </p>
           </motion.div>
         </div>

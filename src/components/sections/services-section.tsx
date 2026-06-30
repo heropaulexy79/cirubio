@@ -7,22 +7,22 @@ import { SectionHeading } from "@/components/ui/section-heading"
 const services = [
   {
     title: "Organic Waste Recycling",
-    description: "End-to-end collection and processing of organic waste streams for food and beverage manufacturers.",
+    description: "Converting agricultural, food processing, and market waste into valuable resources.",
     image: "/Organic Waste Cycling.jpeg",
   },
   {
     title: "ESG Sustainability Reporting",
-    description: "Detailed analytics and transparent tracing to verify your waste diversion and carbon emission reductions.",
+    description: "Providing traceable sustainability data and environmental impact reporting for partners.",
     image: "/ESG & Sustainability Reporting.jpeg",
   },
   {
     title: "Carbon Emission Reduction Consulting",
-    description: "Advisory services on circular practices to meet your critical science-based climate targets.",
+    description: "Monitoring and quantifying emissions avoided through circular waste management.",
     image: "/Carbon-emssion tracking avoidance.jpeg",
   },
   {
     title: "Circular Bioeconomy Partnerships",
-    description: "Tailored off-take agreements and integration of bio-materials into your sustainable supply chains.",
+    description: "Developing tailored solutions for businesses, municipalities, and agricultural stakeholders.",
     image: "/CIrcular Economy Partnerships.jpeg",
   },
 ]
