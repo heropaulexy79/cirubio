@@ -38,7 +38,7 @@ function AnimatedCounter({ end, suffix = "", label }: CounterProps) {
 
   return (
     <div ref={ref} className="flex flex-col gap-3 border border-zinc-200 rounded-xl p-6">
-      <div className="text-3xl font-bold text-primary-dark md:text-4xl">
+      <div className="text-3xl font-bold text-[#D2AE5B] md:text-4xl">
         {count.toLocaleString()}{suffix}
       </div>
       <div className="text-sm font-semibold text-[#000]">

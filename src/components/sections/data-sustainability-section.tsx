@@ -48,7 +48,7 @@ export function DataSustainabilitySection() {
                 alt="Data dashboard"
                 width={1200}
                 height={800}
-                className="w-full h-auto object-cover opacity-90 mix-blend-screen"
+                className="w-full h-auto object-cover"
               />
             </div>
           </motion.div>

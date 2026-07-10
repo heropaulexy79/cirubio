@@ -3,26 +3,24 @@
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import { SectionHeading } from "@/components/ui/section-heading"
-import { Trash2, Sprout, Cloudy, Leaf } from "lucide-react"
-
 const features = [
   {
-    icon: Trash2,
+    icon: "/waste management.svg",
     title: "Waste\nManagement",
     description: "Diverting organic waste from landfills and uncontrolled disposal while creating valuable circular economy products.",
   },
   {
-    icon: Sprout,
+    icon: "/sustainable agriculture.svg",
     title: "Sustainable\nAgriculture",
     description: "Producing sustainable animal feed ingredients and organic soil enhancers that support resilient food production systems.",
   },
   {
-    icon: Cloudy,
+    icon: "/climate change.svg",
     title: "Climate\nChange",
     description: "Reducing greenhouse gas emissions through carbon-emission avoidance and resource-efficient bio-manufacturing.",
   },
   {
-    icon: Leaf,
+    icon: "/sustainability intelligence.svg",
     title: "Sustainability\nIntelligence",
     description: "Leveraging automation, real-time monitoring, and ESG analytics to optimize bio-manufacturing processes while delivering transparent, auditable sustainability metrics.",
   },
@@ -67,15 +65,14 @@ export function FeaturesSection() {
           className="grid gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-4"
         >
           {features.map((feature, idx) => {
-            const Icon = feature.icon
             return (
               <motion.div
                 key={idx}
                 variants={cardVariants}
                 className="flex flex-col items-start"
               >
-                <div className="text-[#0A5C19] mb-6">
-                  <Icon size={36} strokeWidth={1.5} />
+                <div className="mb-6">
+                  <img src={feature.icon} alt={feature.title.replace('\n', ' ')} className="w-12 h-12 object-contain" />
                 </div>
                 <h3 className="text-[22px] font-bold text-[#0A5024] whitespace-pre-line leading-[1.3] mb-4">
                   {feature.title}

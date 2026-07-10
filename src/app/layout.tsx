@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { FloatingNav } from "@/components/navbar/floating-nav";
+import { NewsletterSection, SiteFooter } from "@/components/footer/site-footer";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -21,7 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} scroll-smooth`} suppressHydrationWarning>
       <body className={`${montserrat.variable} font-sans antialiased min-h-screen bg-background text-foreground flex flex-col`}>
-        {children}
+        <FloatingNav />
+        <main className="flex-grow flex flex-col">
+          {children}
+        </main>
+        <NewsletterSection />
+        <SiteFooter />
       </body>
     </html>
   );

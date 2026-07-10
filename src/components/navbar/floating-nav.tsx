@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
 import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import { Button } from "@/components/ui/button"
 
@@ -75,9 +76,9 @@ export function FloatingNav() {
 
   // Adjusted links to match user screenshot exact text and structure
   const navLinks = [
-    { name: "About Us", href: "#about", hasDropdown: true },
-    { name: "Our Products", href: "#products", hasDropdown: true },
-    { name: "Our Services", href: "#services", hasDropdown: true },
+    { name: "About Us", href: "/about", hasDropdown: false },
+    { name: "Our Products", href: "/#products", hasDropdown: true },
+    { name: "Our Services", href: "/#services", hasDropdown: true },
     { name: "Sustainability", href: "#sustainability", hasDropdown: false },
     { name: "Our Technology", href: "#technology", hasDropdown: false },
   ]
@@ -93,9 +94,9 @@ export function FloatingNav() {
         {/* Left Side: Logo and Navigation */}
         <div className="flex items-center gap-10 xl:gap-14">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <img src="/GRUB LOGO FINAL.png" alt="Grub Bio Logo" className="h-10 w-auto object-contain" />
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-8">

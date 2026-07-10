@@ -41,21 +41,21 @@ const products = [
     icon: BugIcon,
     title: "Insect Protein Meal",
     description: "Sustainable, nutrient-rich Full-Fat and Defatted Black Soldier Fly Larvae Meal for aquaculture, poultry, and livestock feed.",
-    image: "/Insect Protein Meal.jpeg",
+    image: "/Insect-Protein-Meal.jpg",
   },
   {
     category: "Fertiliser",
     icon: PlantIcon,
     title: "Organic Fertiliser",
     description: "Bio-augmented fertiliser supporting regenerative agriculture.",
-    image: "/Organic fertilizers.jpg.jpeg",
+    image: "/Organic-fertilizers.jpg",
   },
   {
     category: "Oils",
     icon: DropIcon,
     title: "Functional Oils",
     description: "BSF-derived oils for animal nutrition, feed formulation, and industrial applications.",
-    image: "/Functional Oils.jpg",
+    image: "/functional-oils.png",
   },
 ]
 

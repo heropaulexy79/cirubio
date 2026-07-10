@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const SLIDES = [
   {
-    image: "/slider1.jpeg",
+    video: "https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/slider-1.mp4",
     title: "Advancing Africa's\ntransition to a bio-\ncircular economy",
     subtext: "Transforming organic waste into sustainable resources that power agriculture, strengthen food systems, and accelerate climate action across Africa.",
     buttons: [
@@ -14,7 +14,7 @@ const SLIDES = [
     ]
   },
   {
-    image: "/slider2.jpeg",
+    video: "https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/slider-2.mp4",
     title: "Turning Waste\n into High Value\n Resources",
     subtext: "We upcycle organic waste into sustainable protein ingredients, organic fertilisers, and functional oils, creating value for industries while reducing environmental impact.",
     buttons: [
@@ -22,7 +22,7 @@ const SLIDES = [
     ]
   },
   {
-    image: "/slider3.jpeg",
+    video: "https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/slider-3.mp4",
     title: "Build Climate-\nSmart Agriculture\nfor Africa",
     subtext: "Through innovative bio-refining technology and data-driven sustainability solutions, we help businesses reduce emissions, improve resource efficiency, and achieve measurable ESG outcomes.",
     buttons: [
@@ -56,14 +56,17 @@ export function HeroSection() {
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-black/50 z-20" />
             <AnimatePresence mode="popLayout">
-              <motion.img
+              <motion.video
                 key={currentSlide}
-                src={SLIDES[currentSlide].image}
+                src={SLIDES[currentSlide].video}
+                autoPlay
+                muted
+                loop
+                playsInline
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1.5, ease: "easeInOut" }}
-                alt="Sustainability"
                 className="absolute inset-0 h-full w-full object-cover z-10"
               />
             </AnimatePresence>
