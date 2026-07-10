@@ -92,7 +92,7 @@ function ExpandableCard({
   // Layout flex transition values
   const flexValue = isActive ? 1.5 : 1
   const scaleValue = !isActive && isHoveredAny ? 0.95 : 1
-  const opacityValue = !isActive && isHoveredAny ? 0.65 : 1
+  const opacityValue = 1
 
   return (
     <motion.div
@@ -161,9 +161,7 @@ function ExpandableCard({
         className="absolute inset-0 z-10 pointer-events-none"
         initial={false}
         animate={{
-          background: isActive
-            ? "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 100%)"
-            : "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.0) 100%)"
+          background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 100%)"
         }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       />

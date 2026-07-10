@@ -5,78 +5,62 @@ import { motion, useInView } from "framer-motion"
 import { Container } from "@/components/ui/container"
 
 interface CounterProps {
-  end: number
+  value: string
   suffix?: string
   label: string
 }
 
-function AnimatedCounter({ end, suffix = "", label }: CounterProps) {
-  const [count, setCount] = React.useState(0)
+function MetricCard({ value, suffix = "", label }: CounterProps) {
   const ref = React.useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-50px" })
 
-  React.useEffect(() => {
-    if (isInView) {
-      let start = 0
-      const duration = 2000
-      const frames = 60
-      const increment = end / (duration / (1000 / frames))
-      
-      const timer = setInterval(() => {
-        start += increment
-        if (start >= end) {
-          setCount(end)
-          clearInterval(timer)
-        } else {
-          setCount(Math.floor(start))
-        }
-      }, 1000 / frames)
-
-      return () => clearInterval(timer)
-    }
-  }, [end, isInView])
-
   return (
-    <div ref={ref} className="flex flex-col gap-3 border border-zinc-200 rounded-xl p-6">
-      <div className="text-3xl font-bold text-[#D2AE5B] md:text-4xl">
-        {count.toLocaleString()}{suffix}
+    <motion.div 
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.6 }}
+      className="flex flex-col gap-4 border border-zinc-200 rounded-xl p-8 bg-white"
+    >
+      <div className="text-[40px] md:text-[48px] font-bold text-[#C59942] leading-none">
+        {value}{suffix}
       </div>
-      <div className="text-sm font-semibold text-[#000]">
+      <div className="text-sm font-semibold text-[#1B1B1B] leading-snug">
         {label}
       </div>
-    </div>
+    </motion.div>
   )
 }
 
 export function ImpactMetricsSection() {
   const metrics = [
-    { value: 0.5, suffix: "T", label: "CO2e per metric tonne on Organic Waste diverted from land fills" },
-    { value: 90, suffix: "%", label: "Less Water Required Compared to Traditional Protein Source" },
-    { value: 1000, suffix: "+", label: "Less Land Requirement than Conventional Soy-based Protein Production" },
-    { value: 0, suffix: "%", label: "Quantity of organic wastewaster after recycling" },
+    { value: "0.5", suffix: "T", label: "CO2e per metric tonne on Organic Waste diverted from land fills" },
+    { value: "90", suffix: "%", label: "Less Water Required Compared to Traditional Protein Source" },
+    { value: "1,000", suffix: "x", label: "Less Land Requirement Than Conventional Soy-Based Protein Production" },
+    { value: "0", suffix: "%", label: "Quantity of organic waste left after upcycling" },
   ]
 
   return (
-    <section id="impact" className="py-16 md:py-20">
+    <section id="impact" className="py-24 bg-white">
       <Container>
-        <div className="grid gap-12 md:grid-cols-2">
-          <div>
-            <span className="text-sm font-bold tracking-wide text-[#000] mb-4 block">
+        <div className="grid gap-16 md:grid-cols-2 items-center">
+          <div className="max-w-lg">
+            <span className="text-sm font-bold tracking-wide text-black mb-6 block">
               Impact
             </span>
-            <h2 className="text-3xl md:text-[40px] lg:text-[48px] font-bold tracking-tight text-primary-dark leading-[1.3]">
-              Measurable outcomes from our work
+            <h2 className="text-4xl md:text-[56px] font-bold tracking-tight text-[#0A5024] leading-[1.1]">
+              Measurable<br/>outcomes<br/>from our work
             </h2>
-            <p className="mt-6 text-base text-black max-w-lg">
+            <p className="mt-8 text-base text-black max-w-sm">
               Real data demonstrating the scale of our contribution to Africa's circular bio-economy.
             </p>
           </div>
           
-          <div className="grid grid-cols-2 gap-4 items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {metrics.map((metric, idx) => (
-              <AnimatedCounter
+              <MetricCard
                 key={idx}
-                end={metric.value}
+                value={metric.value}
                 suffix={metric.suffix}
                 label={metric.label}
               />

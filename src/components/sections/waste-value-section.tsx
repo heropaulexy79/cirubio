@@ -15,7 +15,7 @@ export function WasteValueSection() {
             transition={{ duration: 0.6 }}
             className="flex flex-col gap-6"
           >
-            <span className="text-sm font-semibold tracking-wider text-primary">
+            <span className="text-sm font-semibold tracking-wider text-black">
               Value Proposition
             </span>
             <h2 className="text-4xl font-bold tracking-tight text-primary-dark md:text-5xl lg:text-6xl">
