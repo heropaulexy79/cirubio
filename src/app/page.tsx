@@ -6,6 +6,7 @@ import { ProductsSection } from "@/components/sections/products-section"
 import { ServicesSection } from "@/components/sections/services-section"
 import { DataSustainabilitySection } from "@/components/sections/data-sustainability-section"
 import { ImpactMetricsSection } from "@/components/sections/impact-metrics-section"
+import { NewsletterSection } from "@/components/footer/site-footer"
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <ServicesSection />
       <DataSustainabilitySection />
       <ImpactMetricsSection />
+      <NewsletterSection />
     </main>
   )
 }

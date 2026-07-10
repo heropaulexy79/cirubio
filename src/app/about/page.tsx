@@ -7,6 +7,7 @@ import { FounderMessage } from "@/components/about/founder-message"
 import { CircularProduction } from "@/components/about/circular-production"
 import { ResourceRecovery } from "@/components/about/resource-recovery"
 import { SdgGoals } from "@/components/about/sdg-goals"
+import { NewsletterSection } from "@/components/footer/site-footer"
 
 export const metadata = {
   title: "About Us | Grub Bio",
@@ -24,6 +25,7 @@ export default function AboutPage() {
       <CircularProduction />
       <ResourceRecovery />
       <SdgGoals />
+      <NewsletterSection />
     </div>
   )
 }

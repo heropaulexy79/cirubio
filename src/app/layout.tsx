@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { FloatingNav } from "@/components/navbar/floating-nav";
-import { NewsletterSection, SiteFooter } from "@/components/footer/site-footer";
-import { ContactUsSection } from "@/components/sections/contact-us-section";
+import { SiteFooter } from "@/components/footer/site-footer";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -28,8 +27,6 @@ export default function RootLayout({
         <main className="flex-grow flex flex-col">
           {children}
         </main>
-        <NewsletterSection />
-        <ContactUsSection />
         <SiteFooter />
       </body>
     </html>

@@ -5,6 +5,8 @@ import { FunctionalLipids } from "@/components/products/functional-lipids"
 import { OrganicFertilizer } from "@/components/products/organic-fertilizer"
 import { ProductsCta } from "@/components/products/products-cta"
 import { ProductsFaq } from "@/components/products/products-faq"
+import { ProductsNewsletterSection } from "@/components/products/products-newsletter"
+import { ContactUsSection } from "@/components/sections/contact-us-section"
 
 export const metadata = {
   title: "Our Products | Grub Bio",
@@ -20,6 +22,8 @@ export default function ProductsPage() {
       <OrganicFertilizer />
       <ProductsCta />
       <ProductsFaq />
+      <ProductsNewsletterSection />
+      <ContactUsSection />
     </div>
   )
 }
