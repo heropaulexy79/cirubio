@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/container"
 
 export function CircularProduction() {
   return (
-    <section className="py-20 bg-[#eef3eb]">
+    <section className="py-20 bg-[#E8F5E8]">
       <Container>
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           
@@ -35,7 +35,7 @@ export function CircularProduction() {
             </h2>
             
             <p className="text-black/80 leading-relaxed text-sm md:text-base mb-8">
-              Our automated bio-refineries serve as the heart of our operations, combining advanced IoT systems, real-time data monitoring, and BSF bio-technology. This enables us to maintain stringent quality controls, optimize production yields, and ensure consistent delivery of high-grade bio-products to our industrial partners.
+              Our pilot bio-manufacturing facility serves as the foundation for Grub Bio's scalable growth strategy. Designed as a modern bio-refinery, the facility utilizes Black Soldier Fly technology to convert organic waste into high-value products through a resource-efficient production process.
             </p>
 
             {/* Checkmark List */}

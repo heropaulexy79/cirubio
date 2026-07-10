@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/container"
 
 export function MissionVision() {
   return (
-    <section className="py-20 bg-[#eef3eb]">
+    <section className="py-20 bg-[#E8F5E8]">
       <Container>
         <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16">
           

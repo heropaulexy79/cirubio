@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/container"
 
 export function BioManufacturing() {
   return (
-    <section className="py-20 bg-[#f4f7f4]">
+    <section className="py-20 bg-[#ffffff]">
       <Container>
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
           {/* Left Column - Image & Title */}
@@ -42,20 +42,20 @@ export function BioManufacturing() {
             <div>
               <h3 className="text-xl md:text-2xl font-bold text-[#0A5024] mb-4">The Challenge</h3>
               <p className="text-black/80 leading-relaxed mb-4 text-sm md:text-base">
-                Linear production models and improper waste management practices present a dual crisis for Africa: they contribute heavily to climate change while squandering valuable resources that could power sustainable development.
+                Across Africa, millions of tonnes of organic waste are generated annually from agricultural activities, food processing facilities, markets, livestock operations, and municipal sources. Much of this waste is improperly managed, contributing to greenhouse gas emissions, environmental degradation, and lost economic value.
               </p>
               <p className="text-black/80 leading-relaxed text-sm md:text-base">
-                Millions of tons of organic waste are discarded annually, rotting in landfills and releasing methane—a potent greenhouse gas. At the same time, critical industries like agriculture and aquaculture struggle with the rising costs and environmental impacts of conventional feed and fertilisers.
+                At the same time, the continent faces growing demand for sustainable protein and resilient agricultural inputs, while many organisations struggle to transparently measure and audit their environmental impact in line with evolving global ESG reporting requirements.
               </p>
             </div>
 
             <div>
               <h3 className="text-xl md:text-2xl font-bold text-[#0A5024] mb-4">Our Solution</h3>
               <p className="text-black/80 leading-relaxed mb-4 text-sm md:text-base">
-                We are building a new generation of bio-refineries that combine Black Soldier Fly biotechnology, automated production systems, and real-time environmental intelligence to upcycle organic waste into high-value resources for agriculture and industry.
+                Our approach addresses a critical structural gap: Africa’s protein supply remains heavily exposed to import dependency, climate volatility, and resource-intensive production systems. Grub Bio provides a locally anchored alternative—one that is resilient, cost-efficient, and environmentally responsible.
               </p>
               <p className="text-black/80 leading-relaxed text-sm md:text-base">
-                Our goal is to unlock the value trapped in organic waste while supporting sustainable agriculture, reducing carbon emissions, providing transparent ESG insights, and fostering a truly circular economy across Africa.
+                Through our integrated model, we enable partners to transition from linear, extractive supply chains to circular, value-generating systems—turning waste into productive assets while strengthening food security, improving farmer economics, and advancing measurable ESG outcomes.
               </p>
             </div>
           </motion.div>

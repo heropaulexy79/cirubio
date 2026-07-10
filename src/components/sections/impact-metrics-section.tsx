@@ -50,10 +50,10 @@ function AnimatedCounter({ end, suffix = "", label }: CounterProps) {
 
 export function ImpactMetricsSection() {
   const metrics = [
-    { value: 25000, suffix: "+", label: "Tons of waste diverted" },
-    { value: 90, suffix: "%", label: "Recovery rate" },
-    { value: 1000, suffix: "+", label: "Businesses served" },
-    { value: 14, suffix: " days", label: "Average processing cycle" },
+    { value: 0.5, suffix: "T", label: "CO2e per metric tonne on Organic Waste diverted from land fills" },
+    { value: 90, suffix: "%", label: "Less Water Required Compared to Traditional Protein Source" },
+    { value: 1000, suffix: "+", label: "Less Land Requirement than Conventional Soy-based Protein Production" },
+    { value: 0, suffix: "%", label: "Quantity of organic wastewaster after recycling" },
   ]
 
   return (

@@ -46,8 +46,7 @@ export function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              className="flex flex-col overflow-hidden rounded-xl bg-white transition-shadow hover:shadow-xl cursor-pointer border-none"
+              className="flex flex-col overflow-hidden rounded-xl bg-white border-none"
             >
               <div className="h-48 w-full overflow-hidden">
                 <img

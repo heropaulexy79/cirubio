@@ -18,7 +18,7 @@ const sdgs = [
 
 export function SdgGoals() {
   return (
-    <section className="py-20 bg-[#eef3eb]">
+    <section className="py-20 bg-[#E8F5E8]">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

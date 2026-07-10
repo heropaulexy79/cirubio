@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
-import { RefreshCcw } from "lucide-react"
 
 export function WasteValueSection() {
   return (
@@ -22,8 +21,8 @@ export function WasteValueSection() {
             <h2 className="text-4xl font-bold tracking-tight text-primary-dark md:text-5xl lg:text-6xl">
               Turning Waste into Value
             </h2>
-            <div className="mt-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white">
-              <RefreshCcw size={32} />
+            <div className="mt-4 flex h-16 w-16 items-center justify-center">
+              <img src="/turning-organic-waste-2.svg" alt="Turning Organic Waste" className="h-full w-full object-contain" />
             </div>
           </motion.div>
 

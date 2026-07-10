@@ -33,9 +33,9 @@ export function ResourceRecovery() {
               </svg>
             </div>
 
-            {/* Image Placeholder */}
-            <div className="w-full aspect-[4/5] rounded-3xl bg-zinc-300 overflow-hidden shadow-xl flex items-center justify-center relative">
-               <span className="text-zinc-500 font-medium px-4 text-center">Hands Holding Eggs Image Placeholder</span>
+            {/* Image */}
+            <div className="w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-xl relative">
+               <img src="/resources-recovery.jpg" alt="Resource Recovery for Food Security" className="w-full h-full object-cover absolute inset-0" />
             </div>
           </motion.div>
 

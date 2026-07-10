@@ -23,7 +23,7 @@ export function DataSustainabilitySection() {
               description="Access real-time insights into waste diverted, carbon-emission avoidance, contributions to SDGs, resource recovery and circular economy performance through our Digital Sustainability Platform."
             />
             <div className="mt-10">
-              <Button>Explore Platform</Button>
+              <Button>Explore our technologies</Button>
             </div>
           </motion.div>
 
@@ -35,20 +35,12 @@ export function DataSustainabilitySection() {
             className="rounded-2xl bg-zinc-900 p-2 shadow-2xl overflow-hidden"
           >
             {/* Dashboard Mockup Representation */}
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-950 overflow-hidden">
-              <div className="flex items-center gap-2 border-b border-zinc-800 bg-zinc-900 px-4 py-3">
-                <div className="flex gap-1.5">
-                  <div className="h-3 w-3 rounded-full bg-red-500/80" />
-                  <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
-                  <div className="h-3 w-3 rounded-full bg-green-500/80" />
-                </div>
-              </div>
+            <div className="rounded-2xl overflow-hidden shadow-2xl relative w-full aspect-[20/19]">
               <Image
                 src="/technology-dashboard.jpg"
                 alt="Data dashboard"
-                width={1200}
-                height={800}
-                className="w-full h-auto object-cover"
+                fill
+                className="object-cover"
               />
             </div>
           </motion.div>

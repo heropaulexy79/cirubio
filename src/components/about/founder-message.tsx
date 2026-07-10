@@ -24,13 +24,13 @@ export function FounderMessage() {
             
             <div className="space-y-6 text-black/80 leading-relaxed text-sm md:text-base">
               <p>
-                "At Grub Bio, we recognize that Africa's future depends on how efficiently we manage our resources today. The linear model of 'take, make, and dispose' is no longer viable."
+                Africa's future depends on our ability to rethink organic waste—not as a burden, but as a valuable resource. At Grub Bio, we believe that the solutions to some of our greatest challenges in food security, agriculture, and climate resilience already exist within the resources we discard every day.
               </p>
               <p>
-                "By embracing bio-circularity, we are turning waste into a catalyst for change—creating sustainable inputs that secure food systems, regenerate soils, and combat climate change."
+                Our mission is to harness innovation, technology, and nature-inspired systems to build scalable circular solutions that create lasting value for businesses, communities, and future generations.
               </p>
               <p>
-                "Our technology empowers businesses to not only reduce their environmental footprint but to actively participate in building a thriving, zero-waste economy."
+               Together, we are building a future where waste becomes opportunity, sustainability drives profitability, and Africa leads the next generation of bio-circular innovation.
               </p>
             </div>
             
@@ -48,7 +48,7 @@ export function FounderMessage() {
             className="flex justify-center md:justify-end"
           >
             <div className="w-full max-w-[400px] aspect-[3/4] rounded-2xl overflow-hidden shadow-xl relative">
-               <img src="/founder.jpeg" alt="Obinna Onuoha, Founder/CEO" className="w-full h-full object-cover absolute inset-0" />
+               <img src="/founder.jpeg" alt="Oladipo Williams, Founder/CEO" className="w-full h-full object-cover absolute inset-0" />
             </div>
           </motion.div>
 
