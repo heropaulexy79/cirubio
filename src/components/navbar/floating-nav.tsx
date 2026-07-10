@@ -77,7 +77,7 @@ export function FloatingNav() {
   // Adjusted links to match user screenshot exact text and structure
   const navLinks = [
     { name: "About Us", href: "/about", hasDropdown: false },
-    { name: "Our Products", href: "/#products", hasDropdown: true },
+    { name: "Our Products", href: "/products", hasDropdown: true },
     { name: "Our Services", href: "/#services", hasDropdown: true },
     { name: "Sustainability", href: "#sustainability", hasDropdown: false },
     { name: "Our Technology", href: "#technology", hasDropdown: false },

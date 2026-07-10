@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { FloatingNav } from "@/components/navbar/floating-nav";
 import { NewsletterSection, SiteFooter } from "@/components/footer/site-footer";
+import { ContactUsSection } from "@/components/sections/contact-us-section";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
           {children}
         </main>
         <NewsletterSection />
+        <ContactUsSection />
         <SiteFooter />
       </body>
     </html>
