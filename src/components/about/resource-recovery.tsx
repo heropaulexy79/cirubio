@@ -6,9 +6,9 @@ import { Container } from "@/components/ui/container"
 
 export function ResourceRecovery() {
   return (
-    <section className="py-20 bg-[#f4f7f4]">
+    <section id="impact" className="py-20 bg-white">
       <Container>
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start justify-between">
           
           {/* Left Column (Headers + Image) */}
           <motion.div
@@ -16,7 +16,7 @@ export function ResourceRecovery() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col"
+            className="w-full lg:w-[420px] xl:w-[460px] flex-shrink-0 flex flex-col"
           >
             <p className="text-black font-semibold text-sm mb-4">Our Impact Vision</p>
             <h2 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0A5024] leading-[1.2] mb-8">
@@ -24,17 +24,12 @@ export function ResourceRecovery() {
             </h2>
             
             {/* Apple Icon */}
-            <div className="w-20 h-20 mb-8 text-black">
-              {/* Apple with a hand underneath (rough approximation) */}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z" />
-                <path d="M10 2c1 .5 2 2 2 5" />
-                <path d="M22 18H2v2h20z" />
-              </svg>
+            <div className="w-24 h-24 mb-10">
+              <img src="/resource-recovery.svg" alt="Resource Recovery Icon" className="w-full h-full object-contain" />
             </div>
 
             {/* Image */}
-            <div className="w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-xl relative">
+            <div className="w-full aspect-square rounded-[24px] overflow-hidden shadow-xl relative">
                <img src="/resources-recovery.jpg" alt="Resource Recovery for Food Security" className="w-full h-full object-cover absolute inset-0" />
             </div>
           </motion.div>
@@ -45,17 +40,19 @@ export function ResourceRecovery() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col"
+            className="flex-1 lg:max-w-[640px] flex flex-col"
           >
-            <p className="text-black/80 leading-relaxed text-sm md:text-base mb-6">
-              Africa's growing population requires resilient food production systems, sustainable agricultural inputs, and more efficient resource utilisation. At the same time, millions of tonnes of valuable organic resources are lost annually through inefficient waste management practices.
-            </p>
-            <p className="text-black/80 leading-relaxed text-sm md:text-base mb-6">
-              Grub Bio is helping bridge this gap by recovering nutrients from organic waste streams and converting them into high-value products that support agriculture, animal nutrition, and environmental sustainability.
-            </p>
-            <p className="text-black/80 leading-relaxed text-sm md:text-base mb-8">
-              Through our bio-circular economy model, we are helping to:
-            </p>
+            <div className="space-y-6 text-black/90 font-medium leading-relaxed text-[15px] md:text-[16px] mb-8">
+              <p>
+                Africa's growing population requires resilient food production systems, sustainable agricultural inputs, and more efficient resource utilisation. At the same time, millions of tonnes of valuable organic resources are lost annually through inefficient waste management practices.
+              </p>
+              <p>
+                Grub Bio is helping bridge this gap by recovering nutrients from organic waste streams and converting them into high-value products that support agriculture, animal nutrition, and environmental sustainability.
+              </p>
+              <p>
+                Through our bio-circular economy model, we are helping to:
+              </p>
+            </div>
 
             <ul className="space-y-4 mb-8">
               {[
@@ -75,13 +72,13 @@ export function ResourceRecovery() {
                       <path d="M2 22 12 12"/>
                     </svg>
                   </div>
-                  <span className="text-black/80 text-sm md:text-base leading-relaxed">{item}</span>
+                  <span className="text-black/90 text-[15px] md:text-[16px] font-medium leading-relaxed">{item}</span>
                 </li>
               ))}
             </ul>
 
-            <p className="text-black/80 leading-relaxed text-sm md:text-base font-medium">
-              By turning waste into productive resources, we are building a more resilient and sustainable food system for Africa.
+            <p className="text-black/90 font-medium leading-relaxed text-[15px] md:text-[16px] mt-2">
+              By turning waste into productive resources, we are building a more resilient, resource-efficient, and food-secure future for Africa.
             </p>
           </motion.div>
         </div>

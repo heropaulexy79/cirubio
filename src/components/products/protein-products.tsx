@@ -16,7 +16,7 @@ function KeyBenefitsIcon() {
 
 export function ProteinProducts() {
   return (
-    <section className="py-20 bg-[#fafafa]">
+    <section id="protein" className="py-20 bg-[#fafafa]">
       <Container>
         {/* Section Header */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">

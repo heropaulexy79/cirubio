@@ -17,12 +17,13 @@ export function ProductsHero() {
         >
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
-            <Image
-              src="/product-hero-img.png"
-              alt="Grub Bio Manufacturing"
-              fill
-              priority
-              className="object-cover"
+            <video
+              src="https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/Our%20products%20header.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
             />
             {/* Dark Overlay to make text readable like in screenshot */}
             <div className="absolute inset-0 bg-black/60 z-10" />

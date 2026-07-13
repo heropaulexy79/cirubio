@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/container"
 
 export function MissionVision() {
   return (
-    <section className="py-20 bg-[#E8F5E8]">
+    <section id="mission" className="py-20 bg-[#E8F5E8]">
       <Container>
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-8 xl:gap-12 justify-between">
           

@@ -16,7 +16,7 @@ function KeyBenefitsIcon() {
 
 export function OrganicFertilizer() {
   return (
-    <section className="py-20 bg-white">
+    <section id="fertiliser" className="py-20 bg-white">
       <Container>
         {/* Section Header (Left-aligned) */}
         <div className="flex flex-col items-start max-w-3xl mb-12">

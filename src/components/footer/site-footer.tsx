@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 
 export function NewsletterSection() {
   return (
-    <section className="py-24">
+    <section className="pt-20 pb-8">
       <Container>
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <h2 className="mb-6 text-4xl font-bold tracking-tight text-[#0A5024] md:text-5xl lg:text-[42px] leading-[1.2]">
@@ -44,9 +44,9 @@ export function NewsletterSection() {
 
 export function SiteFooter() {
   return (
-    <footer id="contact" className="bg-white pt-12">
-      <hr className="w-full border-t border-zinc-200" />
-      <Container className="py-12">
+    <footer id="contact" className="bg-white pt-8">
+      <hr className="w-full border-t border-zinc-200 hidden" />
+      <Container className="pt-8 pb-12">
         <div className="bg-[#051F11] rounded-2xl p-10 md:p-16 text-white grid gap-12 md:grid-cols-12">
           
           <div className="md:col-span-5 flex flex-col gap-6">

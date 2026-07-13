@@ -16,7 +16,7 @@ function KeyBenefitsIcon() {
 
 export function FunctionalLipids() {
   return (
-    <section className="py-20 bg-[#E8F5E8]">
+    <section id="lipids" className="py-20 bg-[#E8F5E8]">
       <Container>
         {/* Section Header */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">

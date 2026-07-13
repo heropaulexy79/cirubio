@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/container"
 
 export function FounderMessage() {
   return (
-    <section className="py-20 bg-white">
+    <section id="founder" className="py-20 bg-white">
       <Container>
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-stretch justify-between">
           
