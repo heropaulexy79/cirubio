@@ -6,22 +6,22 @@ import { SectionHeading } from "@/components/ui/section-heading"
 
 const services = [
   {
-    title: "Organic Waste Recycling",
+    title: "Organic Waste Upcycling",
     description: "Converting agricultural, food processing, and market waste into valuable resources.",
     image: "/Organic Waste Cycling.jpeg",
   },
   {
-    title: "ESG Sustainability Reporting",
+    title: "ESG & Sustainability Reporting",
     description: "Providing traceable sustainability data and environmental impact reporting for partners.",
     image: "/ESG & Sustainability Reporting.jpeg",
   },
   {
-    title: "Carbon Emission Reduction Consulting",
+    title: "Carbon-Emission Avoidance Tracking",
     description: "Monitoring and quantifying emissions avoided through circular waste management.",
     image: "/Carbon-emssion tracking avoidance.jpeg",
   },
   {
-    title: "Circular Bioeconomy Partnerships",
+    title: "Circular Economy Partnerships",
     description: "Developing tailored solutions for businesses, municipalities, and agricultural stakeholders.",
     image: "/CIrcular Economy Partnerships.jpeg",
   },
@@ -32,9 +32,9 @@ export function ServicesSection() {
     <section id="services" className="border-t border-b border-zinc-200 bg-white py-16 md:py-20">
       <Container>
         <SectionHeading
-          label="Services"
+          label="Our Services"
           title="What we deliver"
-          description="Comprehensive solutions for a sustainable enterprise"
+          description="Four integrated solutions for sustainable transformation"
           className="mb-16"
         />
 

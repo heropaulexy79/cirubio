@@ -76,10 +76,10 @@ export function FloatingNav() {
 
   // Adjusted links to match user screenshot exact text and structure
   const navLinks = [
-    { name: "About Us", href: "/about", hasDropdown: true, isMega: true },
-    { name: "Our Products", href: "/products", hasDropdown: true },
-    { name: "Our Services", href: "/#services", hasDropdown: true },
-    { name: "Sustainability", href: "#sustainability", hasDropdown: false },
+    { name: "About Us", href: "/about", hasDropdown: true, isMegaAbout: true },
+    { name: "Our Products", href: "/products", hasDropdown: true, isMega: true },
+    { name: "Our Services", href: "/#services", hasDropdown: true, isMegaServices: true },
+    { name: "Sustainability", href: "#sustainability", hasDropdown: true },
     { name: "Our Technology", href: "#technology", hasDropdown: false },
   ]
 
@@ -112,8 +112,65 @@ export function FloatingNav() {
                   )}
                 </a>
 
-                {/* About Us Mega Menu */}
+                {/* Mega Menu */}
                 {link.isMega && (
+                  <div className="absolute top-[72px] left-0 w-full bg-white border-b border-zinc-200 shadow-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                    <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-8">
+                      <div className="grid grid-cols-4 gap-8">
+                        {/* Item 1 */}
+                        <Link href="/products#protein" className="flex items-start gap-4 group/item">
+                          <div className="mt-1 text-[#1B1B1B] group-hover/item:text-[#0A5024] transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="8" height="14" x="8" y="6" rx="4"/><path d="m19 7-3 2"/><path d="m5 7 3 2"/><path d="m19 19-3-2"/><path d="m5 19 3-2"/><path d="M20 13h-4"/><path d="M4 13h4"/><path d="m9 4 1 2"/><path d="m15 4-1 2"/></svg>
+                          </div>
+                          <div>
+                            <div className="font-semibold text-[#1B1B1B] text-[15px] group-hover/item:text-[#0A5024] transition-colors">Protein Products</div>
+                            <div className="text-sm text-zinc-500 mt-1">Explore our full product range</div>
+                          </div>
+                        </Link>
+                        {/* Item 2 */}
+                        <Link href="/products#lipids" className="flex items-start gap-4 group/item">
+                          <div className="mt-1 text-[#1B1B1B] group-hover/item:text-[#0A5024] transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+                          </div>
+                          <div>
+                            <div className="font-semibold text-[#1B1B1B] text-[15px] group-hover/item:text-[#0A5024] transition-colors">Functional Lipids</div>
+                            <div className="text-sm text-zinc-500 mt-1">Discover how we support your operations</div>
+                          </div>
+                        </Link>
+                        {/* Item 3 */}
+                        <Link href="/products#fertiliser" className="flex items-start gap-4 group/item">
+                          <div className="mt-1 text-[#1B1B1B] group-hover/item:text-[#0A5024] transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 22h8"/><path d="M7 17h10"/><path d="M9 22V17"/><path d="M15 22V17"/><path d="M7 17l-1-6h12l-1 6"/><path d="M12 11V3"/><path d="M12 5a3 3 0 0 0-3 3"/><path d="M12 7a3 3 0 0 0 3 3"/></svg>
+                          </div>
+                          <div>
+                            <div className="font-semibold text-[#1B1B1B] text-[15px] group-hover/item:text-[#0A5024] transition-colors">Organic Fertiliser</div>
+                            <div className="text-sm text-zinc-500 mt-1">Learn about our science and impact</div>
+                          </div>
+                        </Link>
+                        {/* Item 4 */}
+                        <Link href="/technology" className="flex items-start gap-4 group/item">
+                          <div className="mt-1 text-[#1B1B1B] group-hover/item:text-[#0A5024] transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>
+                          </div>
+                          <div>
+                            <div className="font-semibold text-[#1B1B1B] text-[15px] group-hover/item:text-[#0A5024] transition-colors">Our Technology</div>
+                            <div className="text-sm text-zinc-500 mt-1">Ready to partner with us?</div>
+                          </div>
+                        </Link>
+                      </div>
+                      
+                      {/* Bottom Footer Area */}
+                      <div className="mt-8 pt-6 border-t border-zinc-100 flex justify-center items-center">
+                        <span className="text-[15px] text-[#1B1B1B]">
+                          Questions about our work? <Link href="/contact" className="font-medium underline hover:text-[#0A5024]">Get in touch</Link>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* About Us Mega Menu */}
+                {link.isMegaAbout && (
                   <div className="absolute top-[72px] left-0 w-full bg-white border-b border-zinc-200 shadow-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                     <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-8">
                       <div className="grid grid-cols-4 gap-8">
@@ -140,7 +197,7 @@ export function FloatingNav() {
                         {/* Item 3 */}
                         <Link href="/about#impact" className="flex items-start gap-4 group/item">
                           <div className="mt-1 text-[#1B1B1B] group-hover/item:text-[#0A5024] transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/><path d="M3 3l18 18" strokeWidth="1.5" strokeOpacity="0.2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/></svg>
                           </div>
                           <div>
                             <div className="font-semibold text-[#1B1B1B] text-[15px] group-hover/item:text-[#0A5024] transition-colors">Our Impact Vision</div>
@@ -158,7 +215,64 @@ export function FloatingNav() {
                           </div>
                         </Link>
                       </div>
+                      
+                      {/* Bottom Footer Area */}
+                      <div className="mt-8 pt-6 border-t border-zinc-100 flex justify-center items-center">
+                        <span className="text-[15px] text-[#1B1B1B]">
+                          Questions about our work? <Link href="/contact" className="font-medium underline hover:text-[#0A5024]">Get in touch</Link>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
+                {/* Our Services Mega Menu */}
+                {link.isMegaServices && (
+                  <div className="absolute top-[72px] left-0 w-full bg-white border-b border-zinc-200 shadow-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                    <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-8">
+                      <div className="grid grid-cols-4 gap-8">
+                        {/* Item 1 */}
+                        <Link href="/services#manufacturing" className="flex items-start gap-4 group/item">
+                          <div className="mt-1 text-[#1B1B1B] group-hover/item:text-[#0A5024] transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                          </div>
+                          <div>
+                            <div className="font-semibold text-[#1B1B1B] text-[15px] group-hover/item:text-[#0A5024] transition-colors">Circular Bio-Manufacturing Model</div>
+                            <div className="text-sm text-zinc-500 mt-1">Explore our full product range</div>
+                          </div>
+                        </Link>
+                        {/* Item 2 */}
+                        <Link href="/services#waste" className="flex items-start gap-4 group/item">
+                          <div className="mt-1 text-[#1B1B1B] group-hover/item:text-[#0A5024] transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M12 17V8"/><path d="m8 12 4-4 4 4"/></svg>
+                          </div>
+                          <div>
+                            <div className="font-semibold text-[#1B1B1B] text-[15px] group-hover/item:text-[#0A5024] transition-colors">Waste Management Solutions</div>
+                            <div className="text-sm text-zinc-500 mt-1">Discover how we support your operations</div>
+                          </div>
+                        </Link>
+                        {/* Item 3 */}
+                        <Link href="/services#serve" className="flex items-start gap-4 group/item">
+                          <div className="mt-1 text-[#1B1B1B] group-hover/item:text-[#0A5024] transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
+                          </div>
+                          <div>
+                            <div className="font-semibold text-[#1B1B1B] text-[15px] group-hover/item:text-[#0A5024] transition-colors">Who We Serve</div>
+                            <div className="text-sm text-zinc-500 mt-1">Learn about our science and impact</div>
+                          </div>
+                        </Link>
+                        {/* Item 4 */}
+                        <Link href="/services#partnerships" className="flex items-start gap-4 group/item">
+                          <div className="mt-1 text-[#1B1B1B] group-hover/item:text-[#0A5024] transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg>
+                          </div>
+                          <div>
+                            <div className="font-semibold text-[#1B1B1B] text-[15px] group-hover/item:text-[#0A5024] transition-colors">Partnerships & Collaboration</div>
+                            <div className="text-sm text-zinc-500 mt-1">Ready to partner with us?</div>
+                          </div>
+                        </Link>
+                      </div>
+                      
                       {/* Bottom Footer Area */}
                       <div className="mt-8 pt-6 border-t border-zinc-100 flex justify-center items-center">
                         <span className="text-[15px] text-[#1B1B1B]">

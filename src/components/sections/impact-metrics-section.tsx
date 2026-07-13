@@ -25,7 +25,7 @@ function MetricCard({ value, suffix = "", label }: CounterProps) {
       <div className="text-[40px] md:text-[48px] font-bold text-[#C59942] leading-none">
         {value}{suffix}
       </div>
-      <div className="text-sm font-semibold text-[#1B1B1B] leading-snug">
+      <div className="text-base font-bold text-[#4A4A4A] leading-snug">
         {label}
       </div>
     </motion.div>
@@ -43,8 +43,8 @@ export function ImpactMetricsSection() {
   return (
     <section id="impact" className="py-24 bg-white">
       <Container>
-        <div className="grid gap-16 md:grid-cols-2 items-center">
-          <div className="max-w-lg">
+        <div className="grid gap-12 lg:gap-16 lg:grid-cols-12 items-center">
+          <div className="lg:col-span-5 max-w-lg">
             <span className="text-sm font-bold tracking-wide text-black mb-6 block">
               Impact
             </span>
@@ -56,7 +56,7 @@ export function ImpactMetricsSection() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
             {metrics.map((metric, idx) => (
               <MetricCard
                 key={idx}

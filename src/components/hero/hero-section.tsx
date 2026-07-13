@@ -15,14 +15,14 @@ const SLIDES = [
   },
   {
     video: "https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/Home%20page%20-%20Hero%20Slider%202.mp4",
-    title: "Turning Waste\n into High Value\n Resources",
+    title: "Turning Waste into\nHigh Value Resources",
     subtext: "We upcycle organic waste into sustainable protein ingredients, organic fertilisers, and functional oils, creating value for industries while reducing environmental impact.",
     buttons: [
       { text: "Discover our Products", variant: "solid" }
     ]
   },
   {
-    video: "https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/slider-3.mp4",
+    video: "https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/Home%20Page%20-%20Hero%20Slider%203.mp4",
     title: "Build Climate-\nSmart Agriculture\nfor Africa",
     subtext: "Through innovative bio-refining technology and data-driven sustainability solutions, we help businesses reduce emissions, improve resource efficiency, and achieve measurable ESG outcomes.",
     buttons: [
