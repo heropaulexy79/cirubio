@@ -28,7 +28,7 @@ export function SdgGoals() {
           className="max-w-4xl"
         >
           <p className="text-[#D2AE5B] text-sm font-bold uppercase tracking-widest mb-4">Commitment to SDGs</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0A5024] leading-[1.2] mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0A5024] leading-[1.2] mb-6">
             Advancing Global Goals<br/>Through Local Action
           </h2>
           <p className="text-black/80 leading-relaxed text-sm md:text-base mb-12 max-w-2xl">

@@ -48,7 +48,7 @@ export function ImpactMetricsSection() {
             <span className="text-sm font-bold tracking-wide text-black mb-6 block">
               Impact
             </span>
-            <h2 className="text-4xl md:text-[56px] font-bold tracking-tight text-[#0A5024] leading-[1.1]">
+            <h2 className="text-4xl md:text-[42px] font-bold tracking-tight text-[#0A5024] leading-[1.2]">
               Measurable<br/>outcomes<br/>from our work
             </h2>
             <p className="mt-8 text-base text-black max-w-sm">

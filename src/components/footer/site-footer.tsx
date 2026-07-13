@@ -8,7 +8,7 @@ export function NewsletterSection() {
     <section className="py-24">
       <Container>
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <h2 className="mb-6 text-4xl font-bold tracking-tight text-[#0A5024] md:text-5xl lg:text-[56px]">
+          <h2 className="mb-6 text-4xl font-bold tracking-tight text-[#0A5024] md:text-5xl lg:text-[42px] leading-[1.2]">
             Stay connected with Grub Bio
           </h2>
           <p className="mb-10 text-base text-[#1B1B1B] max-w-2xl">

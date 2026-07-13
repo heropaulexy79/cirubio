@@ -9,7 +9,7 @@ export function ContactUsSection() {
     <section id="contact-form" className="py-16 bg-white">
       <Container>
         <div className="max-w-3xl mx-auto flex flex-col items-center">
-          <h2 className="mb-10 text-4xl md:text-5xl font-bold text-[#0A5024]">
+          <h2 className="mb-10 text-4xl md:text-[42px] font-bold text-[#0A5024] leading-[1.2]">
             Contact us
           </h2>
           

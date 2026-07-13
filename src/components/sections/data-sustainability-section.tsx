@@ -18,7 +18,7 @@ export function DataSustainabilitySection() {
             <span className="text-sm font-bold tracking-wide text-black mb-6 block">
               Technology Dashboard
             </span>
-            <h2 className="text-4xl md:text-[52px] font-bold tracking-tight text-[#0A5024] leading-[1.1]">
+            <h2 className="text-4xl md:text-[42px] font-bold tracking-tight text-[#0A5024] leading-[1.2]">
               Data-driven<br/>sustainability
             </h2>
             <p className="mt-8 text-base text-black max-w-md">

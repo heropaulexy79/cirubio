@@ -19,7 +19,7 @@ export function ResourceRecovery() {
             className="flex flex-col"
           >
             <p className="text-black font-semibold text-sm mb-4">Our Impact Vision</p>
-            <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#0A5024] leading-[1.2] mb-8">
+            <h2 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0A5024] leading-[1.2] mb-8">
               Resource Recovery<br/>for Food Security
             </h2>
             

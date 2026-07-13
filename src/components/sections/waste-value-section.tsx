@@ -18,7 +18,7 @@ export function WasteValueSection() {
             <span className="text-sm font-semibold tracking-wider text-black">
               Value Proposition
             </span>
-            <h2 className="text-4xl font-bold tracking-tight text-primary-dark md:text-5xl lg:text-6xl">
+            <h2 className="text-4xl font-bold tracking-tight text-primary-dark md:text-5xl lg:text-[42px] leading-[1.2]">
               Turning Waste into Value
             </h2>
             <div className="mt-4 flex h-16 w-16 items-center justify-center">

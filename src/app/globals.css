@@ -9,7 +9,7 @@
   --color-muted: #6B6B6B;
   --color-white: #FFFFFF;
 
-  --font-sans: "Google Sans", var(--font-montserrat), sans-serif;
+  --font-sans: var(--font-montserrat), sans-serif;
 
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;

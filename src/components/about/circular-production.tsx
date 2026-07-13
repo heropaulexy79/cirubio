@@ -8,7 +8,7 @@ export function CircularProduction() {
   return (
     <section className="py-20 bg-[#E8F5E8]">
       <Container>
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-stretch justify-between">
           
           {/* Image */}
           <motion.div
@@ -16,9 +16,11 @@ export function CircularProduction() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="w-full aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden shadow-xl relative"
+            className="w-full lg:w-[420px] xl:w-[460px] flex-shrink-0 flex"
           >
-             <img src="/circular-production-img.jpg" alt="Circular Production Facility" className="w-full h-full object-cover absolute inset-0" />
+             <div className="w-full h-full min-h-[450px] rounded-[24px] overflow-hidden shadow-xl relative">
+               <img src="/circular-production-img.jpg" alt="Circular Production Facility" className="w-full h-full object-cover absolute inset-0" />
+             </div>
           </motion.div>
 
           {/* Text Content */}
@@ -27,35 +29,41 @@ export function CircularProduction() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col justify-center"
+            className="flex-1 lg:max-w-[640px]"
           >
-            <p className="text-[#444] text-sm font-bold mb-4">Our Bio-Manufacturing Facilities</p>
-            <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#0A5024] leading-[1.2] mb-8">
+            <p className="text-[#000] text-sm font-bold tracking-wide mb-4">Our Bio-Manufacturing Facility</p>
+            <h2 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0A5024] leading-[1.2] mb-8">
               Demonstrating the Future of Circular Production
             </h2>
             
-            <p className="text-black/80 leading-relaxed text-sm md:text-base mb-8">
-              Our pilot bio-manufacturing facility serves as the foundation for Grub Bio's scalable growth strategy. Designed as a modern bio-refinery, the facility utilizes Black Soldier Fly technology to convert organic waste into high-value products through a resource-efficient production process.
-            </p>
+            <div className="space-y-6 text-black/90 font-medium leading-relaxed text-[15px] md:text-[16px] mb-8">
+              <p>
+                Our bio-manufacturing facility serves as the foundation for Grub Bio's scalable growth strategy. Designed as a modern bio-refinery, the facility utilizes Black Soldier Fly technology to convert organic waste into high-value products through a resource-efficient production process.<br />
+                The facility also serves as a proving ground for our digital sustainability systems, operational excellence framework, and future expansion model across agricultural and industrial clusters.
+              </p>
+            </div>
 
-            {/* Checkmark List */}
-            <ul className="space-y-4">
-              {[
-                "State-of-the-art bio-conversion technology",
-                "Scalable modules for distributed waste processing",
-                "ISO-compliant manufacturing and safety standards"
-              ].map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <div className="mt-1 min-w-[20px] text-[#0A5024]">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                  </div>
-                  <span className="text-black/80 text-sm md:text-base font-medium">{item}</span>
-                </li>
-              ))}
-            </ul>
+            {/* Key Features List */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black">
+                  <polygon points="12 2 15.09 5.09 19.5 4.5 20.5 8.91 23.59 12 20.5 15.09 19.5 19.5 15.09 20.5 12 23.59 8.91 20.5 4.5 19.5 5.09 15.09 2 12 5.09 8.91 4.5 4.5 8.91 5.09 12 2" />
+                  <path d="M12 16.5l-3 1.5.5-3.5-2.5-2 3.5-.5 1.5-3 1.5 3 3.5.5-2.5 2 .5 3.5z" />
+                </svg>
+                <h3 className="text-[20px] font-bold text-black">Key Features</h3>
+              </div>
+              <ul className="list-disc pl-5 space-y-2">
+                {[
+                  "Organic waste upcycling and nutrient recovery",
+                  "Production of sustainable protein, functional oils, and organic fertilisers",
+                  "Technology-enabled monitoring and process optimization"
+                ].map((item, idx) => (
+                  <li key={idx} className="text-black/90 text-[15px] md:text-[16px] font-medium pl-1">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
 
         </div>
