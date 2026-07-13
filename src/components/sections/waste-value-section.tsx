@@ -22,7 +22,7 @@ export function WasteValueSection() {
               Turning Waste into Value
             </h2>
             <div className="mt-4 flex h-16 w-16 items-center justify-center">
-              <img src="/turning-organic-waste-2.svg" alt="Turning Organic Waste" className="h-full w-full object-contain" />
+              <img src="/organic-waste-2.svg" alt="Turning Organic Waste" className="h-full w-full object-contain" />
             </div>
           </motion.div>
 
