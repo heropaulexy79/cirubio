@@ -8,8 +8,8 @@ import Image from "next/image"
 function KeyBenefitsIcon() {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black">
-      <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-      <path d="m9 12 2 2 4-4" />
+      <path d="M12 22l-3.172-1.314-3.428.163-.163-3.428L3.923 14.25 6 12 3.923 9.75l1.314-3.172 3.428-.163.163-3.428L12 2l3.172 1.314 3.428-.163.163 3.428L20.077 9.75 18 12l2.077 2.25-1.314 3.172-3.428.163-.163 3.428L12 22z"/>
+      <path d="M12 15l-3.09 1.62.59-3.44-2.5-2.44 3.45-.5L12 7l1.55 3.24 3.45.5-2.5 2.44.59 3.44Z"/>
     </svg>
   )
 }
@@ -70,28 +70,27 @@ export function ProteinProducts() {
             {/* Content Half */}
             <div className="w-full lg:w-1/2 p-5 md:p-6 lg:p-8 flex flex-col justify-center">
               <p className="text-black font-semibold text-sm mb-3">Protein Products</p>
-              <h3 className="text-3xl md:text-4xl lg:text-[36px] font-bold text-[#0A5024] leading-[1.2] mb-4">
+              <h3 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0A5024] leading-[1.1] mb-4">
                 Full-Fat BSF Larvae<br/>Meal
               </h3>
-              <p className="text-black/80 leading-relaxed text-sm md:text-base mb-5 max-w-md">
+              <p className="text-black font-medium leading-relaxed text-sm md:text-base mb-6 max-w-md">
                 A nutrient-dense protein and energy source for poultry, aquaculture, and livestock feed formulations.
               </p>
               
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-3">
                 <KeyBenefitsIcon />
                 <span className="font-bold text-black text-lg">Key Benefits</span>
               </div>
               
-              <ul className="space-y-2">
+              <ul className="list-disc pl-5 space-y-2 ml-1 marker:text-black">
                 {[
                   "High-quality protein with natural energy-rich lipids",
                   "Supports growth performance and feed efficiency",
                   "Sustainable alternative to imported protein ingredients",
                   "Produced through a resource-efficient circular process"
                 ].map((benefit, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <div className="mt-2 w-1 h-1 rounded-full bg-black/60 flex-shrink-0" />
-                    <span className="text-black/80 text-sm md:text-base leading-relaxed">{benefit}</span>
+                  <li key={idx} className="text-black text-[15px] md:text-base leading-relaxed pl-1">
+                    {benefit}
                   </li>
                 ))}
               </ul>
@@ -109,28 +108,27 @@ export function ProteinProducts() {
             {/* Content Half */}
             <div className="w-full lg:w-1/2 p-5 md:p-6 lg:p-8 flex flex-col justify-center">
               <p className="text-black font-semibold text-sm mb-3">Protein Products</p>
-              <h3 className="text-3xl md:text-4xl lg:text-[36px] font-bold text-[#0A5024] leading-[1.2] mb-4">
+              <h3 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0A5024] leading-[1.1] mb-4">
                 Defatted BSF Larvae<br/>Meal
               </h3>
-              <p className="text-black/80 leading-relaxed text-sm md:text-base mb-5 max-w-md">
+              <p className="text-black font-medium leading-relaxed text-sm md:text-base mb-6 max-w-md">
                 A concentrated protein ingredient developed for advanced feed formulations requiring higher protein inclusion levels.
               </p>
               
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-3">
                 <KeyBenefitsIcon />
                 <span className="font-bold text-black text-lg">Key Benefits</span>
               </div>
               
-              <ul className="space-y-2">
+              <ul className="list-disc pl-5 space-y-2 ml-1 marker:text-black">
                 {[
                   "High protein concentration for optimized feed performance",
                   "Excellent digestibility and nutrient availability",
                   "Suitable for poultry, aquaculture, and livestock applications",
                   "Helps reduce dependence on conventional protein sources"
                 ].map((benefit, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <div className="mt-2 w-1 h-1 rounded-full bg-black/60 flex-shrink-0" />
-                    <span className="text-black/80 text-sm md:text-base leading-relaxed">{benefit}</span>
+                  <li key={idx} className="text-black text-[15px] md:text-base leading-relaxed pl-1">
+                    {benefit}
                   </li>
                 ))}
               </ul>

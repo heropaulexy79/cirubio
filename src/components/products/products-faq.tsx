@@ -82,27 +82,25 @@ export function ProductsFaq() {
   return (
     <section className="py-20 md:py-24 bg-white">
       <Container>
-        <div className="max-w-4xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-[#0A5024] mb-12"
-          >
-            Frequently Asked Questions
-          </motion.h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl lg:text-[56px] font-bold text-[#0A5024] mb-12"
+        >
+          Frequently Asked Questions
+        </motion.h2>
 
-          <div className="flex flex-col border-t border-zinc-200">
-            {faqs.map((faq, index) => (
-              <FaqItem
-                key={index}
-                question={faq.question}
-                answer={faq.answer}
-                isOpen={openIndex === index}
-                onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-              />
-            ))}
-          </div>
+        <div className="flex flex-col border-t border-zinc-200">
+          {faqs.map((faq, index) => (
+            <FaqItem
+              key={index}
+              question={faq.question}
+              answer={faq.answer}
+              isOpen={openIndex === index}
+              onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
+            />
+          ))}
         </div>
       </Container>
     </section>
