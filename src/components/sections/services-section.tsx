@@ -46,20 +46,20 @@ export function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="flex flex-col overflow-hidden rounded-xl bg-white border-none"
+              className="flex flex-col"
             >
-              <div className="h-48 w-full overflow-hidden">
+              <div className="h-48 w-full overflow-hidden rounded-2xl mb-5">
                 <img
                   src={service.image}
                   alt={service.title}
                   className="h-full w-full object-cover"
                 />
               </div>
-              <div className="flex flex-1 flex-col pt-5">
-                <h3 className="mb-3 text-xl font-bold text-primary-dark leading-[1.3]">
+              <div className="flex flex-1 flex-col">
+                <h3 className="mb-3 text-xl lg:text-[22px] font-bold text-[#0A5024] leading-[1.3]">
                   {service.title}
                 </h3>
-                <p className="text-black flex-1 text-sm leading-relaxed">
+                <p className="text-black text-[14px] md:text-[15px] leading-relaxed">
                   {service.description}
                 </p>
               </div>

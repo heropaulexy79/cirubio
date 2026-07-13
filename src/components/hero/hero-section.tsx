@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion"
 const SLIDES = [
   {
     video: "https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/Homepage%20-%20Hero%20Slider%201.mp4",
-    title: "Advancing Africa's\ntransition to a bio-\ncircular economy",
+    title: "Advancing Africa's transition\nto a bio-circular economy",
     subtext: "Transforming organic waste into sustainable resources that power agriculture, strengthen food systems, and accelerate climate action across Africa.",
     buttons: [
       { text: "Explore our solution", variant: "solid" },
@@ -23,7 +23,7 @@ const SLIDES = [
   },
   {
     video: "https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/Home%20Page%20-%20Hero%20Slider%203.mp4",
-    title: "Build Climate-\nSmart Agriculture\nfor Africa",
+    title: "Build Climate-Smart\nAgriculture for Africa",
     subtext: "Through innovative bio-refining technology and data-driven sustainability solutions, we help businesses reduce emissions, improve resource efficiency, and achieve measurable ESG outcomes.",
     buttons: [
       { text: "View Our Impact", variant: "solid" },
@@ -82,7 +82,7 @@ export function HeroSection() {
                 transition={{ duration: 0.6 }}
                 className="flex flex-col items-center"
               >
-                <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-[4.2rem] leading-[1.1] whitespace-pre-line">
+                <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-[3.6rem] xl:text-[4rem] leading-[1.1] whitespace-pre-line">
                   {SLIDES[currentSlide].title}
                 </h1>
                 
