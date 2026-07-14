@@ -23,7 +23,7 @@ const SLIDES = [
   },
   {
     video: "https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/Home%20Page%20-%20Hero%20Slider%203.mp4",
-    title: "Build Climate-Smart\nAgriculture for Africa",
+    title: "Building Climate-Smart\nAgriculture for Africa",
     subtext: "Through innovative bio-refining technology and data-driven sustainability solutions, we help businesses reduce emissions, improve resource efficiency, and achieve measurable ESG outcomes.",
     buttons: [
       { text: "View Our Impact", variant: "solid" },
