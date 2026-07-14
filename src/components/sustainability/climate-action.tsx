@@ -25,7 +25,7 @@ export function ClimateAction() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="order-2 md:order-1 w-full"
           >
-            <div className="relative aspect-square rounded-[2rem] overflow-hidden bg-[#FAFAFA]">
+            <div className="relative aspect-square rounded-[2rem] overflow-hidden">
               <img
                 src="/supporting-climate.jpeg"
                 alt="Climate Action"

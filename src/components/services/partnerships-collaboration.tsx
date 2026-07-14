@@ -28,10 +28,20 @@ export function PartnershipsCollaboration() {
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
           {/* Left Column */}
           <div className="w-full lg:w-[45%] flex flex-col">
+            <motion.span
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-sm font-bold tracking-wider text-black mb-6"
+            >
+              Partnerships & Collaborations
+            </motion.span>
+            
             <motion.h2
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-[46px] font-bold text-[#0A5024] leading-[1.15] mb-6"
             >
               Building Circular <br/>Supply Chains Together
