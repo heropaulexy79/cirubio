@@ -39,8 +39,7 @@ export function FaqSection() {
 
   return (
     <section className="w-full bg-white">
-      
-      <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-24 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-16 md:py-20">
         <motion.h2 
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
