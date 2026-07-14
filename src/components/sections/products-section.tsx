@@ -160,11 +160,7 @@ function ExpandableCard({
                 layoutId={`cat-icon-${product.title}`}
                 className="mb-3 text-white"
               >
-                {typeof product.icon === 'string' ? (
-                  <img src={product.icon} alt={product.category} className="w-8 h-8 object-contain brightness-0 invert" />
-                ) : (
-                  <product.icon />
-                )}
+                <img src={product.icon} alt={product.category} className="w-8 h-8 object-contain brightness-0 invert" />
               </motion.div>
             )}
 
