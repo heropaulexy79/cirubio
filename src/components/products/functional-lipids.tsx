@@ -137,7 +137,7 @@ export function FunctionalLipids() {
             {/* Image Half */}
             <div className="w-full lg:w-1/2 relative min-h-[240px] lg:min-h-[300px]">
               <Image
-                src="/functional-lipid.jpg"
+                src="/functional.jpeg"
                 alt="Industrial & Cosmetic Applications"
                 fill
                 className="object-cover"

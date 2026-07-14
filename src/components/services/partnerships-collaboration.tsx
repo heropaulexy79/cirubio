@@ -72,15 +72,18 @@ export function PartnershipsCollaboration() {
               ))}
             </motion.ul>
 
-            <motion.h3
+            <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="text-lg md:text-[19px] font-bold text-black mb-4"
+              className="flex items-center gap-3 mb-4"
             >
-              Benefits
-            </motion.h3>
+              <img src="/key features.svg" alt="Benefits" className="w-6 h-6 object-contain" />
+              <h3 className="text-lg md:text-[19px] font-bold text-black">
+                Benefits
+              </h3>
+            </motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 15 }}

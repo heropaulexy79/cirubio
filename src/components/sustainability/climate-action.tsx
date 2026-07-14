@@ -9,7 +9,8 @@ export function ClimateAction() {
     "Methane-emission avoidance through organic waste recovery",
     "Reduced reliance on imported protein ingredients",
     "Lower environmental footprint compared to conventional feed sources",
-    "Improved soil health and regenerative agriculture outcomes"
+    "Improved soil health and regenerative agriculture outcomes",
+    "Support for carbon-emission avoidance and resource efficiency"
   ]
 
   return (
