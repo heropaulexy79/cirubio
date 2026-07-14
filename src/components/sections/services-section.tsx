@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
@@ -59,7 +59,7 @@ export function ServicesSection() {
                 <h3 className="mb-3 text-xl lg:text-[22px] font-bold text-[#0A5024] leading-[1.3]">
                   {service.title}
                 </h3>
-                <p className="text-black text-[14px] md:text-[15px] leading-relaxed">
+                <p className="text-black text-[14px] md:text-[15px] leading-[1.5]">
                   {service.description}
                 </p>
               </div>

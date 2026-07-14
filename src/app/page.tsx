@@ -1,4 +1,4 @@
-import { HeroSection } from "@/components/hero/hero-section"
+﻿import { HeroSection } from "@/components/hero/hero-section"
 import { IntroSection } from "@/components/sections/intro-section"
 import { WasteValueSection } from "@/components/sections/waste-value-section"
 import { FeaturesSection } from "@/components/sections/features-section"

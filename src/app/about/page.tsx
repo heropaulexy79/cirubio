@@ -1,4 +1,4 @@
-import React from "react"
+﻿import React from "react"
 import { AboutHero } from "@/components/about/about-hero"
 import { AboutIntro } from "@/components/about/about-intro"
 import { BioManufacturing } from "@/components/about/bio-manufacturing"

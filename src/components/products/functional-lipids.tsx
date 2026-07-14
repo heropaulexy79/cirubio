@@ -33,7 +33,7 @@ export function FunctionalLipids() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-[56px] font-bold text-[#0A5024] leading-[1.15] mb-6"
+            className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.15] mb-6"
           >
             BSF Oil
           </motion.h2>
@@ -42,7 +42,7 @@ export function FunctionalLipids() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-black/80 text-base md:text-lg leading-relaxed max-w-2xl"
+            className="text-black/80 text-base md:text-lg leading-[1.5] max-w-2xl"
           >
             A renewable lipid source with applications across animal nutrition and industrial value chains.
           </motion.p>
@@ -70,10 +70,10 @@ export function FunctionalLipids() {
             {/* Content Half */}
             <div className="w-full lg:w-1/2 p-5 md:p-6 lg:p-8 flex flex-col justify-center">
               <p className="text-black font-semibold text-sm mb-3">Functional Lipids</p>
-              <h3 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0A5024] leading-[1.1] mb-4">
+              <h3 className="text-3xl md:text-4xl lg:text-[38px] font-bold text-[#0A5024] leading-[1.1] mb-4">
                 Animal Feed<br/>Applications
               </h3>
-              <p className="text-black font-medium leading-relaxed text-sm md:text-base mb-6 max-w-md">
+              <p className="text-black font-medium leading-[1.5] text-sm md:text-base mb-6 max-w-md">
                 BSF Oil serves as a functional energy source in feed formulations, supporting animal performance and overall health.
               </p>
               
@@ -89,7 +89,7 @@ export function FunctionalLipids() {
                   "Enhances feed formulation flexibility",
                   "Sustainable alternative to conventional feed oils"
                 ].map((benefit, idx) => (
-                  <li key={idx} className="text-black text-[15px] md:text-base leading-relaxed pl-1">
+                  <li key={idx} className="text-black text-[15px] md:text-base leading-[1.5] pl-1">
                     {benefit}
                   </li>
                 ))}
@@ -108,10 +108,10 @@ export function FunctionalLipids() {
             {/* Content Half */}
             <div className="w-full lg:w-1/2 p-5 md:p-6 lg:p-8 flex flex-col justify-center">
               <p className="text-black font-semibold text-sm mb-3">Functional Lipids</p>
-              <h3 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0A5024] leading-[1.1] mb-4">
+              <h3 className="text-3xl md:text-4xl lg:text-[38px] font-bold text-[#0A5024] leading-[1.1] mb-4">
                 Industrial & Cosmetic<br/>Applications
               </h3>
-              <p className="text-black font-medium leading-relaxed text-sm md:text-base mb-6 max-w-md">
+              <p className="text-black font-medium leading-[1.5] text-sm md:text-base mb-6 max-w-md">
                 BSF Oil can be utilized as a renewable bio-based ingredient for industrial and cosmetic manufacturing.
               </p>
               
@@ -127,7 +127,7 @@ export function FunctionalLipids() {
                   "Supports circular economy sourcing strategies",
                   "Lower environmental footprint compared to traditional alternatives"
                 ].map((benefit, idx) => (
-                  <li key={idx} className="text-black text-[15px] md:text-base leading-relaxed pl-1">
+                  <li key={idx} className="text-black text-[15px] md:text-base leading-[1.5] pl-1">
                     {benefit}
                   </li>
                 ))}

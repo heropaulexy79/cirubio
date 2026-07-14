@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import React from "react"
 import { motion } from "framer-motion"
@@ -19,11 +19,11 @@ export function FounderMessage() {
             className="flex-1 lg:max-w-[640px]"
           >
             <p className="text-[#000] text-sm font-bold tracking-wide mb-4">Message from the Founder</p>
-            <h2 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0A5024] leading-[1.2] mb-8">
+            <h2 className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.2] mb-8">
               A New Approach to Growth and Sustainability
             </h2>
             
-            <div className="space-y-6 text-black/90 font-medium leading-relaxed text-[15px] md:text-[16px]">
+            <div className="space-y-6 text-black/90 font-medium leading-[1.5] text-[15px] md:text-[16px]">
               <p>
                 Africa's future depends on our ability to rethink organic waste—not as a burden, but as a valuable resource. At Grub Bio, we believe that the solutions to some of our greatest challenges in food security, agriculture, and climate resilience already exist within the resources we discard every day.
               </p>

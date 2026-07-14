@@ -19,7 +19,7 @@ export function MissionVision() {
             className="lg:w-[45%] xl:w-[48%]"
           >
             <p className="text-black font-semibold text-sm mb-4">Mission and Vision</p>
-            <h3 className="text-3xl md:text-5xl font-bold text-[#0A5024] leading-[1.2] lg:text-[42px] lg:whitespace-nowrap">
+            <h3 className="text-3xl md:text-5xl font-bold text-[#0A5024] leading-[1.2] lg:text-[38px] lg:whitespace-nowrap">
               Bridging the Gap<br/>Between Waste and<br/>Life
             </h3>
           </motion.div>
@@ -39,7 +39,7 @@ export function MissionVision() {
               </svg>
             </div>
             <h3 className="text-2xl md:text-3xl font-bold text-[#0A5024] mb-4">Mission</h3>
-            <p className="text-black/80 font-medium leading-relaxed text-[15px]">
+            <p className="text-black/80 font-medium leading-[1.5] text-[15px]">
               To bridge the gap between industrial waste and life through world-class bio-manufacturing — enabling partners to transition from linear, extractive supply chains to circular, value-generating systems.
             </p>
           </motion.div>
@@ -59,7 +59,7 @@ export function MissionVision() {
               </svg>
             </div>
             <h3 className="text-2xl md:text-3xl font-bold text-[#0A5024] mb-4">Vision</h3>
-            <p className="text-black/80 font-medium leading-relaxed text-[15px]">
+            <p className="text-black/80 font-medium leading-[1.5] text-[15px]">
               A world where organic waste is obsolete and nutrition is infinite — protein production that is locally sourced, decoupled from global supply shocks, environmentally regenerative, and scalable for Africa's growing population.
             </p>
           </motion.div>

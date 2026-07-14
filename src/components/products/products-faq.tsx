@@ -66,7 +66,7 @@ function FaqItem({ question, answer, isOpen, onClick }: { question: string, answ
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className="pb-6 text-black/80 text-sm md:text-base leading-relaxed pr-8">
+            <div className="pb-6 text-black/80 text-sm md:text-base leading-[1.5] pr-8">
               {answer}
             </div>
           </motion.div>
@@ -86,7 +86,7 @@ export function ProductsFaq() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl lg:text-[56px] font-bold text-[#0A5024] mb-12"
+          className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.15] mb-12"
         >
           Frequently Asked Questions
         </motion.h2>

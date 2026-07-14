@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import React, { useState, useRef } from "react"
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion"
@@ -199,7 +199,7 @@ function ExpandableCard({
 
             <motion.p
               layout
-              className="text-white/90 text-sm leading-relaxed max-w-[500px]"
+              className="text-white/90 text-sm leading-[1.5] max-w-[500px]"
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
               {product.description}

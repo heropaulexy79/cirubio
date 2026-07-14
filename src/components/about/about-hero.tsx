@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import React from "react"
 import { motion } from "framer-motion"
@@ -31,7 +31,7 @@ export function AboutHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8"
+            className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white leading-tight mb-8"
           >
             Building Circular Solutions
             <br />
@@ -41,7 +41,7 @@ export function AboutHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-zinc-100 text-sm md:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed"
+            className="text-zinc-100 text-sm md:text-base lg:text-lg max-w-3xl mx-auto leading-[1.5]"
           >
             Grub Bio is a technology-enabled (B2B SaaS), bio-manufacturing company transforming organic waste into high-value resources through advanced Black Soldier Fly biotechnology, data-driven operations, and digital sustainability solutions.
           </motion.p>

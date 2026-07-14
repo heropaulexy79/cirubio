@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils"
+﻿import { cn } from "@/lib/utils"
 
 interface SectionHeadingProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   label?: string
@@ -29,7 +29,7 @@ export function SectionHeading({
           {label}
         </span>
       )}
-      <h2 className="text-3xl md:text-[40px] lg:text-[42px] font-bold tracking-tight text-primary-dark leading-[1.2]">
+      <h2 className="text-3xl md:text-[40px] lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-primary-dark leading-[1.2]">
         {title}
       </h2>
       {description && (

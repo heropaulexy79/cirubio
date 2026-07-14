@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
@@ -20,7 +20,7 @@ export function IntroSection() {
             <p className="text-sm font-bold tracking-wider text-black mb-4 xl:mb-6">
               About Us
             </p>
-            <h2 className="text-3xl md:text-[40px] lg:text-[42px] font-bold tracking-tight text-[#0A5024] leading-[1.2] max-w-[1300px]">
+            <h2 className="text-3xl md:text-[40px] lg:text-[40px] xl:text-[44px] tracking-tight font-bold tracking-tight text-[#0A5024] leading-[1.2] max-w-[1300px]">
               Driving Innovation at the Intersection of Organic Waste Management, Sustainable Agriculture and Climate Resilience
             </h2>
           </motion.div>
@@ -36,7 +36,7 @@ export function IntroSection() {
             className="flex flex-col"
           >
             <div className="flex flex-col h-full justify-between">
-              <p className="text-sm md:text-base text-black leading-relaxed mb-8">
+              <p className="text-sm md:text-base text-black leading-[1.5] mb-8">
                 We are building a new generation of bio-refineries that combine Black Soldier Fly biotechnology, automated production systems, and real-time environmental intelligence to upcycle organic waste into high-value resources for agriculture and industry. Our goal is to unlock the value trapped in organic waste while supporting sustainable agriculture, reducing carbon emissions, providing transparent ESG insights, and fostering a truly circular economy across Africa.
               </p>
               <div>

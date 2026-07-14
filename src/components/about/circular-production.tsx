@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import React from "react"
 import { motion } from "framer-motion"
@@ -32,11 +32,11 @@ export function CircularProduction() {
             className="flex-1 lg:max-w-[640px]"
           >
             <p className="text-[#000] text-sm font-bold tracking-wide mb-4">Our Bio-Manufacturing Facility</p>
-            <h2 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0A5024] leading-[1.2] mb-8">
+            <h2 className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.2] mb-8">
               Demonstrating the Future of Circular Production
             </h2>
             
-            <div className="space-y-6 text-black/90 font-medium leading-relaxed text-[15px] md:text-[16px] mb-8">
+            <div className="space-y-6 text-black/90 font-medium leading-[1.5] text-[15px] md:text-[16px] mb-8">
               <p>
                 Our bio-manufacturing facility serves as the foundation for Grub Bio's scalable growth strategy. Designed as a modern bio-refinery, the facility utilizes Black Soldier Fly technology to convert organic waste into high-value products through a resource-efficient production process.<br />
                 The facility also serves as a proving ground for our digital sustainability systems, operational excellence framework, and future expansion model across agricultural and industrial clusters.

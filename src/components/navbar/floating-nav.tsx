@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import * as React from "react"
 import Link from "next/link"
@@ -74,13 +74,12 @@ export function FloatingNav() {
     setIsScrolled(latest > 10)
   })
 
-  // Adjusted links to match user screenshot exact text and structure
   const navLinks = [
     { name: "About Us", href: "/about", hasDropdown: true, isMegaAbout: true },
     { name: "Our Products", href: "/products", hasDropdown: true, isMega: true },
-    { name: "Our Services", href: "/#services", hasDropdown: true, isMegaServices: true },
-    { name: "Sustainability", href: "#sustainability", hasDropdown: true },
-    { name: "Our Technology", href: "#technology", hasDropdown: false },
+    { name: "Our Services", href: "/services", hasDropdown: true, isMegaServices: true },
+    { name: "Sustainability", href: "/sustainability", hasDropdown: true },
+    { name: "Our Technology", href: "/technology", hasDropdown: false },
   ]
 
   return (
@@ -289,9 +288,9 @@ export function FloatingNav() {
 
         {/* Right Side: CTA Button & Mobile Menu Toggle */}
         <div className="flex items-center gap-4 h-full">
-          <Button className="hidden h-[42px] px-6 text-sm font-medium bg-[#0A5024] hover:bg-[#073A1A] lg:inline-flex rounded-full text-white">
+          <Link href="/contact" className="hidden h-[42px] px-6 text-[15px] font-medium bg-[#0A5024] hover:bg-[#073A1A] lg:inline-flex items-center justify-center rounded-full text-white transition-colors">
             Contact Us
-          </Button>
+          </Link>
 
           <button
             className="lg:hidden text-foreground p-2"
@@ -323,7 +322,9 @@ export function FloatingNav() {
               </div>
             ))}
             <div className="mt-4 pt-4 border-t border-zinc-100">
-              <Button className="w-full bg-[#0A5024] hover:bg-[#073A1A] text-white">Contact Us</Button>
+              <Link href="/contact" className="w-full h-11 inline-flex items-center justify-center rounded-lg bg-[#0A5024] hover:bg-[#073A1A] text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                Contact Us
+              </Link>
             </div>
           </nav>
         </motion.div>

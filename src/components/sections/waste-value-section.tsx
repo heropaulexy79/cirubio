@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
@@ -18,7 +18,7 @@ export function WasteValueSection() {
             <span className="text-sm font-semibold tracking-wider text-black">
               Value Proposition
             </span>
-            <h2 className="text-4xl font-bold tracking-tight text-primary-dark md:text-5xl lg:text-[42px] leading-[1.2]">
+            <h2 className="text-4xl font-bold tracking-tight text-primary-dark md:text-5xl lg:text-[40px] xl:text-[44px] tracking-tight leading-[1.2]">
               Turning Waste into Value
             </h2>
             <div className="mt-4 flex h-16 w-16 items-center justify-center">
@@ -33,7 +33,7 @@ export function WasteValueSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex items-center"
           >
-            <p className="text-sm md:text-base text-black leading-relaxed mb-8">
+            <p className="text-sm md:text-base text-black leading-[1.5] mb-8">
               Grub Bio leverages Black Soldier Fly biotechnology, circular bio-manufacturing, and digital sustainability intelligence to upcycle organic waste into high-value alternative proteins, organic fertilisers, and functional oils for agriculture, aquaculture, livestock production, and industrial applications. Through our integrated SaaS platform, we provide stakeholders with real-time environmental intelligence, enabling transparent tracking of waste diversion, carbon-emission avoidance, resource recovery, and ESG performance.
             </p>
           </motion.div>

@@ -44,7 +44,7 @@ export function ProductsHero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white leading-[1.2] mb-6"
+              className="text-4xl md:text-5xl lg:text-[56px] tracking-tight font-bold text-white leading-[1.15] mb-6"
             >
               Sustainable Solutions from<br/>Circular Bio-Manufacturing
             </motion.h1>
@@ -53,7 +53,7 @@ export function ProductsHero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-base md:text-lg text-white/90 leading-relaxed max-w-3xl"
+              className="text-base md:text-lg text-white/90 leading-[1.5] max-w-3xl"
             >
               Through innovative Black Soldier Fly technology, Grub Bio transforms organic waste into high-value products that support sustainable agriculture, animal nutrition, and industrial applications.
             </motion.p>

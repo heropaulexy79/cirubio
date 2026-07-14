@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -82,11 +82,11 @@ export function HeroSection() {
                 transition={{ duration: 0.6 }}
                 className="flex flex-col items-center"
               >
-                <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-[3.6rem] xl:text-[4rem] leading-[1.1] whitespace-pre-line">
+                <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-[56px] leading-[1.1] whitespace-pre-line">
                   {SLIDES[currentSlide].title}
                 </h1>
                 
-                <p className="mb-10 text-base md:text-lg text-white/90 font-normal max-w-[800px] leading-relaxed">
+                <p className="mb-10 text-base md:text-lg text-white/90 font-normal max-w-[800px] leading-[1.5]">
                   {SLIDES[currentSlide].subtext}
                 </p>
 

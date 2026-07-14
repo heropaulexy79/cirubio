@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { Container } from "@/components/ui/container"
 
@@ -7,7 +7,7 @@ export function ProductsNewsletterSection() {
     <section className="pt-20 pb-10 bg-white">
       <Container>
         <div className="mx-auto flex flex-col items-center text-center bg-[#E8F5E8] rounded-[24px] py-16 px-6 md:px-12 w-full max-w-5xl">
-          <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#0A5024] md:text-4xl lg:text-[42px] leading-[1.2]">
+          <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#0A5024] md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight leading-[1.2]">
             Stay connected with<br/>Grub Bio
           </h2>
           <p className="mb-8 text-sm md:text-base text-[#1B1B1B] max-w-2xl">

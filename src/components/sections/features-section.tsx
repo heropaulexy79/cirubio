@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
@@ -77,7 +77,7 @@ export function FeaturesSection() {
                 <h3 className="text-[22px] font-bold text-[#0A5024] whitespace-pre-line leading-[1.3] mb-4">
                   {feature.title}
                 </h3>
-                <p className="text-black leading-relaxed text-sm">
+                <p className="text-black leading-[1.5] text-sm">
                   {feature.description}
                 </p>
               </motion.div>

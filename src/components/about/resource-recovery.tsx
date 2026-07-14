@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import React from "react"
 import { motion } from "framer-motion"
@@ -19,7 +19,7 @@ export function ResourceRecovery() {
             className="w-full lg:w-[420px] xl:w-[460px] flex-shrink-0 flex flex-col"
           >
             <p className="text-black font-semibold text-sm mb-4">Our Impact Vision</p>
-            <h2 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0A5024] leading-[1.2] mb-8">
+            <h2 className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.2] mb-8">
               Resource Recovery<br/>for Food Security
             </h2>
             
@@ -42,7 +42,7 @@ export function ResourceRecovery() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex-1 lg:max-w-[640px] flex flex-col"
           >
-            <div className="space-y-6 text-black/90 font-medium leading-relaxed text-[15px] md:text-[16px] mb-8">
+            <div className="space-y-6 text-black/90 font-medium leading-[1.5] text-[15px] md:text-[16px] mb-8">
               <p>
                 Africa's growing population requires resilient food production systems, sustainable agricultural inputs, and more efficient resource utilisation. At the same time, millions of tonnes of valuable organic resources are lost annually through inefficient waste management practices.
               </p>
@@ -72,12 +72,12 @@ export function ResourceRecovery() {
                       <path d="M2 22 12 12"/>
                     </svg>
                   </div>
-                  <span className="text-black/90 text-[15px] md:text-[16px] font-medium leading-relaxed">{item}</span>
+                  <span className="text-black/90 text-[15px] md:text-[16px] font-medium leading-[1.5]">{item}</span>
                 </li>
               ))}
             </ul>
 
-            <p className="text-black/90 font-medium leading-relaxed text-[15px] md:text-[16px] mt-2">
+            <p className="text-black/90 font-medium leading-[1.5] text-[15px] md:text-[16px] mt-2">
               By turning waste into productive resources, we are building a more resilient, resource-efficient, and food-secure future for Africa.
             </p>
           </motion.div>

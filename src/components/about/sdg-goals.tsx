@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import React from "react"
 import { motion } from "framer-motion"
@@ -28,10 +28,10 @@ export function SdgGoals() {
           className="max-w-4xl"
         >
           <p className="text-black text-sm font-bold tracking-wide mb-4">Sustainable Development Goals</p>
-          <h2 className="text-3xl md:text-4xl lg:text-[50px] font-bold text-[#0A5024] leading-[1.2] mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.2] mb-6">
             Advancing Global Goals<br/>Through Local Action
           </h2>
-          <p className="text-black/90 font-medium leading-relaxed text-[15px] md:text-[16px] mb-12 max-w-[640px]">
+          <p className="text-black/90 font-medium leading-[1.5] text-[15px] md:text-[16px] mb-12 max-w-[640px]">
             Our business model contributes directly to the following United Nations Sustainable Development Goals:
           </p>
         </motion.div>
