@@ -53,7 +53,8 @@ export function CircularProduction() {
                 {[
                   "Organic waste upcycling and nutrient recovery",
                   "Production of sustainable protein, functional oils, and organic fertilisers",
-                  "Technology-enabled monitoring and process optimization"
+                  "Technology-enabled monitoring and process optimization",
+                  "Real time sustainability and impact measurement"
                 ].map((item, idx) => (
                   <li key={idx} className="text-black/90 text-[15px] md:text-[16px] font-medium pl-1">
                     {item}

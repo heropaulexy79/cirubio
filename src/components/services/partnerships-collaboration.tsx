@@ -34,7 +34,7 @@ export function PartnershipsCollaboration() {
               viewport={{ once: true }}
               className="text-4xl md:text-5xl lg:text-[46px] font-bold text-[#0A5024] leading-[1.15] mb-6"
             >
-              Waste management<br/>solutions
+              Building Circular <br/>Supply Chains Together
             </motion.h2>
 
             <motion.p
