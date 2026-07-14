@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -39,7 +39,6 @@ export function FaqSection() {
 
   return (
     <section className="w-full bg-white">
-      <hr className="w-full border-t border-zinc-300" />
       
       <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-24 md:py-32">
         <motion.h2 
@@ -104,7 +103,6 @@ export function FaqSection() {
         </div>
       </div>
 
-      <hr className="w-full border-t border-zinc-300" />
     </section>
   )
 }
