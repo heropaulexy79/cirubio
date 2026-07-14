@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { motion } from "framer-motion"
 
@@ -27,8 +27,8 @@ export function SustainabilityIntro() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-[36px] md:text-5xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.15]"
             >
-              Sustainability Backed<br />
-              by Data
+              Sustainability<br />
+              Backed by Data
             </motion.h2>
           </div>
 

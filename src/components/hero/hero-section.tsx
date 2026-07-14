@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -86,7 +86,7 @@ export function HeroSection() {
                   {SLIDES[currentSlide].title}
                 </h1>
                 
-                <p className="mb-10 text-base md:text-lg text-white/90 font-normal max-w-[800px] leading-[1.5]">
+                <p className="mb-10 text-base md:text-lg text-white/90 font-medium max-w-[800px] leading-[1.5]">
                   {SLIDES[currentSlide].subtext}
                 </p>
 

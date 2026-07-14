@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import React from "react"
 import { motion } from "framer-motion"
@@ -9,11 +9,16 @@ export function SustainabilityHero() {
       <div className="mx-auto max-w-[1400px]">
         {/* Image Container */}
         <div className="relative w-full rounded-2xl overflow-hidden min-h-[600px] flex items-center justify-center bg-zinc-900">
-          {/* Background Image */}
-          <div 
-            className="absolute inset-0 z-0 bg-cover bg-center"
-            style={{ backgroundImage: 'url("/circular-production-img.jpg")' }}
-          />
+          {/* Background Video */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 z-0 h-full w-full object-cover"
+          >
+            <source src="https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/Our%20sustainability%20header.mp4" type="video/mp4" />
+          </video>
           
           {/* Dark Overlay */}
           <div className="absolute inset-0 z-10 bg-black/60" />

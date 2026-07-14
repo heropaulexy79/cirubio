@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
@@ -26,7 +26,7 @@ export function ClimateAction() {
           >
             <div className="relative aspect-square rounded-[2rem] overflow-hidden bg-[#FAFAFA]">
               <img
-                src="/climate-action-image.png"
+                src="/supporting-climate.jpeg"
                 alt="Climate Action"
                 className="absolute inset-0 w-full h-full object-contain p-8"
               />

@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import React from "react"
 import { motion } from "framer-motion"
@@ -46,10 +46,7 @@ export function CircularProduction() {
             {/* Key Features List */}
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black">
-                  <polygon points="12 2 15.09 5.09 19.5 4.5 20.5 8.91 23.59 12 20.5 15.09 19.5 19.5 15.09 20.5 12 23.59 8.91 20.5 4.5 19.5 5.09 15.09 2 12 5.09 8.91 4.5 4.5 8.91 5.09 12 2" />
-                  <path d="M12 16.5l-3 1.5.5-3.5-2.5-2 3.5-.5 1.5-3 1.5 3 3.5.5-2.5 2 .5 3.5z" />
-                </svg>
+                <img src="/key features.svg" alt="Key Features" className="w-6 h-6 object-contain" />
                 <h3 className="text-[20px] font-bold text-black">Key Features</h3>
               </div>
               <ul className="list-disc pl-5 space-y-2">

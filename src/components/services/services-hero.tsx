@@ -17,13 +17,15 @@ export function ServicesHero() {
         >
           {/* Background Image / Overlay */}
           <div className="absolute inset-0 z-0">
-            <Image
-              src="/service-hero-img.jpg"
-              alt="Services Background"
-              fill
-              sizes="100vw"
-              className="object-cover"
-            />
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/Our%20services%20header%20(1).mp4" type="video/mp4" />
+            </video>
             <div className="absolute inset-0 bg-[#051F11]/70" />
           </div>
 

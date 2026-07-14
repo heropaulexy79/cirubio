@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import React, { useState, useRef } from "react"
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion"
@@ -6,28 +6,6 @@ import { Container } from "@/components/ui/container"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
-
-const PlantIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M2 14h20"></path><path d="M10 21v-7"></path><path d="M10 14a6 6 0 0 1 6-6 15 15 0 0 1 5-2 15 15 0 0 1-2 5 6 6 0 0 1-6 6"></path><path d="M10 14a6 6 0 0 0-6-6 15 15 0 0 0-5-2 15 15 0 0 0 2 5 6 6 0 0 0 6 6"></path>
-  </svg>
-)
-
-const DropIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path>
-  </svg>
-)
-
-const BugIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <rect width="8" height="14" x="8" y="6" rx="4"></rect>
-    <path d="m19 7-3 2"></path><path d="m5 7 3 2"></path>
-    <path d="m19 19-3-2"></path><path d="m5 19 3-2"></path>
-    <path d="M20 13h-4"></path><path d="M4 13h4"></path>
-    <path d="m9 4 1 2"></path><path d="m15 4-1 2"></path>
-  </svg>
-)
 
 const ChevronRightIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -38,21 +16,21 @@ const ChevronRightIcon = (props: React.SVGProps<SVGSVGElement>) => (
 const products = [
   {
     category: "Protein",
-    icon: BugIcon,
+    icon: "/insect protein meal.svg",
     title: "Insect Protein Meal",
     description: "Sustainable, nutrient-rich Full-Fat and Defatted Black Soldier Fly Larvae Meal for aquaculture, poultry, and livestock feed.",
     image: "/Insect-Protein-Meal.jpg",
   },
   {
     category: "Fertiliser",
-    icon: PlantIcon,
+    icon: "/sustainable agriculture.svg",
     title: "Organic Fertiliser",
     description: "Bio-augmented fertiliser supporting regenerative agriculture.",
     image: "/Organic-fertilizers.jpg",
   },
   {
     category: "Oils",
-    icon: DropIcon,
+    icon: "/functional oils.svg",
     title: "Functional Oils",
     description: "BSF-derived oils for animal nutrition, feed formulation, and industrial applications.",
     image: "/functional-oils.png",
@@ -182,7 +160,11 @@ function ExpandableCard({
                 layoutId={`cat-icon-${product.title}`}
                 className="mb-3 text-white"
               >
-                <product.icon />
+                {typeof product.icon === 'string' ? (
+                  <img src={product.icon} alt={product.category} className="w-8 h-8 object-contain brightness-0 invert" />
+                ) : (
+                  <product.icon />
+                )}
               </motion.div>
             )}
 
