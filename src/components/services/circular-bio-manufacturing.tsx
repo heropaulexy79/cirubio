@@ -85,7 +85,7 @@ export function CircularBioManufacturing() {
               transition={{ delay: 0.4 }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <BenefitsIcon />
+                <img src="/key features.svg" alt="Benefits" className="w-6 h-6 object-contain" />
                 <span className="font-bold text-black text-[17px]">Benefits</span>
               </div>
               <p className="text-[#1B1B1B] text-[14px] md:text-[15px] leading-[1.6]">
