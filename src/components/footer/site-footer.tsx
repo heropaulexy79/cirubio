@@ -56,13 +56,19 @@ export function SiteFooter() {
     formData.append("access_key", "35c57619-bf1f-42f6-8743-9fba80b4317b"); 
     formData.append("subject", "New Newsletter Subscription");
 
+    const json = JSON.stringify(Object.fromEntries(formData));
+
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json
       });
       const data = await res.json();
-      if (data.success) {
+      if (res.status === 200) {
         setStatus("success");
         e.currentTarget.reset();
         setTimeout(() => setStatus("idle"), 5000); // Reset after 5 seconds
@@ -70,9 +76,10 @@ export function SiteFooter() {
         setStatus("error");
         setErrorMessage(data.message || "Something went wrong.");
       }
-    } catch (err) {
+    } catch (err: any) {
+      console.error(err);
       setStatus("error");
-      setErrorMessage("Network error. Please try again later.");
+      setErrorMessage(err.message || "Network error. Please try again later.");
     }
   };
 
