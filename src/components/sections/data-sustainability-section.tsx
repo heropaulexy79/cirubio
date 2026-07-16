@@ -1,8 +1,9 @@
-﻿"use client"
+"use client"
 
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import Image from "next/image"
+import Link from "next/link"
 
 export function DataSustainabilitySection() {
   return (
@@ -26,12 +27,12 @@ export function DataSustainabilitySection() {
             </p>
             
             <div className="mt-10">
-              <a
-                href="#"
+              <Link
+                href="/technology"
                 className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 shadow h-10 bg-[#0A5024] text-white hover:bg-[#0A5024]/90 rounded-full px-8 py-6"
               >
                 Explore our technologies
-              </a>
+              </Link>
             </div>
           </motion.div>
 

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Link from "next/link"
 
 const SLIDES = [
   {
@@ -9,8 +10,8 @@ const SLIDES = [
     title: "Advancing Africa's transition\nto a bio-circular economy",
     subtext: "Transforming organic waste into sustainable resources that power agriculture, strengthen food systems, and accelerate climate action across Africa.",
     buttons: [
-      { text: "Explore our solution", variant: "solid" },
-      { text: "Partner With Us", variant: "outline" }
+      { text: "Explore our solution", variant: "solid", href: "/services" },
+      { text: "Partner With Us", variant: "outline", href: "/contact" }
     ]
   },
   {
@@ -18,7 +19,7 @@ const SLIDES = [
     title: "Turning Waste into\nHigh Value Resources",
     subtext: "We upcycle organic waste into sustainable protein ingredients, organic fertilisers, and functional oils, creating value for industries while reducing environmental impact.",
     buttons: [
-      { text: "Discover our Products", variant: "solid" }
+      { text: "Discover our Products", variant: "solid", href: "/products" }
     ]
   },
   {
@@ -26,8 +27,8 @@ const SLIDES = [
     title: "Building Climate-Smart\nAgriculture for Africa",
     subtext: "Through innovative bio-refining technology and data-driven sustainability solutions, we help businesses reduce emissions, improve resource efficiency, and achieve measurable ESG outcomes.",
     buttons: [
-      { text: "View Our Impact", variant: "solid" },
-      { text: "Explore Our Technology", variant: "outline" }
+      { text: "View Our Impact", variant: "solid", href: "/sustainability" },
+      { text: "Explore Our Technology", variant: "outline", href: "/technology" }
     ]
   }
 ]
@@ -92,16 +93,17 @@ export function HeroSection() {
 
                 <div className="flex flex-col sm:flex-row gap-4 relative z-40 mt-2">
                   {SLIDES[currentSlide].buttons.map((btn, idx) => (
-                    <button
+                    <Link
                       key={idx}
+                      href={btn.href}
                       className={
                         btn.variant === "solid"
-                          ? "bg-[#0A5C19] hover:bg-[#074612] text-white transition-colors h-[48px] px-8 text-base font-medium rounded-full cursor-pointer"
-                          : "border border-white bg-transparent hover:bg-white/10 text-white transition-colors h-[48px] px-8 text-base font-medium rounded-full cursor-pointer"
+                          ? "inline-flex items-center justify-center bg-[#0A5C19] hover:bg-[#074612] text-white transition-colors h-[48px] px-8 text-base font-medium rounded-full cursor-pointer"
+                          : "inline-flex items-center justify-center border border-white bg-transparent hover:bg-white/10 text-white transition-colors h-[48px] px-8 text-base font-medium rounded-full cursor-pointer"
                       }
                     >
                       {btn.text}
-                    </button>
+                    </Link>
                   ))}
                 </div>
               </motion.div>

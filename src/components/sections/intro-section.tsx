@@ -1,7 +1,8 @@
-﻿"use client"
+"use client"
 
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
+import Link from "next/link"
 
 export function IntroSection() {
   return (
@@ -40,9 +41,9 @@ export function IntroSection() {
                 We are building a new generation of bio-refineries that combine Black Soldier Fly biotechnology, automated production systems, and real-time environmental intelligence to upcycle organic waste into high-value resources for agriculture and industry. Our goal is to unlock the value trapped in organic waste while supporting sustainable agriculture, reducing carbon emissions, providing transparent ESG insights, and fostering a truly circular economy across Africa.
               </p>
               <div>
-                <button className="bg-[#0A5C19] hover:bg-[#074612] text-white transition-colors h-[48px] px-8 text-sm md:text-base font-semibold rounded-full cursor-pointer">
+                <Link href="/about" className="inline-flex items-center justify-center bg-[#0A5C19] hover:bg-[#074612] text-white transition-colors h-[48px] px-8 text-sm md:text-base font-semibold rounded-full cursor-pointer">
                   Discover our story
-                </button>
+                </Link>
               </div>
             </div>
           </motion.div>

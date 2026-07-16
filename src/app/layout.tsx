@@ -13,9 +13,6 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Grub Bio",
   description: "Driving innovation at the intersection of organic waste management, sustainable agriculture, and climate resilience.",
-  icons: {
-    icon: "/GRUB-favicon.png",
-  },
 };
 
 export default function RootLayout({
