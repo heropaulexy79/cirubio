@@ -1,5 +1,6 @@
 "use client"
 
+import React, { useState } from "react"
 import { Container } from "@/components/ui/container"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -44,6 +45,37 @@ export function NewsletterSection() {
 }
 
 export function SiteFooter() {
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("submitting");
+
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "35c57619-bf1f-42f6-8743-9fba80b4317b"); 
+    formData.append("subject", "New Newsletter Subscription");
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        e.currentTarget.reset();
+        setTimeout(() => setStatus("idle"), 5000); // Reset after 5 seconds
+      } else {
+        setStatus("error");
+        setErrorMessage(data.message || "Something went wrong.");
+      }
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage("Network error. Please try again later.");
+    }
+  };
+
   return (
     <footer id="contact" className="bg-white pt-8">
       <hr className="w-full border-t border-zinc-200" />
@@ -53,17 +85,28 @@ export function SiteFooter() {
           <div className="md:col-span-5 flex flex-col gap-6">
             <img src="/GRUB LOGO FINAL.png" alt="Grub Bio Logo" className="h-10 w-auto object-contain brightness-0 invert self-start" />
             <p className="text-sm mt-4 text-white">Get the latest news and updates from Grub Bio.</p>
-            <form className="flex w-full max-w-sm gap-3 mt-2" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex w-full max-w-sm gap-3 mt-2" onSubmit={handleSubscribe}>
               <input
                 type="email"
+                name="email"
                 placeholder="Your email"
                 className="h-12 flex-1 rounded-xl border border-white/30 bg-transparent px-5 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
                 required
               />
-              <Button type="submit" className="h-12 rounded-full border border-white bg-transparent text-white hover:bg-transparent hover:text-white px-6">
-                Subscribe
+              <Button 
+                type="submit" 
+                disabled={status === "submitting"}
+                className="h-12 rounded-full border border-white bg-transparent text-white hover:bg-transparent hover:text-white px-6 disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {status === "submitting" ? "Subscribing..." : "Subscribe"}
               </Button>
             </form>
+            {status === "success" && (
+              <p className="text-sm text-green-400 mt-1">Successfully subscribed!</p>
+            )}
+            {status === "error" && (
+              <p className="text-sm text-red-400 mt-1">{errorMessage}</p>
+            )}
             <p className="text-[11px] text-white/60 max-w-sm leading-[1.5] mt-2">
               By subscribing you agree to our Privacy Policy and consent to receive updates from Grub Bio.
             </p>
