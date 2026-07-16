@@ -1,4 +1,4 @@
-﻿import React from "react"
+import React from "react"
 import { ProductsHero } from "@/components/products/products-hero"
 import { ProteinProducts } from "@/components/products/protein-products"
 import { FunctionalLipids } from "@/components/products/functional-lipids"
@@ -9,8 +9,9 @@ import { ProductsNewsletterSection } from "@/components/products/products-newsle
 import { ContactUsSection } from "@/components/sections/contact-us-section"
 
 export const metadata = {
-  title: "Our Products | Grub Bio",
-  description: "Sustainable outputs from our circular process.",
+  title: "Sustainable Products | Insect Protein & Organic Fertilizer",
+  description: "Discover Grub.bio's range of sustainable products including insect protein, organic fertilizer, and circular economy solutions for agriculture and livestock.",
+  keywords: ["insect protein products", "organic fertilizer", "animal feed", "sustainable agriculture", "black soldier fly protein", "circular products"],
 }
 
 export default function ProductsPage() {

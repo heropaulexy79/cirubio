@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/container"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
+import Link from "next/link"
 
 const ChevronRightIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -20,6 +21,7 @@ const products = [
     title: "Insect Protein Meal",
     description: "Sustainable, nutrient-rich Full-Fat and Defatted Black Soldier Fly Larvae Meal for aquaculture, poultry, and livestock feed.",
     image: "/Insect-Protein-Meal.jpg",
+    link: "/products#protein",
   },
   {
     category: "Fertiliser",
@@ -27,6 +29,7 @@ const products = [
     title: "Organic Fertiliser",
     description: "Bio-augmented fertiliser supporting regenerative agriculture.",
     image: "/Organic-fertilizers.jpg",
+    link: "/products#fertiliser",
   },
   {
     category: "Oils",
@@ -34,6 +37,7 @@ const products = [
     title: "Functional Oils",
     description: "BSF-derived oils for animal nutrition, feed formulation, and industrial applications.",
     image: "/functional-oils.png",
+    link: "/products#lipids",
   },
 ]
 
@@ -192,9 +196,9 @@ function ExpandableCard({
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >
-                  <button className="flex items-center gap-2 text-white hover:text-white/80 transition-colors text-base font-semibold">
+                  <Link href={product.link} className="flex items-center gap-2 text-white hover:text-white/80 transition-colors text-base font-semibold">
                     Learn more <ChevronRightIcon />
-                  </button>
+                  </Link>
                 </motion.div>
               )}
             </AnimatePresence>

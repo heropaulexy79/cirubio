@@ -1,4 +1,4 @@
-﻿import React from "react"
+import React from "react"
 import { ServicesHero } from "@/components/services/services-hero"
 import { CircularBioManufacturing } from "@/components/services/circular-bio-manufacturing"
 import { WasteManagementSolutions } from "@/components/services/waste-management-solutions"
@@ -9,8 +9,9 @@ import { ServicesFinalCta } from "@/components/services/services-final-cta"
 import { ServicesSocial } from "@/components/services/services-social"
 
 export const metadata = {
-  title: "Our Services | Grub Bio",
-  description: "Enabling Circular Value Across Agriculture, Industry, and Communities.",
+  title: "Sustainable Waste Management Services | Grub.bio",
+  description: "Explore Grub.bio's waste management, circular economy consulting, ESG intelligence, and resource recovery services for businesses and governments.",
+  keywords: ["waste management services", "circular economy consulting", "ESG reporting", "environmental intelligence", "organic waste collection", "sustainability solutions"],
 }
 
 export default function ServicesPage() {

@@ -1,4 +1,4 @@
-﻿import React from "react"
+import React from "react"
 import { AboutHero } from "@/components/about/about-hero"
 import { AboutIntro } from "@/components/about/about-intro"
 import { BioManufacturing } from "@/components/about/bio-manufacturing"
@@ -10,8 +10,9 @@ import { SdgGoals } from "@/components/about/sdg-goals"
 import { NewsletterSection } from "@/components/footer/site-footer"
 
 export const metadata = {
-  title: "About Us | Grub Bio",
-  description: "Building Circular Solutions for Africa's Future.",
+  title: "About Grub.bio | Driving Circular Bioeconomy Innovation",
+  description: "Learn about Grub.bio's mission to transform organic waste into sustainable resources through biotechnology, innovation, and circular economy solutions.",
+  keywords: ["circular bioeconomy", "sustainability company", "biotechnology", "climate innovation", "insect farming"],
 }
 
 export default function AboutPage() {

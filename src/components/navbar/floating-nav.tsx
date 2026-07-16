@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import * as React from "react"
 import Link from "next/link"
@@ -78,7 +78,7 @@ export function FloatingNav() {
     { name: "About Us", href: "/about", hasDropdown: true, isMegaAbout: true },
     { name: "Our Products", href: "/products", hasDropdown: true, isMega: true },
     { name: "Our Services", href: "/services", hasDropdown: true, isMegaServices: true },
-    { name: "Sustainability", href: "/sustainability", hasDropdown: true },
+    { name: "Sustainability", href: "/sustainability", hasDropdown: false },
     { name: "Our Technology", href: "/technology", hasDropdown: false },
   ]
 
@@ -231,7 +231,7 @@ export function FloatingNav() {
                     <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-8">
                       <div className="grid grid-cols-4 gap-8">
                         {/* Item 1 */}
-                        <Link href="/#manufacturing" className="flex items-start gap-4 group/item">
+                        <Link href="/services#manufacturing" className="flex items-start gap-4 group/item">
                           <div className="mt-1 text-[#1B1B1B] group-hover/item:text-[#0A5024] transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
                           </div>
@@ -241,7 +241,7 @@ export function FloatingNav() {
                           </div>
                         </Link>
                         {/* Item 2 */}
-                        <Link href="/#waste" className="flex items-start gap-4 group/item">
+                        <Link href="/services#waste" className="flex items-start gap-4 group/item">
                           <div className="mt-1 text-[#1B1B1B] group-hover/item:text-[#0A5024] transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M12 17V8"/><path d="m8 12 4-4 4 4"/></svg>
                           </div>
@@ -251,7 +251,7 @@ export function FloatingNav() {
                           </div>
                         </Link>
                         {/* Item 3 */}
-                        <Link href="/#serve" className="flex items-start gap-4 group/item">
+                        <Link href="/services#serve" className="flex items-start gap-4 group/item">
                           <div className="mt-1 text-[#1B1B1B] group-hover/item:text-[#0A5024] transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
                           </div>
@@ -261,7 +261,7 @@ export function FloatingNav() {
                           </div>
                         </Link>
                         {/* Item 4 */}
-                        <Link href="/#partnerships" className="flex items-start gap-4 group/item">
+                        <Link href="/services#partnerships" className="flex items-start gap-4 group/item">
                           <div className="mt-1 text-[#1B1B1B] group-hover/item:text-[#0A5024] transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg>
                           </div>

@@ -1,4 +1,4 @@
-﻿import React from "react"
+import React from "react"
 import { ContactHero } from "@/components/contact/contact-hero"
 import { ContactForm } from "@/components/contact/contact-form"
 import { HowCanWeHelp } from "@/components/contact/how-can-we-help"
@@ -7,8 +7,9 @@ import { NewsletterSection } from "@/components/footer/site-footer"
 import { FaqSection } from "@/components/contact/faq-section"
 
 export const metadata = {
-  title: "Contact Us | Grub Bio",
-  description: "Let's Build a Circular Future Together.",
+  title: "Contact Grub.bio | Partner with Circular Economy Experts",
+  description: "Get in touch with Grub.bio to discuss sustainable waste management, insect protein production, partnerships, and circular economy solutions.",
+  keywords: ["contact Grub.bio", "sustainability partnership", "waste management company", "circular economy experts", "contact us"],
 }
 
 export default function ContactPage() {

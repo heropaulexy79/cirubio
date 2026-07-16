@@ -11,8 +11,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Grub Bio",
-  description: "Driving innovation at the intersection of organic waste management, sustainable agriculture, and climate resilience.",
+  title: "Grub.bio | Sustainable Insect Protein & Circular Bioeconomy",
+  description: "Grub.bio transforms organic waste into sustainable insect protein, organic fertilizer, and environmental intelligence solutions that drive the circular bioeconomy.",
+  keywords: ["sustainable insect protein", "circular economy", "organic waste recycling", "black soldier fly", "waste management", "organic fertilizer", "climate technology"],
 };
 
 export default function RootLayout({
