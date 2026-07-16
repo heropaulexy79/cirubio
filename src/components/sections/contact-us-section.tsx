@@ -49,7 +49,7 @@ export function ContactUsSection() {
               </div>
               <h3 className="text-2xl font-bold text-[#0A5024] mb-3">Message Sent Successfully!</h3>
               <p className="text-[#1B1B1B] text-lg max-w-lg mx-auto">Thank you for reaching out. Our team will review your inquiry and get back to you shortly.</p>
-              <Button onClick={() => setStatus("idle")} variant="outline" className="mt-8 rounded-full border-[#0A5024] text-[#0A5024] hover:bg-[#0A5024] hover:text-white px-8 h-12">
+              <Button onClick={() => setStatus("idle")} className="mt-8 rounded-full border border-[#0A5024] bg-transparent text-[#0A5024] hover:bg-[#0A5024] hover:text-white px-8 h-12">
                 Send Another Message
               </Button>
             </div>

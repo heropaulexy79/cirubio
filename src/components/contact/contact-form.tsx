@@ -69,7 +69,7 @@ export function ContactForm() {
               </div>
               <h3 className="text-xl font-bold text-[#0A5024] mb-2">Message Sent Successfully!</h3>
               <p className="text-[#1B1B1B]">Thank you for reaching out. A member of our team will get back to you shortly.</p>
-              <Button onClick={() => setStatus("idle")} variant="outline" className="mt-6 rounded-full border-[#0A5024] text-[#0A5024] hover:bg-[#0A5024] hover:text-white">
+              <Button onClick={() => setStatus("idle")} className="mt-6 rounded-full border border-[#0A5024] bg-transparent text-[#0A5024] hover:bg-[#0A5024] hover:text-white">
                 Send Another Message
               </Button>
             </motion.div>
