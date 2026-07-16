@@ -2,6 +2,7 @@
 
 import { Container } from "@/components/ui/container"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export function NewsletterSection() {
   return (
@@ -72,18 +73,18 @@ export function SiteFooter() {
             <div className="flex flex-col gap-6">
               <h4 className="font-semibold text-white">Products</h4>
               <ul className="flex flex-col gap-4 text-[13px] text-white/80">
-                <li><a href="#" className="hover:text-white transition-colors">Protein products</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Functional lipids</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Organic fertilizer</a></li>
+                <li><Link href="/products" className="hover:text-white transition-colors">Protein products</Link></li>
+                <li><Link href="/products" className="hover:text-white transition-colors">Functional lipids</Link></li>
+                <li><Link href="/products" className="hover:text-white transition-colors">Organic fertilizer</Link></li>
               </ul>
             </div>
             
             <div className="flex flex-col gap-6">
               <h4 className="font-semibold text-white">Services</h4>
               <ul className="flex flex-col gap-4 text-sm font-semibold text-white">
-                <li><a href="#" className="hover:text-white/80 transition-colors">Partnerships</a></li>
-                <li><a href="#about" className="hover:text-white/80 transition-colors">About us</a></li>
-                <li><a href="#contact" className="hover:text-white/80 transition-colors">Contact us</a></li>
+                <li><Link href="/contact" className="hover:text-white/80 transition-colors">Partnerships</Link></li>
+                <li><Link href="/about" className="hover:text-white/80 transition-colors">About us</Link></li>
+                <li><Link href="/contact" className="hover:text-white/80 transition-colors">Contact us</Link></li>
               </ul>
             </div>
 
