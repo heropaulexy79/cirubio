@@ -10,9 +10,10 @@ export function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
     setStatus("submitting");
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
     formData.append("access_key", "35c57619-bf1f-42f6-8743-9fba80b4317b"); 
 
     const object = Object.fromEntries(formData);
@@ -30,7 +31,7 @@ export function ContactForm() {
       const data = await res.json();
       if (res.status === 200) {
         setStatus("success");
-        e.currentTarget.reset();
+        form.reset();
       } else {
         setStatus("error");
         setErrorMessage(data.message || "Something went wrong.");
