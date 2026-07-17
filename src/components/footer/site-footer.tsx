@@ -48,40 +48,20 @@ export function SiteFooter() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     setStatus("submitting");
 
     const formData = new FormData(form);
-    formData.append("access_key", "35c57619-bf1f-42f6-8743-9fba80b4317b"); 
-    formData.append("subject", "New Newsletter Subscription");
-
-    const json = JSON.stringify(Object.fromEntries(formData));
-
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: json
-      });
-      const data = await res.json();
-      if (res.status === 200) {
-        setStatus("success");
-        form.reset();
-        setTimeout(() => setStatus("idle"), 5000); // Reset after 5 seconds
-      } else {
-        setStatus("error");
-        setErrorMessage(data.message || "Something went wrong.");
-      }
-    } catch (err: any) {
-      console.error(err);
-      setStatus("error");
-      setErrorMessage(err.message || "Network error. Please try again later.");
-    }
+    const email = formData.get("email");
+    
+    // Send email via user's mail client
+    window.location.href = `mailto:info@grub.bio?subject=New Newsletter Subscription&body=Please add my email (${email}) to the Grub Bio newsletter.`;
+    
+    setStatus("success");
+    form.reset();
+    setTimeout(() => setStatus("idle"), 5000);
   };
 
   return (
