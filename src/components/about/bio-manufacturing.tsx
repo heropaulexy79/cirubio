@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import React from "react"
 import { motion } from "framer-motion"
@@ -26,7 +26,7 @@ export function BioManufacturing() {
             </div>
             
             {/* Facility Image */}
-            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative shadow-lg">
+            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative">
               <img src="/about-intro-img1.png" alt="Bio-Manufacturing Facility" className="w-full h-full object-contain" />
             </div>
           </motion.div>
