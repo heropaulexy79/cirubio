@@ -19,7 +19,7 @@ export function CircularProduction() {
             className="w-full lg:w-[420px] xl:w-[460px] flex-shrink-0 flex"
           >
              <div className="w-full h-full min-h-[450px] rounded-[24px] overflow-hidden shadow-xl relative">
-               <img src="/about-intro-img2.jpg" alt="Circular Production Facility" className="w-full h-full object-cover absolute inset-0" />
+               <img src="/about-intro-img2.jpeg" alt="Circular Production Facility" className="w-full h-full object-cover absolute inset-0" />
              </div>
           </motion.div>
 
