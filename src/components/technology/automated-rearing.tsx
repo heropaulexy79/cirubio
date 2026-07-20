@@ -23,7 +23,7 @@ export function AutomatedRearing() {
             <div 
               className="absolute inset-0"
               style={{
-                backgroundImage: 'url("/automated-rearing.jpg")',
+                backgroundImage: 'url("/automated-rearing1.png")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}

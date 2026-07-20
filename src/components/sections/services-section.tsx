@@ -16,8 +16,8 @@ const services = [
     image: "/ESG & Sustainability Reporting.jpeg",
   },
   {
-    title: "Carbon-Emission Avoidance Tracking",
-    description: "Monitoring and quantifying emissions avoided through circular waste management.",
+    title: "Climate Smart and Sustainable Agriculture",
+    description: "Creating a circular system that simultaneously optimizes food production, reduces environmental degradation, and builds climate resilience.",
     image: "/Carbon-emssion tracking avoidance.jpeg",
   },
   {

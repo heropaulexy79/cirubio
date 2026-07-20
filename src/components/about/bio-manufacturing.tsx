@@ -27,7 +27,7 @@ export function BioManufacturing() {
             
             {/* Facility Image */}
             <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative shadow-lg">
-              <img src="/about-intro-img.jpg" alt="Bio-Manufacturing Facility" className="w-full h-full object-cover" />
+              <img src="/about-intro-img1.jpg" alt="Bio-Manufacturing Facility" className="w-full h-full object-cover" />
             </div>
           </motion.div>
 
