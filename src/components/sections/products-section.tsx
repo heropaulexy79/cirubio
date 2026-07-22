@@ -98,7 +98,7 @@ function ExpandableCard({
         rotateY: { type: "spring", stiffness: 300, damping: 30 },
       }}
       className={cn(
-        "relative h-[200px] md:h-[240px] overflow-hidden rounded-xl cursor-pointer origin-center shadow-xl",
+        "relative h-[280px] md:h-[240px] overflow-hidden rounded-xl cursor-pointer origin-center shadow-xl",
         "min-w-0"
       )}
       style={{
