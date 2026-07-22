@@ -224,7 +224,7 @@ export function ProductsSection() {
 
         <LayoutGroup>
           <div
-            className="flex flex-col lg:flex-row gap-4 md:gap-6 w-full h-[650px] lg:h-[270px]"
+            className="flex flex-col lg:flex-row gap-4 md:gap-6 w-full h-auto min-h-[600px] lg:h-[270px] lg:min-h-0"
             onMouseLeave={() => setHoveredIndex(0)}
           >
             {products.map((product, idx) => (

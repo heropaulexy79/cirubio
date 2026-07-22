@@ -9,7 +9,7 @@ export function NewsletterSection() {
   return (
     <section className="pt-12 pb-20 px-6 md:px-12 lg:px-20">
       <div className="mx-auto max-w-[1400px]">
-        <div className="bg-[#E8F5E8] rounded-[32px] py-16 px-6 md:px-12 flex flex-col items-center text-center">
+        <div className="bg-[#E8F5E8] rounded-[32px] py-10 md:py-16 px-6 md:px-12 flex flex-col items-center text-center">
           <h2 className="mb-6 text-[32px] md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold tracking-tight text-[#0A5024] leading-[1.2]">
             Stay connected with<br className="hidden md:block" /> Grub Bio
           </h2>

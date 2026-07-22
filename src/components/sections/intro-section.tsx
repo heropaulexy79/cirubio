@@ -6,7 +6,7 @@ import Link from "next/link"
 
 export function IntroSection() {
   return (
-    <section id="about" className="py-16 md:py-20 bg-white">
+    <section id="about" className="py-12 md:py-20 bg-white">
       {/* Full-width Divider */}
       <div className="w-full h-[1px] bg-zinc-200 mb-16 md:mb-24" />
       <Container>

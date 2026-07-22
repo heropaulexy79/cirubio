@@ -83,8 +83,14 @@ export function HeroSection() {
                 transition={{ duration: 0.6 }}
                 className="flex flex-col items-center"
               >
-                <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-[56px] leading-[1.1] whitespace-pre-line">
-                  {SLIDES[currentSlide].title}
+                <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-[56px] leading-[1.1]">
+                  {SLIDES[currentSlide].title.split('\n').map((line, i, arr) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      {i < arr.length - 1 && <br className="hidden md:block" />}
+                      {i < arr.length - 1 && <span className="md:hidden"> </span>}
+                    </React.Fragment>
+                  ))}
                 </h1>
                 
                 <p className="mb-10 text-base md:text-lg text-white/90 font-medium max-w-[800px] leading-[1.5]">

@@ -1,5 +1,6 @@
-﻿"use client"
+"use client"
 
+import React from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import { SectionHeading } from "@/components/ui/section-heading"
@@ -62,7 +63,7 @@ export function FeaturesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-4"
+          className="grid gap-x-12 gap-y-10 md:gap-y-16 sm:grid-cols-2 lg:grid-cols-4"
         >
           {features.map((feature, idx) => {
             return (
@@ -74,8 +75,14 @@ export function FeaturesSection() {
                 <div className="mb-6">
                   <img src={feature.icon} alt={feature.title.replace('\n', ' ')} className="w-12 h-12 object-contain" />
                 </div>
-                <h3 className="text-[22px] font-bold text-[#0A5024] whitespace-pre-line leading-[1.3] mb-4">
-                  {feature.title}
+                <h3 className="text-[22px] font-bold text-[#0A5024] leading-[1.3] mb-4">
+                  {feature.title.split('\n').map((line, i, arr) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      {i < arr.length - 1 && <br className="hidden md:block" />}
+                      {i < arr.length - 1 && <span className="md:hidden"> </span>}
+                    </React.Fragment>
+                  ))}
                 </h3>
                 <p className="text-black leading-[1.5] text-sm">
                   {feature.description}
