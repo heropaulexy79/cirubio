@@ -104,16 +104,16 @@ export function SiteFooter() {
             <div className="flex flex-col gap-6">
               <h4 className="font-semibold text-white">Products</h4>
               <ul className="flex flex-col gap-4 text-[13px] text-white/80">
-                <li><Link href="/products" className="hover:text-white transition-colors">Protein products</Link></li>
-                <li><Link href="/products" className="hover:text-white transition-colors">Functional lipids</Link></li>
-                <li><Link href="/products" className="hover:text-white transition-colors">Organic fertilizer</Link></li>
+                <li><Link href="/products#protein" className="hover:text-white transition-colors">Protein products</Link></li>
+                <li><Link href="/products#lipids" className="hover:text-white transition-colors">Functional lipids</Link></li>
+                <li><Link href="/products#fertiliser" className="hover:text-white transition-colors">Organic fertilizer</Link></li>
               </ul>
             </div>
             
             <div className="flex flex-col gap-6">
               <h4 className="font-semibold text-white">Services</h4>
               <ul className="flex flex-col gap-4 text-sm font-semibold text-white">
-                <li><Link href="/contact" className="hover:text-white/80 transition-colors">Partnerships</Link></li>
+                <li><Link href="/services#partnerships" className="hover:text-white/80 transition-colors">Partnerships</Link></li>
                 <li><Link href="/about" className="hover:text-white/80 transition-colors">About us</Link></li>
                 <li><Link href="/contact" className="hover:text-white/80 transition-colors">Contact us</Link></li>
               </ul>

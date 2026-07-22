@@ -17,16 +17,16 @@ export function BioManufacturing() {
             transition={{ duration: 0.6 }}
             className="flex flex-col"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] mb-8 leading-[1.2]">
-              Bio-Manufacturing<br/>for a Circular<br/>Economy
+            <h2 className="order-2 md:order-1 text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] mb-8 leading-[1.2]">
+              Bio-Manufacturing<br className="hidden md:block"/>for a Circular<br className="hidden md:block"/>Economy
             </h2>
             {/* Logo/Icon */}
-            <div className="w-24 h-24 rounded-full mb-8 flex items-start">
+            <div className="order-1 md:order-2 w-24 h-24 rounded-full mb-6 md:mb-8 flex items-start">
                <img src="/bio-manufacturing-icon.svg" alt="Bio-Manufacturing Icon" className="w-full h-full object-contain" />
             </div>
             
             {/* Facility Image */}
-            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative">
+            <div className="order-3 w-full aspect-[4/3] rounded-2xl overflow-hidden relative">
               <img src="/about-intro-img1.png" alt="Bio-Manufacturing Facility" className="w-full h-full object-contain" />
             </div>
           </motion.div>

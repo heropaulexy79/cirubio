@@ -43,31 +43,16 @@ export function SdgGoals() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col gap-y-12 w-full"
+            className="flex flex-wrap gap-x-8 lg:gap-x-12 gap-y-12 justify-start lg:justify-center w-full"
           >
-            {/* Top Row (5 items) */}
-            <div className="flex flex-wrap gap-x-8 lg:gap-x-12 justify-start">
-              {sdgs.slice(0, 5).map((sdg) => (
-                <div 
-                  key={sdg.id} 
-                  className="w-[120px] sm:w-[140px] md:w-[150px] lg:w-[170px] flex-shrink-0 flex items-center justify-center"
-                >
-                  <img src={sdg.src} alt={sdg.title} className="w-full h-auto object-contain" />
-                </div>
-              ))}
-            </div>
-
-            {/* Bottom Row (4 items) */}
-            <div className="flex flex-wrap gap-x-8 lg:gap-x-12 justify-start lg:justify-center">
-              {sdgs.slice(5).map((sdg) => (
-                <div 
-                  key={sdg.id} 
-                  className="w-[120px] sm:w-[140px] md:w-[150px] lg:w-[170px] flex-shrink-0 flex items-center justify-center"
-                >
-                  <img src={sdg.src} alt={sdg.title} className="w-full h-auto object-contain" />
-                </div>
-              ))}
-            </div>
+            {sdgs.map((sdg) => (
+              <div 
+                key={sdg.id} 
+                className="w-[120px] sm:w-[140px] md:w-[150px] lg:w-[170px] flex-shrink-0 flex items-center justify-center"
+              >
+                <img src={sdg.src} alt={sdg.title} className="w-full h-auto object-contain" />
+              </div>
+            ))}
           </motion.div>
         </div>
       </Container>

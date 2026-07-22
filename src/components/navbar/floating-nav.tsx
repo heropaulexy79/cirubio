@@ -69,6 +69,7 @@ export function FloatingNav() {
   const { scrollY } = useScroll()
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
+  const [activeMobileMenu, setActiveMobileMenu] = React.useState<string | null>(null)
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 10)
@@ -312,17 +313,63 @@ export function FloatingNav() {
             transition={{ duration: 0.3 }}
             className="lg:hidden overflow-hidden border-t border-zinc-100 bg-white px-6 py-4 shadow-lg"
           >
-            <nav className="flex flex-col gap-4">
+            <nav className="flex flex-col">
               {navLinks.map((link) => (
-                <div key={link.name} className="flex items-center justify-between">
-                  <a
-                    href={link.href}
-                    className="text-base font-medium text-foreground hover:text-[#0A5024] py-2"
-                    onClick={() => !link.hasDropdown && setIsMobileMenuOpen(false)}
-                  >
-                    {link.name}
-                  </a>
-                  {link.hasDropdown && <ChevronDownIcon className="text-zinc-400" />}
+                <div key={link.name} className="flex flex-col border-b border-zinc-100 last:border-0">
+                  <div className="flex items-center justify-between">
+                    <a
+                      href={link.href}
+                      className="text-base font-medium text-foreground hover:text-[#0A5024] py-3 flex-1"
+                      onClick={(e) => {
+                        if (link.hasDropdown) {
+                          e.preventDefault()
+                          setActiveMobileMenu(activeMobileMenu === link.name ? null : link.name)
+                        } else {
+                          setIsMobileMenuOpen(false)
+                        }
+                      }}
+                    >
+                      {link.name}
+                    </a>
+                    {link.hasDropdown && (
+                      <button 
+                        className="p-2 -mr-2"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          setActiveMobileMenu(activeMobileMenu === link.name ? null : link.name)
+                        }}
+                      >
+                        <ChevronDownIcon className={`text-zinc-400 transition-transform ${activeMobileMenu === link.name ? "rotate-180" : ""}`} />
+                      </button>
+                    )}
+                  </div>
+                  
+                  <AnimatePresence>
+                    {activeMobileMenu === link.name && link.isMegaAbout && (
+                      <motion.div initial={{height: 0, opacity: 0}} animate={{height: "auto", opacity: 1}} exit={{height: 0, opacity: 0}} className="overflow-hidden flex flex-col gap-3 pb-4 pl-4 ml-2 border-l-2 border-zinc-100">
+                        <Link href="/about#mission" onClick={() => setIsMobileMenuOpen(false)} className="text-sm text-zinc-600 hover:text-[#0A5024] pt-1">Our Mission & Vision</Link>
+                        <Link href="/about#founder" onClick={() => setIsMobileMenuOpen(false)} className="text-sm text-zinc-600 hover:text-[#0A5024]">Message from the Founder</Link>
+                        <Link href="/about#impact" onClick={() => setIsMobileMenuOpen(false)} className="text-sm text-zinc-600 hover:text-[#0A5024]">Our Impact Vision</Link>
+                        <Link href="/about#sdg" onClick={() => setIsMobileMenuOpen(false)} className="text-sm text-zinc-600 hover:text-[#0A5024]">Sustainable Development Goals</Link>
+                      </motion.div>
+                    )}
+                    {activeMobileMenu === link.name && link.isMega && (
+                      <motion.div initial={{height: 0, opacity: 0}} animate={{height: "auto", opacity: 1}} exit={{height: 0, opacity: 0}} className="overflow-hidden flex flex-col gap-3 pb-4 pl-4 ml-2 border-l-2 border-zinc-100">
+                        <Link href="/products#protein" onClick={() => setIsMobileMenuOpen(false)} className="text-sm text-zinc-600 hover:text-[#0A5024] pt-1">Protein Products</Link>
+                        <Link href="/products#lipids" onClick={() => setIsMobileMenuOpen(false)} className="text-sm text-zinc-600 hover:text-[#0A5024]">Functional Lipids</Link>
+                        <Link href="/products#fertiliser" onClick={() => setIsMobileMenuOpen(false)} className="text-sm text-zinc-600 hover:text-[#0A5024]">Organic Fertiliser</Link>
+                        <Link href="/#technology" onClick={() => setIsMobileMenuOpen(false)} className="text-sm text-zinc-600 hover:text-[#0A5024]">Our Technology</Link>
+                      </motion.div>
+                    )}
+                    {activeMobileMenu === link.name && link.isMegaServices && (
+                      <motion.div initial={{height: 0, opacity: 0}} animate={{height: "auto", opacity: 1}} exit={{height: 0, opacity: 0}} className="overflow-hidden flex flex-col gap-3 pb-4 pl-4 ml-2 border-l-2 border-zinc-100">
+                        <Link href="/services#manufacturing" onClick={() => setIsMobileMenuOpen(false)} className="text-sm text-zinc-600 hover:text-[#0A5024] pt-1">Circular Bio-Manufacturing Model</Link>
+                        <Link href="/services#waste" onClick={() => setIsMobileMenuOpen(false)} className="text-sm text-zinc-600 hover:text-[#0A5024]">Waste Management Solutions</Link>
+                        <Link href="/services#serve" onClick={() => setIsMobileMenuOpen(false)} className="text-sm text-zinc-600 hover:text-[#0A5024]">Who We Serve</Link>
+                        <Link href="/services#partnerships" onClick={() => setIsMobileMenuOpen(false)} className="text-sm text-zinc-600 hover:text-[#0A5024]">Partnerships & Collaboration</Link>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               ))}
               <div className="mt-4 pt-4 border-t border-zinc-100">
