@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { motion, useScroll, useMotionValueEvent } from "framer-motion"
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 
 function ChevronDownIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -294,7 +294,8 @@ export function FloatingNav() {
 
           <button
             className="lg:hidden text-foreground p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            type="button"
+            onClick={(e) => { e.stopPropagation(); setIsMobileMenuOpen(!isMobileMenuOpen); }}
           >
             {isMobileMenuOpen ? <XIcon /> : <MenuIcon />}
           </button>
@@ -302,33 +303,37 @@ export function FloatingNav() {
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          className="lg:hidden border-t border-zinc-100 bg-white px-6 py-4 shadow-lg"
-        >
-          <nav className="flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <div key={link.name} className="flex items-center justify-between">
-                <a
-                  href={link.href}
-                  className="text-base font-medium text-foreground hover:text-[#0A5024] py-2"
-                  onClick={() => !link.hasDropdown && setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
-                {link.hasDropdown && <ChevronDownIcon className="text-zinc-400" />}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden overflow-hidden border-t border-zinc-100 bg-white px-6 py-4 shadow-lg"
+          >
+            <nav className="flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <div key={link.name} className="flex items-center justify-between">
+                  <a
+                    href={link.href}
+                    className="text-base font-medium text-foreground hover:text-[#0A5024] py-2"
+                    onClick={() => !link.hasDropdown && setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                  {link.hasDropdown && <ChevronDownIcon className="text-zinc-400" />}
+                </div>
+              ))}
+              <div className="mt-4 pt-4 border-t border-zinc-100">
+                <Link href="/contact" className="w-full h-11 inline-flex items-center justify-center rounded-lg bg-[#0A5024] hover:bg-[#073A1A] text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                  Contact Us
+                </Link>
               </div>
-            ))}
-            <div className="mt-4 pt-4 border-t border-zinc-100">
-              <Link href="/contact" className="w-full h-11 inline-flex items-center justify-center rounded-lg bg-[#0A5024] hover:bg-[#073A1A] text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                Contact Us
-              </Link>
-            </div>
-          </nav>
-        </motion.div>
-      )}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   )
 }

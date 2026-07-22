@@ -68,12 +68,12 @@ export function SiteFooter() {
     <footer id="contact" className="bg-white pt-8">
       <hr className="w-full border-t border-zinc-200" />
       <Container className="pt-8 pb-12">
-        <div className="bg-[#051F11] rounded-2xl p-10 md:p-16 text-white grid gap-12 md:grid-cols-12">
+        <div className="bg-[#051F11] rounded-2xl p-6 sm:p-10 md:p-16 text-white grid gap-12 md:grid-cols-12 overflow-hidden">
           
           <div className="md:col-span-5 flex flex-col gap-6">
             <img src="/GRUB LOGO FINAL.png" alt="Grub Bio Logo" className="h-10 w-auto object-contain brightness-0 invert self-start" />
             <p className="text-sm mt-4 text-white">Get the latest news and updates from Grub Bio.</p>
-            <form className="flex w-full max-w-sm gap-3 mt-2" onSubmit={handleSubscribe}>
+            <form className="flex flex-col sm:flex-row w-full max-w-sm gap-3 mt-2" onSubmit={handleSubscribe}>
               <input
                 type="email"
                 name="email"
