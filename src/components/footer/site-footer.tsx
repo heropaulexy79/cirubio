@@ -78,7 +78,7 @@ export function SiteFooter() {
                 type="email"
                 name="email"
                 placeholder="Your email"
-                className="h-12 flex-1 rounded-xl border border-white/30 bg-transparent px-5 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
+                className="h-12 w-full sm:flex-1 rounded-xl border border-white/30 bg-transparent px-5 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
                 required
               />
               <Button 
