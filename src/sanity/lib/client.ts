@@ -25,7 +25,7 @@ export async function fetchSanityData<T>(query: string, fallbackData: T): Promis
   }
 
   try {
-    const data = await sanityClient.fetch<T>(query)
+    const data = await sanityClient.fetch<T>(query, {}, { next: { revalidate: 0 } })
     if (!data || (Array.isArray(data) && data.length === 0)) {
       return fallbackData
     }
