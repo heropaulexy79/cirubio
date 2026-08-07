@@ -25,3 +25,43 @@ export const METRICS_QUERY = `*[_type == "metric"] | order(order asc){
   value,
   subtext
 }`
+
+export const HERO_QUERY = `*[_type == "hero"][0]{
+  badgeText,
+  headline,
+  subheadline,
+  primaryCtaText,
+  primaryCtaLink,
+  secondaryCtaText,
+  secondaryCtaLink
+}`
+
+export const ABOUT_QUERY = `*[_type == "about"][0]{
+  heroHeadline,
+  heroSubheadline,
+  missionTitle,
+  missionText,
+  visionTitle,
+  visionText,
+  founderQuote,
+  founderName,
+  founderTitle
+}`
+
+export const CONTACT_INFO_QUERY = `*[_type == "contactInfo"][0]{
+  email,
+  phone,
+  address,
+  workingHours,
+  linkedinUrl,
+  twitterUrl
+}`
+
+export const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
+  siteName,
+  tagline,
+  footerText,
+  copyrightText,
+  announcementBanner
+}`
+

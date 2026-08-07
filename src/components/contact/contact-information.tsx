@@ -1,9 +1,32 @@
-﻿"use client"
+"use client"
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import { fetchSanityData } from "@/sanity/lib/client"
+import { CONTACT_INFO_QUERY } from "@/sanity/lib/queries"
+
+const FALLBACK_CONTACT = {
+  email: "info@grub.bio",
+  phone: "+234 810 725 4202",
+  address: "Mepowu Road, Odogbolu Agricultural Acquisition, Odogbolu LGA, Ogun State",
+  workingHours: "Monday – Friday\n8:00 AM – 5:00 PM"
+}
 
 export function ContactInformation() {
+  const [contact, setContact] = useState(FALLBACK_CONTACT)
+
+  useEffect(() => {
+    fetchSanityData(CONTACT_INFO_QUERY, FALLBACK_CONTACT).then((data) => {
+      if (data) {
+        setContact({
+          email: data.email || FALLBACK_CONTACT.email,
+          phone: data.phone || FALLBACK_CONTACT.phone,
+          address: data.address || FALLBACK_CONTACT.address,
+          workingHours: data.workingHours || FALLBACK_CONTACT.workingHours
+        })
+      }
+    })
+  }, [])
   return (
     <section className="w-full bg-white">
       <div className="pt-24 pb-12 px-6 md:px-12 lg:px-20">
@@ -35,8 +58,8 @@ export function ContactInformation() {
               <h3 className="text-[17px] font-bold text-[#1B1B1B] mb-2">
                 Email
               </h3>
-              <a href="mailto:info@grub.bio" className="text-[15px] text-[#1B1B1B] underline hover:text-[#0A5024] transition-colors">
-                info@grub.bio
+              <a href={`mailto:${contact.email}`} className="text-[15px] text-[#1B1B1B] underline hover:text-[#0A5024] transition-colors">
+                {contact.email}
               </a>
             </motion.div>
 
@@ -53,8 +76,8 @@ export function ContactInformation() {
               <h3 className="text-[17px] font-bold text-[#1B1B1B] mb-2">
                 Phone
               </h3>
-              <a href="tel:+2348107254202" className="text-[15px] text-[#1B1B1B] underline hover:text-[#0A5024] transition-colors">
-                +234 810 725 4202
+              <a href={`tel:${contact.phone}`} className="text-[15px] text-[#1B1B1B] underline hover:text-[#0A5024] transition-colors">
+                {contact.phone}
               </a>
             </motion.div>
           </div>
@@ -78,7 +101,7 @@ export function ContactInformation() {
                 Head Office
               </h4>
               <p className="text-[15px] text-[#1B1B1B] leading-[1.5]">
-                Mepowu Road, Odogbolu Agricultural Acquisition, Odogbolu LGA, Ogun State
+                {contact.address}
               </p>
             </div>
 
@@ -86,9 +109,8 @@ export function ContactInformation() {
               <h4 className="text-[14px] font-bold text-[#1B1B1B] mb-2">
                 Business Hours
               </h4>
-              <p className="text-[15px] text-[#1B1B1B] leading-[1.5]">
-                Monday – Friday<br />
-                8:00 AM – 5:00 PM
+              <p className="text-[15px] text-[#1B1B1B] leading-[1.5] whitespace-pre-line">
+                {contact.workingHours}
               </p>
             </div>
           </motion.div>
