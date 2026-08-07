@@ -1,11 +1,15 @@
 "use client"
 
 import React, { useState } from "react"
+import { usePathname } from "next/navigation"
 import { Container } from "@/components/ui/container"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 export function NewsletterSection() {
+  const pathname = usePathname()
+  if (pathname?.startsWith('/studio')) return null
+
   return (
     <section className="pt-12 pb-20 px-6 md:px-12 lg:px-20">
       <div className="mx-auto max-w-[1400px]">
@@ -45,8 +49,11 @@ export function NewsletterSection() {
 }
 
 export function SiteFooter() {
+  const pathname = usePathname()
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  if (pathname?.startsWith('/studio')) return null
 
   const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

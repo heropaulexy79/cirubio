@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 
@@ -66,10 +67,15 @@ function XIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export function FloatingNav() {
+  const pathname = usePathname()
   const { scrollY } = useScroll()
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
   const [activeMobileMenu, setActiveMobileMenu] = React.useState<string | null>(null)
+
+  if (pathname?.startsWith('/studio')) {
+    return null
+  }
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 10)
