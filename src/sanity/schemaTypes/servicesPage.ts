@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity'
 
 export const servicesPageSchema = defineType({
   name: 'servicesPage',
-  title: 'Services Page Content',
+  title: 'Services Page (Full Content)',
   type: 'document',
   fields: [
     // Hero Section
@@ -10,13 +10,13 @@ export const servicesPageSchema = defineType({
       name: 'heroHeadline',
       title: 'Hero Headline',
       type: 'string',
-      initialValue: 'Circular Bio-Manufacturing & Waste Upcycling',
+      initialValue: 'Enabling Circular Value Across Agriculture, Industry, and Communities',
     }),
     defineField({
       name: 'heroSubheadline',
       title: 'Hero Sub-headline',
       type: 'text',
-      initialValue: 'End-to-end sustainable waste management, turn-key bio-refining partnerships, and digital carbon traceability.',
+      initialValue: 'Grub Bio delivers integrated solutions that transform organic waste into valuable resources while helping organisations achieve their sustainability, operational, and climate objectives. Through our bio-manufacturing solution, we create circular systems that connect waste recovery, resource efficiency, and sustainable production.',
     }),
     defineField({
       name: 'heroImage',
@@ -30,19 +30,25 @@ export const servicesPageSchema = defineType({
       name: 'bioManufacturingTitle',
       title: 'Bio-Manufacturing Title',
       type: 'string',
-      initialValue: 'Circular Bio-Manufacturing Model',
+      initialValue: 'Turning Organic Waste into Valuable Resources',
     }),
     defineField({
       name: 'bioManufacturingDescription',
-      title: 'Bio-Manufacturing Description',
+      title: 'Bio-Manufacturing Description Paragraph 1',
       type: 'text',
-      initialValue: 'We design, build, and operate automated modular bioconversion hubs directly integrated into agricultural and food processing facilities.',
+      initialValue: 'Our circular bio-manufacturing model transforms organic waste streams into sustainable proteins, functional oils, and organic fertilisers through innovative Black Soldier Fly technology.',
     }),
     defineField({
-      name: 'bioManufacturingFeatures',
-      title: 'Bio-Manufacturing Features',
-      type: 'array',
-      of: [{ type: 'string' }],
+      name: 'bioManufacturingSubdescription',
+      title: 'Bio-Manufacturing Description Paragraph 2',
+      type: 'text',
+      initialValue: 'By recovering nutrients from low value waste streams, we produce sustainable proteins, functional oils, and organic fertilisers that support agriculture, industry, and environmental sustainability. This closed-loop approach enables the continuous circulation of resources while reducing waste and maximising value creation.',
+    }),
+    defineField({
+      name: 'bioManufacturingBenefits',
+      title: 'Bio-Manufacturing Benefits Text',
+      type: 'text',
+      initialValue: 'Our solution helps organisations and municipalities convert waste from a disposal challenge into a valuable resource stream. By supporting circular economy objectives, reducing landfill dependency, and lowering environmental impact, we create measurable sustainability outcomes while contributing to more resilient agricultural and industrial value chains.',
     }),
     defineField({
       name: 'bioManufacturingImage',
@@ -56,19 +62,25 @@ export const servicesPageSchema = defineType({
       name: 'wasteSolutionsTitle',
       title: 'Waste Management Title',
       type: 'string',
-      initialValue: 'Industrial Organic Waste Upcycling',
+      initialValue: 'Sustainable Waste Upcycling Solutions',
     }),
     defineField({
       name: 'wasteSolutionsDescription',
       title: 'Waste Management Description',
       type: 'text',
-      initialValue: 'Providing commercial and industrial partners with zero-waste landfill diversion solutions, reducing disposal fees and carbon footprint.',
+      initialValue: 'We partner with food processors, agricultural operations, and commercial entities to divert organic waste from landfills and convert it into high-value bio-based products.',
     }),
     defineField({
       name: 'wasteSolutionsBenefits',
-      title: 'Waste Management Benefits',
+      title: 'Waste Management Benefits List',
       type: 'array',
       of: [{ type: 'string' }],
+      initialValue: [
+        'Zero-landfill organic waste diversion',
+        'Verifiable carbon footprint reduction & ESG compliance',
+        'Cost-effective waste handling & processing',
+        'Closed-loop resource upcycling for industrial facilities'
+      ],
     }),
     defineField({
       name: 'wasteSolutionsImage',
@@ -82,13 +94,13 @@ export const servicesPageSchema = defineType({
       name: 'whoWeServeTitle',
       title: 'Who We Serve Title',
       type: 'string',
-      initialValue: 'Transforming Waste Across Sectors',
+      initialValue: 'Serving Agriculture, Industry & Municipalities',
     }),
     defineField({
       name: 'whoWeServeDescription',
       title: 'Who We Serve Description',
       type: 'text',
-      initialValue: 'Partnering with food processors, agricultural producers, feed mills, and municipal waste authorities across Africa.',
+      initialValue: 'Empowering food processors, livestock producers, feed manufacturers, and municipal waste managers across Africa with circular biotechnology.',
     }),
 
     // Partnerships Section
@@ -96,13 +108,13 @@ export const servicesPageSchema = defineType({
       name: 'partnershipsTitle',
       title: 'Partnerships & Collaboration Title',
       type: 'string',
-      initialValue: 'Strategic Bioconversion Partnerships',
+      initialValue: 'Partner with Grub Bio for Circular Growth',
     }),
     defineField({
       name: 'partnershipsDescription',
       title: 'Partnerships Description',
       type: 'text',
-      initialValue: 'Collaborate with Grub Bio to co-locate bioconversion infrastructure, achieve zero-waste certifications, and generate verified carbon credits.',
+      initialValue: 'We collaborate with corporate partners, development agencies, research institutions, and governments to build scalable bio-refining hubs across Africa.',
     }),
     defineField({
       name: 'partnershipsImage',

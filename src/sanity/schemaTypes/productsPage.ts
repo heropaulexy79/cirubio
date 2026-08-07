@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity'
 
 export const productsPageSchema = defineType({
   name: 'productsPage',
-  title: 'Products Page Content',
+  title: 'Products Page (Full Content)',
   type: 'document',
   fields: [
     // Hero Section
@@ -10,13 +10,13 @@ export const productsPageSchema = defineType({
       name: 'heroHeadline',
       title: 'Hero Headline',
       type: 'string',
-      initialValue: 'Premium Circular Ingredients & Fertilisers',
+      initialValue: 'Sustainable Solutions from Circular Bio-Manufacturing',
     }),
     defineField({
       name: 'heroSubheadline',
       title: 'Hero Sub-headline',
       type: 'text',
-      initialValue: 'Upcycled from organic waste, engineered for high nutritional density, soil regeneration, and industrial applications.',
+      initialValue: 'Through innovative Black Soldier Fly technology, Grub Bio transforms organic waste into high-value products that support sustainable agriculture, animal nutrition, and industrial applications.',
     }),
     defineField({
       name: 'heroImage',
@@ -25,16 +25,16 @@ export const productsPageSchema = defineType({
       options: { hotspot: true },
     }),
 
-    // Protein Products Section
+    // Protein Products Section Header
     defineField({
       name: 'proteinSectionTitle',
-      title: 'Protein Section Title',
+      title: 'Protein Products Header Title',
       type: 'string',
       initialValue: 'Black Soldier Fly Larvae Meal',
     }),
     defineField({
       name: 'proteinSectionSubheadline',
-      title: 'Protein Section Sub-headline',
+      title: 'Protein Products Sub-headline',
       type: 'text',
       initialValue: 'A sustainable, locally produced protein ingredient designed to support the growing demand for high-performance animal nutrition.',
     }),
@@ -57,6 +57,12 @@ export const productsPageSchema = defineType({
       title: 'Full-Fat Key Benefits',
       type: 'array',
       of: [{ type: 'string' }],
+      initialValue: [
+        'High-quality protein with natural energy-rich lipids',
+        'Supports growth performance and feed efficiency',
+        'Sustainable alternative to imported protein ingredients',
+        'Produced through a resource-efficient circular process'
+      ],
     }),
     defineField({
       name: 'fullFatImage',
@@ -83,6 +89,12 @@ export const productsPageSchema = defineType({
       title: 'Defatted Key Benefits',
       type: 'array',
       of: [{ type: 'string' }],
+      initialValue: [
+        'High protein concentration for optimized feed performance',
+        'Excellent digestibility and nutrient availability',
+        'Suitable for poultry, aquaculture, and livestock applications',
+        'Helps reduce dependence on conventional protein sources'
+      ],
     }),
     defineField({
       name: 'defattedImage',
@@ -91,24 +103,30 @@ export const productsPageSchema = defineType({
       options: { hotspot: true },
     }),
 
-    // Functional Lipids Section
+    // Functional Lipids Section Header
     defineField({
       name: 'lipidsTitle',
-      title: 'Functional Lipids Title',
+      title: 'Functional Lipids Header Title',
       type: 'string',
-      initialValue: 'Functional Insect Crude Oil',
+      initialValue: 'BSF Oil',
     }),
     defineField({
       name: 'lipidsDescription',
-      title: 'Functional Lipids Description',
+      title: 'Functional Lipids Sub-headline',
       type: 'text',
-      initialValue: 'A high-energy lipid ingredient rich in lauric acid, offering antimicrobial properties and boosting gut health in young animal feed.',
+      initialValue: 'A renewable lipid source with applications across animal nutrition and industrial value chains.',
     }),
     defineField({
       name: 'lipidsBenefits',
       title: 'Functional Lipids Key Benefits',
       type: 'array',
       of: [{ type: 'string' }],
+      initialValue: [
+        'Improved energy utilization',
+        'Supports gut health and animal resilience',
+        'Enhances feed formulation flexibility',
+        'Sustainable alternative to conventional feed oils'
+      ],
     }),
     defineField({
       name: 'lipidsImage',
@@ -117,28 +135,34 @@ export const productsPageSchema = defineType({
       options: { hotspot: true },
     }),
 
-    // Organic Fertilizer Section
+    // Organic Fertilizer Section Header
     defineField({
       name: 'fertilizerTitle',
-      title: 'Organic Fertilizer Title',
+      title: 'Organic Bio-Fertiliser Title',
       type: 'string',
-      initialValue: 'Organic Bio-Fertiliser (Frass)',
+      initialValue: 'Bio-Fertiliser (Frass)',
     }),
     defineField({
       name: 'fertilizerDescription',
-      title: 'Organic Fertilizer Description',
+      title: 'Organic Bio-Fertiliser Sub-headline',
       type: 'text',
-      initialValue: 'A natural, nutrient-rich soil amendment derived from digested organic waste, containing chitin to boost plant immunity and soil microbiome.',
+      initialValue: 'A sustainable soil enhancement solution produced through natural bioconversion.',
     }),
     defineField({
       name: 'fertilizerBenefits',
-      title: 'Organic Fertilizer Key Benefits',
+      title: 'Organic Bio-Fertiliser Key Benefits',
       type: 'array',
       of: [{ type: 'string' }],
+      initialValue: [
+        'Rich in organic matter and essential nutrients',
+        'Improves soil structure and water retention',
+        'Enhances microbial activity for healthier crops',
+        '100% natural and eco-friendly soil conditioner'
+      ],
     }),
     defineField({
       name: 'fertilizerImage',
-      title: 'Organic Fertilizer Image',
+      title: 'Organic Bio-Fertiliser Image',
       type: 'image',
       options: { hotspot: true },
     }),
