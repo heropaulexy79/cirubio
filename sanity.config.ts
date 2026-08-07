@@ -11,8 +11,33 @@ export default defineConfig({
   projectId,
   dataset,
   basePath: '/studio',
-  plugins: [structureTool()],
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title('Content')
+          .items([
+            S.listItem()
+              .title('Homepage Hero')
+              .child(S.document().schemaType('hero').documentId('hero')),
+            S.listItem()
+              .title('About Page')
+              .child(S.document().schemaType('about').documentId('about')),
+            S.listItem()
+              .title('Contact Details')
+              .child(S.document().schemaType('contactInfo').documentId('contactInfo')),
+            S.listItem()
+              .title('Site Settings & Footer')
+              .child(S.document().schemaType('siteSettings').documentId('siteSettings')),
+            S.divider(),
+            S.documentTypeListItem('product').title('Products'),
+            S.documentTypeListItem('service').title('Services'),
+            S.documentTypeListItem('metric').title('Impact Metrics'),
+          ]),
+    }),
+  ],
   schema: {
     types: schemaTypes,
   },
 })
+
