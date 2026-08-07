@@ -209,8 +209,28 @@ function ExpandableCard({
   )
 }
 
+import { fetchSanityData, urlFor } from "@/sanity/lib/client"
+import { PRODUCTS_QUERY } from "@/sanity/lib/queries"
+
 export function ProductsSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number>(0)
+  const [productList, setProductList] = useState(products)
+
+  React.useEffect(() => {
+    fetchSanityData(PRODUCTS_QUERY, products).then((data) => {
+      if (data && data.length > 0) {
+        const formatted = data.map((item: any) => ({
+          category: item.category || "Product",
+          icon: "/insect protein meal.svg",
+          title: item.title,
+          description: item.shortDescription || item.description || "",
+          image: item.image ? urlFor(item.image).url() : "/Insect-Protein-Meal.jpg",
+          link: item.slug ? `/products#${item.slug}` : "/products",
+        }))
+        setProductList(formatted)
+      }
+    })
+  }, [])
 
   return (
     <section className="border-t border-zinc-200 bg-white py-16 md:py-20">
@@ -227,7 +247,7 @@ export function ProductsSection() {
             className="flex flex-col lg:flex-row gap-4 md:gap-6 w-full h-auto min-h-[600px] lg:h-[270px] lg:min-h-0"
             onMouseLeave={() => setHoveredIndex(0)}
           >
-            {products.map((product, idx) => (
+            {productList.map((product, idx) => (
               <ExpandableCard
                 key={product.title}
                 product={product}
@@ -243,3 +263,4 @@ export function ProductsSection() {
     </section>
   )
 }
+
