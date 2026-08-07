@@ -65,3 +65,35 @@ export const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
   announcementBanner
 }`
 
+export const SUSTAINABILITY_QUERY = `*[_type == "sustainability"][0]{
+  heroHeadline,
+  heroSubheadline,
+  heroImage,
+  impactTitle,
+  impactDescription,
+  esgCommitment
+}`
+
+export const TECHNOLOGY_QUERY = `*[_type == "technology"][0]{
+  heroHeadline,
+  heroSubheadline,
+  heroImage,
+  processTitle,
+  processDescription,
+  saasTitle,
+  saasDescription
+}`
+
+export const PRODUCTS_PAGE_QUERY = `*[_type == "productsPage"][0]{
+  heroHeadline,
+  heroSubheadline,
+  heroImage
+}`
+
+export const SERVICES_PAGE_QUERY = `*[_type == "servicesPage"][0]{
+  heroHeadline,
+  heroSubheadline,
+  heroImage
+}`
+
+

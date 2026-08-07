@@ -15,7 +15,7 @@ export default defineConfig({
     structureTool({
       structure: (S) =>
         S.list()
-          .title('Content')
+          .title('Content Management')
           .items([
             S.listItem()
               .title('Homepage Hero')
@@ -24,14 +24,26 @@ export default defineConfig({
               .title('About Page')
               .child(S.document().schemaType('about').documentId('about')),
             S.listItem()
+              .title('Sustainability Page')
+              .child(S.document().schemaType('sustainability').documentId('sustainability')),
+            S.listItem()
+              .title('Our Technology Page')
+              .child(S.document().schemaType('technology').documentId('technology')),
+            S.listItem()
+              .title('Products Page Header')
+              .child(S.document().schemaType('productsPage').documentId('productsPage')),
+            S.listItem()
+              .title('Services Page Header')
+              .child(S.document().schemaType('servicesPage').documentId('servicesPage')),
+            S.listItem()
               .title('Contact Details')
               .child(S.document().schemaType('contactInfo').documentId('contactInfo')),
             S.listItem()
               .title('Site Settings & Footer')
               .child(S.document().schemaType('siteSettings').documentId('siteSettings')),
             S.divider(),
-            S.documentTypeListItem('product').title('Products'),
-            S.documentTypeListItem('service').title('Services'),
+            S.documentTypeListItem('product').title('Products Catalog'),
+            S.documentTypeListItem('service').title('Services List'),
             S.documentTypeListItem('metric').title('Impact Metrics'),
           ]),
     }),
