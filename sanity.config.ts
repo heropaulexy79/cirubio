@@ -30,10 +30,10 @@ export default defineConfig({
               .title('Our Technology Page')
               .child(S.document().schemaType('technology').documentId('technology')),
             S.listItem()
-              .title('Products Page Header')
+              .title('Products Page (Full Content)')
               .child(S.document().schemaType('productsPage').documentId('productsPage')),
             S.listItem()
-              .title('Services Page Header')
+              .title('Services Page (Full Content)')
               .child(S.document().schemaType('servicesPage').documentId('servicesPage')),
             S.listItem()
               .title('Contact Details')

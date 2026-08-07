@@ -87,13 +87,45 @@ export const TECHNOLOGY_QUERY = `*[_type == "technology"][0]{
 export const PRODUCTS_PAGE_QUERY = `*[_type == "productsPage"][0]{
   heroHeadline,
   heroSubheadline,
-  heroImage
+  heroImage,
+  proteinSectionTitle,
+  proteinSectionSubheadline,
+  fullFatTitle,
+  fullFatDescription,
+  fullFatBenefits,
+  fullFatImage,
+  defattedTitle,
+  defattedDescription,
+  defattedBenefits,
+  defattedImage,
+  lipidsTitle,
+  lipidsDescription,
+  lipidsBenefits,
+  lipidsImage,
+  fertilizerTitle,
+  fertilizerDescription,
+  fertilizerBenefits,
+  fertilizerImage
 }`
 
 export const SERVICES_PAGE_QUERY = `*[_type == "servicesPage"][0]{
   heroHeadline,
   heroSubheadline,
-  heroImage
+  heroImage,
+  bioManufacturingTitle,
+  bioManufacturingDescription,
+  bioManufacturingFeatures,
+  bioManufacturingImage,
+  wasteSolutionsTitle,
+  wasteSolutionsDescription,
+  wasteSolutionsBenefits,
+  wasteSolutionsImage,
+  whoWeServeTitle,
+  whoWeServeDescription,
+  partnershipsTitle,
+  partnershipsDescription,
+  partnershipsImage
 }`
+
 
 
