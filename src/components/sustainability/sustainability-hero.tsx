@@ -1,9 +1,28 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
+import { fetchSanityData } from "@/sanity/lib/client"
+import { SUSTAINABILITY_QUERY } from "@/sanity/lib/queries"
 
 export function SustainabilityHero() {
+  const [data, setData] = useState({
+    heroHeadline: "Driving Measurable\nImpact Through Circular\nInnovation",
+    heroSubheadline: "At Grub Bio, sustainability is embedded in every stage of our operations. Our technology enabled, bio-manufacturing solution transforms organic waste into valuable resources while generating measurable environmental, social, and economic benefits. By combining biotechnology, circular production systems, and digital sustainability intelligence, we help build more resilient food systems and a more sustainable future for Africa.",
+  })
+
+  useEffect(() => {
+    fetchSanityData(SUSTAINABILITY_QUERY, null).then((res: any) => {
+      if (res) {
+        setData((prev) => ({
+          ...prev,
+          heroHeadline: res.heroHeadline || prev.heroHeadline,
+          heroSubheadline: res.heroSubheadline || prev.heroSubheadline,
+        }))
+      }
+    })
+  }, [])
+
   return (
     <section className="w-full bg-white px-6 md:px-12 lg:px-20 pt-32 pb-20">
       <div className="mx-auto max-w-[1400px]">
@@ -38,11 +57,9 @@ export function SustainabilityHero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-[40px] md:text-5xl lg:text-[56px] font-bold leading-[1.15] mb-6"
+              className="text-[40px] md:text-5xl lg:text-[56px] font-bold leading-[1.15] mb-6 whitespace-pre-line"
             >
-              Driving Measurable<br />
-              Impact Through Circular<br />
-              Innovation
+              {data.heroHeadline}
             </motion.h1>
 
             <motion.p
@@ -51,7 +68,7 @@ export function SustainabilityHero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-[15px] md:text-[17px] text-white/90 leading-[1.5] max-w-4xl mx-auto"
             >
-              At Grub Bio, sustainability is embedded in every stage of our operations. Our technology enabled, bio-manufacturing solution transforms organic waste into valuable resources while generating measurable environmental, social, and economic benefits. By combining biotechnology, circular production systems, and digital sustainability intelligence, we help build more resilient food systems and a more sustainable future for Africa.
+              {data.heroSubheadline}
             </motion.p>
           </div>
         </div>

@@ -3,8 +3,10 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
+import { fetchSanityData } from "@/sanity/lib/client"
+import { HERO_QUERY } from "@/sanity/lib/queries"
 
-const SLIDES = [
+const DEFAULT_SLIDES = [
   {
     video: "https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/Homepage%20-%20Hero%20Slider%201.mp4",
     title: "Advancing Africa's transition\nto a bio-circular economy",
@@ -35,14 +37,35 @@ const SLIDES = [
 
 export function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [slides, setSlides] = useState(DEFAULT_SLIDES)
+
+  useEffect(() => {
+    fetchSanityData(HERO_QUERY, null).then((data: any) => {
+      if (data && data.headline) {
+        setSlides((prev) => {
+          const updated = [...prev]
+          updated[0] = {
+            ...updated[0],
+            title: data.headline || updated[0].title,
+            subtext: data.subheadline || updated[0].subtext,
+            buttons: [
+              { text: data.primaryCtaText || updated[0].buttons[0].text, variant: "solid", href: data.primaryCtaLink || updated[0].buttons[0].href },
+              { text: data.secondaryCtaText || updated[0].buttons[1].text, variant: "outline", href: data.secondaryCtaLink || updated[0].buttons[1].href }
+            ]
+          }
+          return updated
+        })
+      }
+    })
+  }, [])
 
   // Auto-advance slider
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % SLIDES.length)
+      setCurrentSlide((prev) => (prev + 1) % slides.length)
     }, 6000)
     return () => clearInterval(timer)
-  }, [])
+  }, [slides.length])
 
   return (
     <section className="px-6 md:px-12 lg:px-20 pt-32 pb-16 bg-white">
@@ -59,7 +82,7 @@ export function HeroSection() {
             <AnimatePresence mode="popLayout">
               <motion.video
                 key={currentSlide}
-                src={SLIDES[currentSlide].video}
+                src={slides[currentSlide]?.video}
                 autoPlay
                 muted
                 loop
@@ -84,7 +107,7 @@ export function HeroSection() {
                 className="flex flex-col items-center"
               >
                 <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-[56px] leading-[1.1]">
-                  {SLIDES[currentSlide].title.split('\n').map((line, i, arr) => (
+                  {slides[currentSlide]?.title.split('\n').map((line, i, arr) => (
                     <React.Fragment key={i}>
                       {line}
                       {i < arr.length - 1 && <br className="hidden md:block" />}
@@ -94,11 +117,11 @@ export function HeroSection() {
                 </h1>
                 
                 <p className="mb-10 text-base md:text-lg text-white/90 font-medium max-w-[800px] leading-[1.5]">
-                  {SLIDES[currentSlide].subtext}
+                  {slides[currentSlide]?.subtext}
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 relative z-40 mt-2">
-                  {SLIDES[currentSlide].buttons.map((btn, idx) => (
+                  {slides[currentSlide]?.buttons.map((btn, idx) => (
                     <Link
                       key={idx}
                       href={btn.href}
@@ -118,7 +141,7 @@ export function HeroSection() {
 
           {/* Slider Indicators */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 flex items-center gap-3">
-            {SLIDES.map((_, idx) => (
+            {slides.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentSlide(idx)}

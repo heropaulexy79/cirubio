@@ -48,10 +48,40 @@ export function NewsletterSection() {
   )
 }
 
+import { fetchSanityData } from "@/sanity/lib/client"
+import { SITE_SETTINGS_QUERY, CONTACT_INFO_QUERY } from "@/sanity/lib/queries"
+
 export function SiteFooter() {
   const pathname = usePathname()
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [siteSettings, setSiteSettings] = useState({
+    footerText: "Get the latest news and updates from Grub Bio.",
+    copyrightText: "© 2026 Grub Bio. All rights reserved."
+  })
+  const [contactInfo, setContactInfo] = useState({
+    linkedinUrl: "https://www.linkedin.com/company/grub-bio",
+    twitterUrl: "https://x.com/grub_bio"
+  })
+
+  React.useEffect(() => {
+    fetchSanityData(SITE_SETTINGS_QUERY, null).then((res: any) => {
+      if (res) {
+        setSiteSettings((prev) => ({
+          footerText: res.footerText || prev.footerText,
+          copyrightText: res.copyrightText || prev.copyrightText,
+        }))
+      }
+    })
+    fetchSanityData(CONTACT_INFO_QUERY, null).then((res: any) => {
+      if (res) {
+        setContactInfo((prev) => ({
+          linkedinUrl: res.linkedinUrl || prev.linkedinUrl,
+          twitterUrl: res.twitterUrl || prev.twitterUrl,
+        }))
+      }
+    })
+  }, [])
 
   if (pathname?.startsWith('/studio')) return null
 
@@ -79,7 +109,7 @@ export function SiteFooter() {
           
           <div className="md:col-span-5 flex flex-col gap-6">
             <img src="/GRUB LOGO FINAL.png" alt="Grub Bio Logo" className="h-10 w-auto object-contain brightness-0 invert self-start" />
-            <p className="text-sm mt-4 text-white">Get the latest news and updates from Grub Bio.</p>
+            <p className="text-sm mt-4 text-white">{siteSettings.footerText}</p>
             <form className="flex flex-col sm:flex-row w-full max-w-sm gap-3 mt-2" onSubmit={handleSubscribe}>
               <input
                 type="email"
@@ -142,13 +172,13 @@ export function SiteFooter() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://x.com/grub_bio" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-3">
+                  <a href={contactInfo.twitterUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none" className="lucide lucide-twitter"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" /></svg>
                     X
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.linkedin.com/company/grub-bio" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-3">
+                  <a href={contactInfo.linkedinUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
                     LinkedIn
                   </a>
@@ -165,7 +195,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-[#1B1B1B]">
-          <p>© 2026 Grub Bio. All rights reserved.</p>
+          <p>{siteSettings.copyrightText}</p>
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-black underline underline-offset-2 transition-colors">Privacy policy</a>
             <a href="#" className="hover:text-black underline underline-offset-2 transition-colors">Terms of service</a>

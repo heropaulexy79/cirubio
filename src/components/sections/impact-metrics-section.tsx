@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import * as React from "react"
 import { motion, useInView } from "framer-motion"
@@ -32,13 +32,32 @@ function MetricCard({ value, suffix = "", label }: CounterProps) {
   )
 }
 
+import { fetchSanityData } from "@/sanity/lib/client"
+import { METRICS_QUERY } from "@/sanity/lib/queries"
+
+const DEFAULT_METRICS = [
+  { value: "0.5", suffix: "T", label: "CO2e per metric tonne on Organic Waste diverted from land fills" },
+  { value: "90", suffix: "%", label: "Less Water Required Compared to Traditional Protein Source" },
+  { value: "1,000", suffix: "x", label: "Less Land Requirement Than Conventional Soy-Based Protein Production" },
+  { value: "0", suffix: "%", label: "Quantity of organic waste left after upcycling" },
+]
+
 export function ImpactMetricsSection() {
-  const metrics = [
-    { value: "0.5", suffix: "T", label: "CO2e per metric tonne on Organic Waste diverted from land fills" },
-    { value: "90", suffix: "%", label: "Less Water Required Compared to Traditional Protein Source" },
-    { value: "1,000", suffix: "x", label: "Less Land Requirement Than Conventional Soy-Based Protein Production" },
-    { value: "0", suffix: "%", label: "Quantity of organic waste left after upcycling" },
-  ]
+  const [metrics, setMetrics] = React.useState(DEFAULT_METRICS)
+
+  React.useEffect(() => {
+    fetchSanityData(METRICS_QUERY, null).then((res: any) => {
+      if (res && Array.isArray(res) && res.length > 0) {
+        setMetrics(
+          res.map((m: any) => ({
+            value: m.value || "",
+            suffix: m.suffix || "",
+            label: m.label || m.subtext || "",
+          }))
+        )
+      }
+    })
+  }, [])
 
   return (
     <section id="impact" className="py-24 bg-white">

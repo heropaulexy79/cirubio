@@ -1,10 +1,31 @@
-﻿"use client"
+"use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
+import { fetchSanityData } from "@/sanity/lib/client"
+import { ABOUT_QUERY } from "@/sanity/lib/queries"
 
 export function FounderMessage() {
+  const [data, setData] = useState({
+    founderQuote: "Africa's future depends on our ability to rethink organic waste—not as a burden, but as a valuable resource. At Grub Bio, we believe that the solutions to some of our greatest challenges in food security, agriculture, and climate resilience already exist within the resources we discard every day.",
+    founderName: "Oladipo Williams",
+    founderTitle: "Founder & CEO"
+  })
+
+  useEffect(() => {
+    fetchSanityData(ABOUT_QUERY, null).then((res: any) => {
+      if (res) {
+        setData((prev) => ({
+          ...prev,
+          founderQuote: res.founderQuote || prev.founderQuote,
+          founderName: res.founderName || prev.founderName,
+          founderTitle: res.founderTitle || prev.founderTitle,
+        }))
+      }
+    })
+  }, [])
+
   return (
     <section id="founder" className="py-20 bg-white">
       <Container>
@@ -24,19 +45,11 @@ export function FounderMessage() {
             </h2>
             
             <div className="space-y-6 text-black/90 font-medium leading-[1.5] text-[15px] md:text-[16px]">
-              <p>
-                Africa's future depends on our ability to rethink organic waste—not as a burden, but as a valuable resource. At Grub Bio, we believe that the solutions to some of our greatest challenges in food security, agriculture, and climate resilience already exist within the resources we discard every day.
-              </p>
-              <p>
-                Our mission is to harness innovation, technology, and nature-inspired systems to build scalable circular solutions that create lasting value for businesses, communities, and future generations.
-              </p>
-              <p>
-               Together, we are building a future where waste becomes opportunity, sustainability drives profitability, and Africa leads the next generation of bio-circular innovation.
-              </p>
+              <p>{data.founderQuote}</p>
             </div>
             
             <div className="mt-10">
-              <p className="font-bold text-[#0A5024] text-[15px] md:text-base">— Oladipo Williams, Founder & CEO</p>
+              <p className="font-bold text-[#0A5024] text-[15px] md:text-base">— {data.founderName}, {data.founderTitle}</p>
             </div>
           </motion.div>
 
