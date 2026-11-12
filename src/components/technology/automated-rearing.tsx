@@ -1,16 +1,43 @@
-﻿"use client"
+"use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { CheckCircle2 } from "lucide-react"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { TECHNOLOGY_QUERY } from "@/sanity/lib/queries"
+import type { TechnologyDoc } from "@/sanity/lib/types"
 
-export function AutomatedRearing() {
-  const capabilities = [
+const DEFAULT_REARING = {
+  badge: "Automated Rearing Environment",
+  title: "Enhancing Biological\nPerformance",
+  p1: "At the core of our operations is a technology-enabled bio-manufacturing platform built to optimise every stage of the Black Soldier Fly lifecycle. Through automated rearing environments, precision climate management, and continuous monitoring, we create ideal conditions for biological growth and resource conversion.",
+  p2: "Our system leverages sensors, data analytics, AI and process automation to monitor critical production parameters in real time, enabling greater consistency, improved yields, and enhanced operational efficiency.",
+  capabilities: [
     "Automated rearing and climate-controlled production environments",
     "Real-time monitoring of biological and environmental conditions",
     "Data-driven process optimization and performance management",
     "Scalable infrastructure for circular bio-manufacturing"
-  ]
+  ],
+  image: "/automated-rearing1.png"
+}
+
+export function AutomatedRearing() {
+  const [content, setContent] = useState(DEFAULT_REARING)
+
+  useEffect(() => {
+    fetchSanityData<TechnologyDoc | null>(TECHNOLOGY_QUERY, null).then((res) => {
+      if (res) {
+        setContent({
+          badge: res.rearingBadge || DEFAULT_REARING.badge,
+          title: res.rearingTitle || DEFAULT_REARING.title,
+          p1: res.rearingParagraph1 || DEFAULT_REARING.p1,
+          p2: res.rearingParagraph2 || DEFAULT_REARING.p2,
+          capabilities: res.rearingCapabilities && res.rearingCapabilities.length > 0 ? res.rearingCapabilities : DEFAULT_REARING.capabilities,
+          image: resolveImageUrl(res.rearingImage, DEFAULT_REARING.image),
+        })
+      }
+    })
+  }, [])
 
   return (
     <section className="w-full bg-[#E8F5E8] py-20 px-6 md:px-12 lg:px-20">
@@ -19,11 +46,10 @@ export function AutomatedRearing() {
           
           {/* Left: Image */}
           <div className="lg:w-1/2 relative min-h-[350px] lg:min-h-[auto] bg-zinc-100">
-            {/* The image is placed as a background to ensure it covers the area perfectly */}
             <div 
               className="absolute inset-0"
               style={{
-                backgroundImage: 'url("/automated-rearing1.png")',
+                backgroundImage: `url("${content.image}")`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
@@ -39,7 +65,7 @@ export function AutomatedRearing() {
               transition={{ duration: 0.6 }}
               className="text-[15px] font-semibold text-zinc-800 mb-4"
             >
-              Automated Rearing Environment
+              {content.badge}
             </motion.p>
             
             <motion.h2 
@@ -47,9 +73,9 @@ export function AutomatedRearing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-[32px] md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] mb-8 leading-[1.15]"
+              className="text-[32px] md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] mb-8 leading-[1.15] whitespace-pre-line"
             >
-              Enhancing Biological<br />Performance
+              {content.title}
             </motion.h2>
             
             <div className="space-y-4 text-[#1B1B1B] text-[14px] md:text-[15px] leading-[1.5] mb-8">
@@ -59,7 +85,7 @@ export function AutomatedRearing() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                At the core of our operations is a technology-enabled bio-manufacturing platform built to optimise every stage of the Black Soldier Fly lifecycle. Through automated rearing environments, precision climate management, and continuous monitoring, we create ideal conditions for biological growth and resource conversion.
+                {content.p1}
               </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
@@ -67,7 +93,7 @@ export function AutomatedRearing() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                Our system leverages sensors, data analytics, AI and process automation to monitor critical production parameters in real time, enabling greater consistency, improved yields, and enhanced operational efficiency.
+                {content.p2}
               </motion.p>
             </div>
 
@@ -79,7 +105,7 @@ export function AutomatedRearing() {
             >
               <h3 className="text-xl md:text-[22px] font-bold text-[#1B1B1B] mb-6">Key Capabilities</h3>
               <ul className="space-y-4">
-                {capabilities.map((item, index) => (
+                {content.capabilities.map((item, index) => (
                   <li key={index} className="flex items-start gap-3 text-[#1B1B1B] text-[15px]">
                     <CheckCircle2 className="w-[18px] h-[18px] text-zinc-600 shrink-0 mt-0.5" strokeWidth={1.5} />
                     <span>{item}</span>

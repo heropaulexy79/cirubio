@@ -1,9 +1,11 @@
-﻿"use client"
+"use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
-import Link from "next/link"
+import { fetchSanityData } from "@/sanity/lib/client"
+import { SITE_SETTINGS_QUERY } from "@/sanity/lib/queries"
+import type { SiteSettingsDoc } from "@/sanity/lib/types"
 
 function FacebookIcon() {
   return (
@@ -48,6 +50,34 @@ function YouTubeIcon() {
 }
 
 export function ServicesSocial() {
+  const [content, setContent] = useState({
+    heading: "Stay connected with\nGrub Bio",
+    subtext: "Receive updates on bio-circular innovation, sustainable agriculture, climate impact, industry insights, and Grub Bio's latest developments.",
+    communityText: "Join our community building a more resilient and sustainable future for Africa",
+    facebookUrl: "https://www.facebook.com/share/1BbmfRzVxY/",
+    instagramUrl: "https://www.instagram.com/grub.bio/",
+    twitterUrl: "https://x.com/grub_bio",
+    linkedinUrl: "https://www.linkedin.com/company/grub-bio",
+    youtubeUrl: "#"
+  })
+
+  useEffect(() => {
+    fetchSanityData<SiteSettingsDoc | null>(SITE_SETTINGS_QUERY, null).then((data) => {
+      if (data) {
+        setContent((prev) => ({
+          heading: data.newsletterHeading || prev.heading,
+          subtext: data.newsletterSubtext || prev.subtext,
+          communityText: data.newsletterCommunityText || prev.communityText,
+          facebookUrl: data.facebookUrl || prev.facebookUrl,
+          instagramUrl: data.instagramUrl || prev.instagramUrl,
+          twitterUrl: data.twitterUrl || prev.twitterUrl,
+          linkedinUrl: data.linkedinUrl || prev.linkedinUrl,
+          youtubeUrl: data.youtubeUrl || prev.youtubeUrl,
+        }))
+      }
+    })
+  }, [])
+
   return (
     <section className="py-24 bg-white text-center">
       <Container>
@@ -57,24 +87,24 @@ export function ServicesSocial() {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto flex flex-col items-center"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.15] mb-6">
-            Stay connected with<br/>Grub Bio
+          <h2 className="text-4xl md:text-5xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.15] mb-6 whitespace-pre-line">
+            {content.heading}
           </h2>
           
           <p className="text-black text-[15px] leading-[1.5] mb-12 max-w-2xl font-medium">
-            Receive updates on bio-circular innovation, sustainable agriculture, climate impact, industry insights, and Grub Bio's latest developments.
+            {content.subtext}
           </p>
 
           <div className="flex items-center justify-center gap-6 md:gap-8 mb-12">
-            <Link href="#" aria-label="Facebook"><FacebookIcon /></Link>
-            <Link href="#" aria-label="Instagram"><InstagramIcon /></Link>
-            <Link href="#" aria-label="X"><XIcon /></Link>
-            <Link href="#" aria-label="LinkedIn"><LinkedInIcon /></Link>
-            <Link href="#" aria-label="YouTube"><YouTubeIcon /></Link>
+            <a href={content.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FacebookIcon /></a>
+            <a href={content.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><InstagramIcon /></a>
+            <a href={content.twitterUrl} target="_blank" rel="noopener noreferrer" aria-label="X"><XIcon /></a>
+            <a href={content.linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><LinkedInIcon /></a>
+            <a href={content.youtubeUrl} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><YouTubeIcon /></a>
           </div>
 
           <p className="text-black text-[14px] leading-[1.5]">
-            Join our community building a more resilient and sustainable future for Africa
+            {content.communityText}
           </p>
         </motion.div>
       </Container>

@@ -1,9 +1,12 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { fetchSanityData } from "@/sanity/lib/client"
+import { CONTACT_INFO_QUERY } from "@/sanity/lib/queries"
+import type { ContactInfoDoc } from "@/sanity/lib/types"
 
-const faqs = [
+const DEFAULT_FAQS = [
   {
     question: "What does Grub Bio do?",
     answer: "Grub Bio transforms organic waste into sustainable protein ingredients, organic fertilisers, functional oils, and other bio-based products through advanced bio-manufacturing technologies."
@@ -32,6 +35,22 @@ const faqs = [
 
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
+  const [title, setTitle] = useState("Frequently Asked Questions")
+  const [faqs, setFaqs] = useState(DEFAULT_FAQS)
+
+  useEffect(() => {
+    fetchSanityData<ContactInfoDoc | null>(CONTACT_INFO_QUERY, null).then((data) => {
+      if (data) {
+        if (data.faqTitle) setTitle(data.faqTitle)
+        if (data.faqs && Array.isArray(data.faqs) && data.faqs.length > 0) {
+          setFaqs(data.faqs.map((f, idx) => ({
+            question: f.question || DEFAULT_FAQS[idx % DEFAULT_FAQS.length].question,
+            answer: f.answer || DEFAULT_FAQS[idx % DEFAULT_FAQS.length].answer
+          })))
+        }
+      }
+    })
+  }, [])
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
@@ -47,7 +66,7 @@ export function FaqSection() {
           transition={{ duration: 0.6 }}
           className="text-[36px] md:text-5xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] mb-16"
         >
-          Frequently Asked Questions
+          {title}
         </motion.h2>
 
         <div className="w-full">
@@ -101,7 +120,6 @@ export function FaqSection() {
           <div className="border-t border-zinc-200" />
         </div>
       </div>
-
     </section>
   )
 }

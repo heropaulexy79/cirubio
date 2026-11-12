@@ -4,7 +4,9 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { SITE_SETTINGS_QUERY } from "@/sanity/lib/queries"
+import type { SiteSettingsDoc } from "@/sanity/lib/types"
 
 function ChevronDownIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -72,14 +74,31 @@ export function FloatingNav() {
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
   const [activeMobileMenu, setActiveMobileMenu] = React.useState<string | null>(null)
+  const [siteSettings, setSiteSettings] = React.useState({
+    logo: "/GRUB LOGO FINAL.png",
+    siteName: "Grub Bio Logo",
+    announcementBanner: ""
+  })
 
-  if (pathname?.startsWith('/studio')) {
-    return null
-  }
+  React.useEffect(() => {
+    fetchSanityData<SiteSettingsDoc | null>(SITE_SETTINGS_QUERY, null).then((res) => {
+      if (res) {
+        setSiteSettings((prev) => ({
+          logo: resolveImageUrl(res.logo, prev.logo),
+          siteName: res.siteName || prev.siteName,
+          announcementBanner: res.announcementBanner || ""
+        }))
+      }
+    })
+  }, [])
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 10)
   })
+
+  if (pathname?.startsWith('/studio')) {
+    return null
+  }
 
   const navLinks = [
     { name: "About Us", href: "/about", hasDropdown: true, isMegaAbout: true },
@@ -95,13 +114,18 @@ export function FloatingNav() {
         isScrolled ? "border-b border-zinc-200 shadow-sm" : "border-b border-zinc-200"
       }`}
     >
+      {siteSettings.announcementBanner && (
+        <div className="bg-[#0A5024] text-white text-xs sm:text-sm font-medium text-center py-2 px-4">
+          {siteSettings.announcementBanner}
+        </div>
+      )}
       <div className="mx-auto flex h-[72px] w-full max-w-[1400px] items-center justify-between px-6 md:px-12 lg:px-20 relative">
         
         {/* Left Side: Logo and Navigation */}
         <div className="flex items-center gap-10 xl:gap-14 h-full">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <img src="/GRUB LOGO FINAL.png" alt="Grub Bio Logo" className="h-10 w-auto object-contain" />
+            <img src={siteSettings.logo} alt={siteSettings.siteName} className="h-10 w-auto object-contain" />
           </Link>
 
           {/* Desktop Nav */}

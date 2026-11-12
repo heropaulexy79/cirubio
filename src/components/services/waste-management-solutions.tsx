@@ -1,98 +1,92 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
-import Image from "next/image"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { SERVICES_PAGE_QUERY } from "@/sanity/lib/queries"
+import type { ServicesPageDoc } from "@/sanity/lib/types"
 
-function BenefitsIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black">
-      <path d="M12 22l-3.172-1.314-3.428.163-.163-3.428L3.923 14.25 6 12 3.923 9.75l1.314-3.172 3.428-.163.163-3.428L12 2l3.172 1.314 3.428-.163.163 3.428L20.077 9.75 18 12l2.077 2.25-1.314 3.172-3.428.163-.163 3.428L12 22z"/>
-      <path d="M12 15l-3.09 1.62.59-3.44-2.5-2.44 3.45-.5L12 7l1.55 3.24 3.45.5-2.5 2.44.59 3.44Z"/>
-    </svg>
-  )
+const DEFAULT_WASTE_SOLUTIONS = {
+  title: "Sustainable Waste Upcycling Solutions",
+  description: "We partner with food processors, agricultural operations, and commercial entities to divert organic waste from landfills and convert it into high-value bio-based products.",
+  benefits: [
+    "Zero-landfill organic waste diversion",
+    "Verifiable carbon footprint reduction & ESG compliance",
+    "Cost-effective waste handling & processing",
+    "Closed-loop resource upcycling for industrial facilities"
+  ],
+  image: "/Sustainable Waste Upcycling Solutions.jpg"
 }
 
 export function WasteManagementSolutions() {
+  const [content, setContent] = useState(DEFAULT_WASTE_SOLUTIONS)
+
+  useEffect(() => {
+    fetchSanityData<ServicesPageDoc | null>(SERVICES_PAGE_QUERY, null).then((data) => {
+      if (data) {
+        setContent({
+          title: data.wasteSolutionsTitle || DEFAULT_WASTE_SOLUTIONS.title,
+          description: data.wasteSolutionsDescription || DEFAULT_WASTE_SOLUTIONS.description,
+          benefits: data.wasteSolutionsBenefits && data.wasteSolutionsBenefits.length > 0
+            ? data.wasteSolutionsBenefits
+            : DEFAULT_WASTE_SOLUTIONS.benefits,
+          image: resolveImageUrl(data.wasteSolutionsImage, DEFAULT_WASTE_SOLUTIONS.image)
+        })
+      }
+    })
+  }, [])
+
   return (
-    <section id="waste" className="py-24 bg-[#E8F5E8]">
+    <section className="py-24 bg-[#E8F5E8] border-b border-zinc-200">
       <Container>
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
-          {/* Left Column */}
-          <div className="w-full lg:w-[45%] flex flex-col">
-            <motion.span
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-sm font-bold tracking-wider text-black mb-6"
-            >
-              Waste Management Solutions
-            </motion.span>
-            
-            <motion.h2
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.15] mb-10"
-            >
-              Sustainable Waste<br/>Recovery for<br/>Businesses and<br/>Communities
-            </motion.h2>
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 items-center">
+          
+          {/* Left Image */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative w-full h-[400px] md:h-[480px] rounded-2xl overflow-hidden shadow-lg order-2 lg:order-1"
+          >
+            <img
+              src={content.image}
+              alt={content.title}
+              className="h-full w-full object-cover"
+            />
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="w-20 h-20 md:w-24 md:h-24 relative"
-            >
-              <Image
-                src="/sustainable waste recovery.svg"
-                alt="Waste Management"
-                fill
-                className="object-contain object-left"
-              />
-            </motion.div>
-          </div>
+          {/* Right Text */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-col order-1 lg:order-2"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.2] mb-6">
+              {content.title}
+            </h2>
+            
+            <p className="text-[#1B1B1B] text-[15px] leading-[1.5] mb-8">
+              {content.description}
+            </p>
 
-          {/* Right Column */}
-          <div className="w-full lg:w-[55%] flex flex-col">
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-[#1B1B1B] text-[14px] md:text-[15px] leading-[1.6] mb-6"
-            >
-              We partner with food and beverage processorse, livestock producers, processors, markets, and municipalities to develop responsible solutions for managing organic waste streams.
-            </motion.p>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="text-[#1B1B1B] text-[14px] md:text-[15px] leading-[1.6] mb-8"
-            >
-              We provide sustainable waste management solutions for organisations and municipalities seeking responsible pathways for managing organic waste. Through strategic collection and bio-conversion partnerships, we recover valuable nutrients from organic waste streams and reintegrate them into productive use within the economy.
-            </motion.p>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <img src="/key features.svg" alt="Benefits" className="w-6 h-6 object-contain" />
-                <span className="font-bold text-black text-[17px]">Benefits</span>
-              </div>
-              <p className="text-[#1B1B1B] text-[14px] md:text-[15px] leading-[1.6]">
-                Our approach helps partners reduce waste disposal costs, improve environmental performance, and divert organic waste from landfills. In addition to supporting regulatory and sustainability goals, our model creates opportunities for resource recovery and long-term circular value creation.
-              </p>
-            </motion.div>
-          </div>
+            <ul className="space-y-4">
+              {content.benefits.map((benefit, idx) => (
+                <li key={idx} className="flex items-start gap-3">
+                  <div className="mt-1 flex-shrink-0 text-[#0A5024]">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6 9 17l-5-5"/>
+                    </svg>
+                  </div>
+                  <span className="text-[#1B1B1B] text-[15px] font-medium leading-[1.5]">{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
         </div>
       </Container>
     </section>

@@ -1,5 +1,6 @@
 import { createClient } from 'next-sanity'
 import { createImageUrlBuilder } from '@sanity/image-url'
+import type { SanityImageField } from './types'
 
 export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'placeholder-project-id'
 export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
@@ -18,6 +19,19 @@ export function urlFor(source: Parameters<typeof builder.image>[0]) {
   return builder.image(source)
 }
 
+export function resolveImageUrl(source: SanityImageField, fallback: string): string {
+  if (!source) return fallback
+  if (typeof source === 'string') return source
+  if (source.asset) {
+    try {
+      return urlFor(source as Parameters<typeof builder.image>[0]).auto('format').fit('max').url()
+    } catch {
+      return fallback
+    }
+  }
+  return fallback
+}
+
 export async function fetchSanityData<T>(query: string, fallbackData: T): Promise<T> {
   // If no real project ID is set, return default fallback data immediately
   if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || projectId === 'placeholder-project-id') {
@@ -26,7 +40,7 @@ export async function fetchSanityData<T>(query: string, fallbackData: T): Promis
 
   try {
     const data = await sanityClient.fetch<T>(query, {}, { next: { revalidate: 0 } })
-    if (!data || (Array.isArray(data) && data.length === 0)) {
+    if (data === null || data === undefined || (Array.isArray(data) && data.length === 0)) {
       return fallbackData
     }
     return data

@@ -1,9 +1,36 @@
-﻿"use client"
+"use client"
 
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
+import Link from "next/link"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { SUSTAINABILITY_QUERY } from "@/sanity/lib/queries"
+import type { SustainabilityDoc } from "@/sanity/lib/types"
 
 export function BuildingImpact() {
+  const [content, setContent] = useState({
+    title: "Building Impact\nBeyond Products",
+    description: "Every tonne of organic waste recovered, every kilogram of sustainable protein produced, and every sustainability metric tracked contributes to a broader vision: building a resilient, low-carbon, and resource-efficient future for Africa through the principles of the bio-circular economy.",
+    buttonText: "Partner With Us to Drive Circular Impact",
+    buttonLink: "/contact",
+    image: "/building-impact.png"
+  })
+
+  useEffect(() => {
+    fetchSanityData<SustainabilityDoc | null>(SUSTAINABILITY_QUERY, null).then((res) => {
+      if (res) {
+        setContent((prev) => ({
+          title: res.buildingTitle || prev.title,
+          description: res.buildingParagraph1 || prev.description,
+          buttonText: res.buildingButtonText || prev.buttonText,
+          buttonLink: res.buildingButtonLink || prev.buttonLink,
+          image: resolveImageUrl(res.buildingImage, prev.image)
+        }))
+      }
+    })
+  }, [])
+
   return (
     <section className="py-16 md:py-24 bg-white">
       <Container>
@@ -18,8 +45,8 @@ export function BuildingImpact() {
           >
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-zinc-100 shadow-lg">
               <img
-                src="/building-impact.png"
-                alt="ESG Sustainability AI Dashboard"
+                src={content.image}
+                alt={content.title}
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
@@ -32,20 +59,20 @@ export function BuildingImpact() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-[40px] lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.1] mb-6">
-              Building Impact<br />Beyond Products
+            <h2 className="text-3xl md:text-[40px] lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.1] mb-6 whitespace-pre-line">
+              {content.title}
             </h2>
             
             <p className="text-[#1B1B1B] text-[14px] md:text-[15px] leading-[1.5] mb-8">
-              Every tonne of organic waste recovered, every kilogram of sustainable
-              protein produced, and every sustainability metric tracked contributes to
-              a broader vision: building a resilient, low-carbon, and resource-efficient
-              future for Africa through the principles of the bio-circular economy.
+              {content.description}
             </p>
 
-            <button className="bg-[#0A5024] hover:bg-[#073A1A] text-white transition-colors h-[44px] px-8 text-[14px] md:text-[15px] font-medium rounded-full cursor-pointer">
-              Partner With Us to Drive Circular Impact
-            </button>
+            <Link
+              href={content.buttonLink}
+              className="inline-flex items-center justify-center bg-[#0A5024] hover:bg-[#073A1A] text-white transition-colors h-[44px] px-8 text-[14px] md:text-[15px] font-medium rounded-full cursor-pointer"
+            >
+              {content.buttonText}
+            </Link>
           </motion.div>
         </div>
       </Container>

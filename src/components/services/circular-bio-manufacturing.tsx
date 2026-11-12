@@ -1,98 +1,76 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
-import Image from "next/image"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { SERVICES_PAGE_QUERY } from "@/sanity/lib/queries"
+import type { ServicesPageDoc } from "@/sanity/lib/types"
 
-function BenefitsIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black">
-      <path d="M12 22l-3.172-1.314-3.428.163-.163-3.428L3.923 14.25 6 12 3.923 9.75l1.314-3.172 3.428-.163.163-3.428L12 2l3.172 1.314 3.428-.163.163 3.428L20.077 9.75 18 12l2.077 2.25-1.314 3.172-3.428.163-.163 3.428L12 22z"/>
-      <path d="M12 15l-3.09 1.62.59-3.44-2.5-2.44 3.45-.5L12 7l1.55 3.24 3.45.5-2.5 2.44.59 3.44Z"/>
-    </svg>
-  )
+const DEFAULT_BIO = {
+  title: "Turning Organic Waste into Valuable Resources",
+  p1: "Our circular bio-manufacturing model transforms organic waste streams into sustainable proteins, functional oils, and organic fertilisers through innovative Black Soldier Fly technology.",
+  p2: "By recovering nutrients from low value waste streams, we produce sustainable proteins, functional oils, and organic fertilisers that support agriculture, industry, and environmental sustainability. This closed-loop approach enables the continuous circulation of resources while reducing waste and maximising value creation.",
+  benefits: "Our solution helps organisations and municipalities convert waste from a disposal challenge into a valuable resource stream. By supporting circular economy objectives, reducing landfill dependency, and lowering environmental impact, we create measurable sustainability outcomes while contributing to more resilient agricultural and industrial value chains.",
+  image: "/Turning Organic Waste into Valuable Resources.jpg"
 }
 
 export function CircularBioManufacturing() {
+  const [content, setContent] = useState(DEFAULT_BIO)
+
+  useEffect(() => {
+    fetchSanityData<ServicesPageDoc | null>(SERVICES_PAGE_QUERY, null).then((data) => {
+      if (data) {
+        setContent({
+          title: data.bioManufacturingTitle || DEFAULT_BIO.title,
+          p1: data.bioManufacturingDescription || DEFAULT_BIO.p1,
+          p2: data.bioManufacturingSubdescription || DEFAULT_BIO.p2,
+          benefits: data.bioManufacturingBenefits || DEFAULT_BIO.benefits,
+          image: resolveImageUrl(data.bioManufacturingImage, DEFAULT_BIO.image)
+        })
+      }
+    })
+  }, [])
+
   return (
-    <section id="manufacturing" className="py-24 bg-white border-t border-b border-zinc-200">
+    <section className="py-24 bg-white border-b border-zinc-200">
       <Container>
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
-          {/* Left Column */}
-          <div className="w-full lg:w-[45%] flex flex-col">
-            <motion.span
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-sm font-bold tracking-wider text-black mb-6"
-            >
-              Circular Bio-Manufacturing
-            </motion.span>
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 items-center">
+          
+          {/* Left Text */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.2] mb-8">
+              {content.title}
+            </h2>
             
-            <motion.h2
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.15] mb-10"
-            >
-              Turning Organic<br/>Waste into Valuable<br/>Resources
-            </motion.h2>
+            <div className="space-y-6 text-[#1B1B1B] text-[15px] leading-[1.5]">
+              <p>{content.p1}</p>
+              <p>{content.p2}</p>
+              <p>{content.benefits}</p>
+            </div>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="w-20 h-20 md:w-24 md:h-24 relative"
-            >
-              <Image
-                src="/turning-organic-waste-2.svg"
-                alt="Turning Organic Waste"
-                fill
-                className="object-contain object-left"
-              />
-            </motion.div>
-          </div>
+          {/* Right Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative w-full h-[400px] md:h-[480px] rounded-2xl overflow-hidden shadow-lg"
+          >
+            <img
+              src={content.image}
+              alt={content.title}
+              className="h-full w-full object-cover"
+            />
+          </motion.div>
 
-          {/* Right Column */}
-          <div className="w-full lg:w-[55%] flex flex-col">
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-[#1B1B1B] text-[14px] md:text-[15px] leading-[1.6] mb-6"
-            >
-              Our circular bio-manufacturing model transforms organic waste streams into sustainable proteins , functional oils, and organic fertilisers through innovative Black Soldier Fly technology.
-            </motion.p>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="text-[#1B1B1B] text-[14px] md:text-[15px] leading-[1.6] mb-8"
-            >
-              By recovering nutrients from low value waste streams, we produce sustainable proteins , functional oils, and organic fertilisers that support agriculture, industry, and environmental sustainability. This closed-loop approach enables the continuous circulation of resources while reducing waste and maximising value creation.
-            </motion.p>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <img src="/key features.svg" alt="Benefits" className="w-6 h-6 object-contain" />
-                <span className="font-bold text-black text-[17px]">Benefits</span>
-              </div>
-              <p className="text-[#1B1B1B] text-[14px] md:text-[15px] leading-[1.6]">
-                Our solution helps organisations and municipalities convert waste from a disposal challenge into a valuable resource stream. By supporting circular economy objectives, reducing landfill dependency, and lowering environmental impact, we create measurable sustainability outcomes while contributing to more resilient agricultural and industrial value chains.
-              </p>
-            </motion.div>
-          </div>
         </div>
       </Container>
     </section>

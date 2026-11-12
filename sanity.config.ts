@@ -7,7 +7,7 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 
 export default defineConfig({
   name: 'cirubio-cms',
-  title: 'Cirubio CMS Studio',
+  title: 'Grub Bio CMS Studio',
   projectId,
   dataset,
   basePath: '/studio',
@@ -15,36 +15,39 @@ export default defineConfig({
     structureTool({
       structure: (S) =>
         S.list()
-          .title('Content Management')
+          .title('Website Content')
           .items([
             S.listItem()
-              .title('Homepage Hero')
+              .title('🏠 Homepage Hero & Slider')
               .child(S.document().schemaType('hero').documentId('hero')),
             S.listItem()
-              .title('About Page')
+              .title('🏡 Homepage Sections (Intro, Pillars, Tech)')
+              .child(S.document().schemaType('homePage').documentId('homePage')),
+            S.listItem()
+              .title('ℹ️ About Us Page')
               .child(S.document().schemaType('about').documentId('about')),
             S.listItem()
-              .title('Sustainability Page')
-              .child(S.document().schemaType('sustainability').documentId('sustainability')),
-            S.listItem()
-              .title('Our Technology Page')
-              .child(S.document().schemaType('technology').documentId('technology')),
-            S.listItem()
-              .title('Products Page (Full Content)')
+              .title('📦 Products Page (Full Content)')
               .child(S.document().schemaType('productsPage').documentId('productsPage')),
             S.listItem()
-              .title('Services Page (Full Content)')
+              .title('🛠️ Services Page (Full Content)')
               .child(S.document().schemaType('servicesPage').documentId('servicesPage')),
             S.listItem()
-              .title('Contact Details')
+              .title('🌱 Sustainability Page')
+              .child(S.document().schemaType('sustainability').documentId('sustainability')),
+            S.listItem()
+              .title('💻 Our Technology Page')
+              .child(S.document().schemaType('technology').documentId('technology')),
+            S.listItem()
+              .title('📞 Contact Page & Details')
               .child(S.document().schemaType('contactInfo').documentId('contactInfo')),
             S.listItem()
-              .title('Site Settings & Footer')
+              .title('⚙️ Site Settings, Footer & Socials')
               .child(S.document().schemaType('siteSettings').documentId('siteSettings')),
             S.divider(),
-            S.documentTypeListItem('product').title('Products Catalog'),
-            S.documentTypeListItem('service').title('Services List'),
-            S.documentTypeListItem('metric').title('Impact Metrics'),
+            S.documentTypeListItem('product').title('🗂️ Products Catalog (Cards)'),
+            S.documentTypeListItem('service').title('🗂️ Services List'),
+            S.documentTypeListItem('metric').title('📊 Impact Metrics'),
           ]),
     }),
   ],
@@ -52,4 +55,3 @@ export default defineConfig({
     types: schemaTypes,
   },
 })
-

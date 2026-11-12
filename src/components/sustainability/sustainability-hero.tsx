@@ -2,22 +2,28 @@
 
 import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { fetchSanityData } from "@/sanity/lib/client"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
 import { SUSTAINABILITY_QUERY } from "@/sanity/lib/queries"
+import type { SustainabilityDoc } from "@/sanity/lib/types"
 
 export function SustainabilityHero() {
   const [data, setData] = useState({
+    heroBadge: "Sustainability",
     heroHeadline: "Driving Measurable\nImpact Through Circular\nInnovation",
     heroSubheadline: "At Grub Bio, sustainability is embedded in every stage of our operations. Our technology enabled, bio-manufacturing solution transforms organic waste into valuable resources while generating measurable environmental, social, and economic benefits. By combining biotechnology, circular production systems, and digital sustainability intelligence, we help build more resilient food systems and a more sustainable future for Africa.",
+    heroVideoUrl: "https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/Our%20sustainability%20header.mp4",
+    heroImage: ""
   })
 
   useEffect(() => {
-    fetchSanityData(SUSTAINABILITY_QUERY, null).then((res: any) => {
+    fetchSanityData<SustainabilityDoc | null>(SUSTAINABILITY_QUERY, null).then((res) => {
       if (res) {
         setData((prev) => ({
-          ...prev,
+          heroBadge: res.heroBadge || prev.heroBadge,
           heroHeadline: res.heroHeadline || prev.heroHeadline,
           heroSubheadline: res.heroSubheadline || prev.heroSubheadline,
+          heroVideoUrl: res.heroVideoUrl || prev.heroVideoUrl,
+          heroImage: res.heroImage ? resolveImageUrl(res.heroImage, "") : ""
         }))
       }
     })
@@ -28,16 +34,21 @@ export function SustainabilityHero() {
       <div className="mx-auto max-w-[1400px]">
         {/* Image Container */}
         <div className="relative w-full rounded-2xl overflow-hidden min-h-[600px] flex items-center justify-center bg-zinc-900">
-          {/* Background Video */}
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 z-0 h-full w-full object-cover"
-          >
-            <source src="https://pub-95f6a0295449459292ad27c9169c0b00.r2.dev/Our%20sustainability%20header.mp4" type="video/mp4" />
-          </video>
+          {/* Background Video / Image */}
+          {data.heroVideoUrl ? (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster={data.heroImage || undefined}
+              className="absolute inset-0 z-0 h-full w-full object-cover"
+            >
+              <source src={data.heroVideoUrl} type="video/mp4" />
+            </video>
+          ) : data.heroImage ? (
+            <img src={data.heroImage} alt={data.heroHeadline} className="absolute inset-0 z-0 h-full w-full object-cover" />
+          ) : null}
           
           {/* Dark Overlay */}
           <div className="absolute inset-0 z-10 bg-black/60" />
@@ -50,7 +61,7 @@ export function SustainabilityHero() {
               transition={{ duration: 0.6 }}
               className="text-[14px] md:text-[15px] font-semibold mb-6 text-white tracking-wide"
             >
-              Sustainability
+              {data.heroBadge}
             </motion.p>
 
             <motion.h1

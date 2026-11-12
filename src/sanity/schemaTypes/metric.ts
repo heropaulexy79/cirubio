@@ -6,20 +6,25 @@ export const metricSchema = defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'label',
-      title: 'Metric Label',
+      name: 'value',
+      title: 'Metric Number / Value (e.g. 0.5, 90, 1000, 0)',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'value',
-      title: 'Metric Value (e.g. 85%, 10K+)',
+      name: 'suffix',
+      title: 'Suffix (e.g. T, %, x, +)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'label',
+      title: 'Metric Description / Label',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'subtext',
-      title: 'Subtext / Description',
+      title: 'Secondary Subtext (Optional)',
       type: 'string',
     }),
     defineField({

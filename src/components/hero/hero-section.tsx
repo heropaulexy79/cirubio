@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { fetchSanityData } from "@/sanity/lib/client"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
 import { HERO_QUERY } from "@/sanity/lib/queries"
+import type { HeroDoc } from "@/sanity/lib/types"
 
 const DEFAULT_SLIDES = [
   {
@@ -40,8 +41,28 @@ export function HeroSection() {
   const [slides, setSlides] = useState(DEFAULT_SLIDES)
 
   useEffect(() => {
-    fetchSanityData(HERO_QUERY, null).then((data: any) => {
-      if (data && data.headline) {
+    fetchSanityData<HeroDoc | null>(HERO_QUERY, null).then((data) => {
+      if (!data) return
+
+      if (data.slides && Array.isArray(data.slides) && data.slides.length > 0) {
+        const mapped = data.slides.map((s, idx) => {
+          const fallback = DEFAULT_SLIDES[idx % DEFAULT_SLIDES.length]
+          return {
+            video: s.videoUrl || fallback.video,
+            poster: s.fallbackImage ? resolveImageUrl(s.fallbackImage, "") : "",
+            title: s.title || fallback.title,
+            subtext: s.subtext || fallback.subtext,
+            buttons: s.buttons && s.buttons.length > 0
+              ? s.buttons.map((b) => ({
+                  text: b.text || "Learn More",
+                  variant: b.variant || "solid",
+                  href: b.href || "/contact"
+                }))
+              : fallback.buttons
+          }
+        })
+        setSlides(mapped)
+      } else if (data.headline) {
         setSlides((prev) => {
           const updated = [...prev]
           updated[0] = {
@@ -61,6 +82,7 @@ export function HeroSection() {
 
   // Auto-advance slider
   useEffect(() => {
+    if (slides.length <= 1) return
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
     }, 6000)
@@ -74,25 +96,27 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative min-h-[500px] w-full overflow-hidden rounded-2xl bg-primary-dark md:min-h-[580px] md:rounded-2xl flex items-center justify-center pt-[72px]"
+          className="relative min-h-[500px] w-full overflow-hidden rounded-2xl bg-[#051F11] md:min-h-[580px] md:rounded-2xl flex items-center justify-center pt-[72px]"
         >
           {/* Background Image Slider / Overlay */}
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-black/50 z-20" />
             <AnimatePresence mode="popLayout">
-              <motion.video
-                key={currentSlide}
-                src={slides[currentSlide]?.video}
-                autoPlay
-                muted
-                loop
-                playsInline
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.5, ease: "easeInOut" }}
-                className="absolute inset-0 h-full w-full object-cover z-10"
-              />
+              {slides[currentSlide]?.video ? (
+                <motion.video
+                  key={`video-${currentSlide}`}
+                  src={slides[currentSlide]?.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.5, ease: "easeInOut" }}
+                  className="absolute inset-0 h-full w-full object-cover z-10"
+                />
+              ) : null}
             </AnimatePresence>
           </div>
 
@@ -100,36 +124,30 @@ export function HeroSection() {
             <AnimatePresence mode="popLayout">
               <motion.div
                 key={currentSlide}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
+                exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.6 }}
                 className="flex flex-col items-center"
               >
-                <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-[56px] leading-[1.1]">
-                  {slides[currentSlide]?.title.split('\n').map((line, i, arr) => (
-                    <React.Fragment key={i}>
-                      {line}
-                      {i < arr.length - 1 && <br className="hidden md:block" />}
-                      {i < arr.length - 1 && <span className="md:hidden"> </span>}
-                    </React.Fragment>
-                  ))}
+                <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[56px] leading-[1.1] mb-6 whitespace-pre-line">
+                  {slides[currentSlide]?.title}
                 </h1>
                 
-                <p className="mb-10 text-base md:text-lg text-white/90 font-medium max-w-[800px] leading-[1.5]">
+                <p className="mt-4 max-w-3xl text-sm md:text-base text-white/90 leading-[1.5] mb-8">
                   {slides[currentSlide]?.subtext}
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 relative z-40 mt-2">
+                <div className="flex flex-wrap items-center justify-center gap-4">
                   {slides[currentSlide]?.buttons.map((btn, idx) => (
                     <Link
                       key={idx}
                       href={btn.href}
-                      className={
+                      className={`inline-flex items-center justify-center rounded-full px-7 py-3 text-sm md:text-base font-semibold transition-all ${
                         btn.variant === "solid"
-                          ? "inline-flex items-center justify-center bg-[#0A5C19] hover:bg-[#074612] text-white transition-colors h-[48px] px-8 text-base font-medium rounded-full cursor-pointer"
-                          : "inline-flex items-center justify-center border border-white bg-transparent hover:bg-white/10 text-white transition-colors h-[48px] px-8 text-base font-medium rounded-full cursor-pointer"
-                      }
+                          ? "bg-[#0A5024] text-white hover:bg-[#073c1b]"
+                          : "border border-white text-white hover:bg-white hover:text-[#0A5024]"
+                      }`}
                     >
                       {btn.text}
                     </Link>
@@ -139,19 +157,21 @@ export function HeroSection() {
             </AnimatePresence>
           </div>
 
-          {/* Slider Indicators */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 flex items-center gap-3">
-            {slides.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlide(idx)}
-                className={`h-[3px] w-12 rounded-full transition-colors ${
-                  idx === currentSlide ? "bg-white" : "bg-white/40 hover:bg-white/70"
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
-          </div>
+          {/* Slider Dots */}
+          {slides.length > 1 && (
+            <div className="absolute bottom-6 left-0 right-0 z-40 flex justify-center gap-2">
+              {slides.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  className={`h-2.5 rounded-full transition-all ${
+                    currentSlide === idx ? "w-8 bg-white" : "w-2.5 bg-white/50"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </motion.div>
       </div>
     </section>

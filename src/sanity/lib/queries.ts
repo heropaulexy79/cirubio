@@ -9,24 +9,37 @@ export const PRODUCTS_QUERY = `*[_type == "product"]{
   isFeatured
 }`
 
-export const SERVICES_QUERY = `*[_type == "service"]{
+export const SERVICES_QUERY = `*[_type == "service"] | order(order asc, _createdAt asc){
   _id,
   title,
   "slug": slug.current,
   tagline,
   description,
+  image,
   iconName,
   highlights
 }`
 
-export const METRICS_QUERY = `*[_type == "metric"] | order(order asc){
+export const METRICS_QUERY = `*[_type == "metric"] | order(order asc, _createdAt asc){
   _id,
   label,
   value,
+  suffix,
   subtext
 }`
 
 export const HERO_QUERY = `*[_type == "hero"][0]{
+  slides[]{
+    title,
+    subtext,
+    videoUrl,
+    fallbackImage,
+    buttons[]{
+      text,
+      href,
+      variant
+    }
+  },
   badgeText,
   headline,
   subheadline,
@@ -36,58 +49,229 @@ export const HERO_QUERY = `*[_type == "hero"][0]{
   secondaryCtaLink
 }`
 
+export const HOMEPAGE_QUERY = `*[_type == "homePage"][0]{
+  introBadge,
+  introHeadline,
+  introDescription,
+  introButtonText,
+  introButtonLink,
+  introImage,
+  wasteBadge,
+  wasteHeadline,
+  wasteDescription,
+  wasteIcon,
+  featuresLabel,
+  featuresTitle,
+  featuresDescription,
+  pillars[]{
+    title,
+    description,
+    icon
+  },
+  productsLabel,
+  productsTitle,
+  productsDescription,
+  servicesLabel,
+  servicesTitle,
+  servicesDescription,
+  servicesCards[]{
+    title,
+    description,
+    image
+  },
+  dataBadge,
+  dataHeadline,
+  dataDescription,
+  dataButtonText,
+  dataButtonLink,
+  dataImage,
+  metricsBadge,
+  metricsHeadline,
+  metricsDescription
+}`
+
 export const ABOUT_QUERY = `*[_type == "about"][0]{
+  heroBadge,
   heroHeadline,
   heroSubheadline,
+  heroImage,
+  introParagraph1,
+  introParagraph2,
+  bioTitle,
+  bioIcon,
+  bioFacilityImage,
+  challengeTitle,
+  challengeText1,
+  challengeText2,
+  solutionTitle,
+  solutionText1,
+  solutionText2,
+  missionVisionBadge,
+  missionVisionHeadline,
   missionTitle,
   missionText,
   visionTitle,
   visionText,
+  founderTitle,
   founderQuote,
   founderName,
-  founderTitle
+  founderImage,
+  circularBadge,
+  circularTitle,
+  circularDescription,
+  circularImage,
+  circularFeatures,
+  recoveryBadge,
+  recoveryTitle,
+  recoveryIcon,
+  recoveryImage,
+  recoveryIntro1,
+  recoveryIntro2,
+  recoveryPoints,
+  recoveryConclusion,
+  sdgBadge,
+  sdgTitle,
+  sdgDescription,
+  sdgs[]{
+    title,
+    image
+  }
 }`
 
 export const CONTACT_INFO_QUERY = `*[_type == "contactInfo"][0]{
+  heroBadge,
+  heroHeadline,
+  heroSubheadline1,
+  heroSubheadline2,
+  heroImage,
+  formBadge,
+  formTitle,
+  formDescription,
+  formImage,
   email,
   phone,
   address,
   workingHours,
   linkedinUrl,
-  twitterUrl
+  twitterUrl,
+  instagramUrl,
+  facebookUrl,
+  youtubeUrl,
+  helpTitle,
+  helpCards[]{
+    title,
+    description,
+    icon
+  },
+  faqTitle,
+  faqs[]{
+    question,
+    answer
+  }
 }`
 
 export const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
   siteName,
   tagline,
+  logo,
   footerText,
+  newsletterPrivacyNote,
   copyrightText,
-  announcementBanner
+  privacyPolicyUrl,
+  termsUrl,
+  cookiesUrl,
+  announcementBanner,
+  newsletterHeading,
+  newsletterSubtext,
+  newsletterCommunityText,
+  facebookUrl,
+  instagramUrl,
+  twitterUrl,
+  linkedinUrl,
+  youtubeUrl
 }`
 
 export const SUSTAINABILITY_QUERY = `*[_type == "sustainability"][0]{
+  heroBadge,
   heroHeadline,
   heroSubheadline,
+  heroVideoUrl,
   heroImage,
-  impactTitle,
-  impactDescription,
-  esgCommitment
+  introBadge,
+  introTitle,
+  introParagraph1,
+  introParagraph2,
+  circularBadge,
+  circularTitle,
+  circularParagraph1,
+  circularParagraph2,
+  circularBenefits,
+  circularImage,
+  climateBadge,
+  climateTitle,
+  climateParagraph1,
+  climateParagraph2,
+  climatePoints,
+  climateImage,
+  sdgBadge,
+  sdgTitle,
+  sdgDescription,
+  sdgItems[]{
+    title,
+    description,
+    image
+  },
+  buildingBadge,
+  buildingTitle,
+  buildingParagraph1,
+  buildingButtonText,
+  buildingButtonLink,
+  buildingImage,
+  stayConnectedTitle,
+  stayConnectedDescription
 }`
 
 export const TECHNOLOGY_QUERY = `*[_type == "technology"][0]{
+  heroBadge,
   heroHeadline,
   heroSubheadline,
   heroImage,
-  processTitle,
-  processDescription,
-  saasTitle,
-  saasDescription
+  rearingBadge,
+  rearingTitle,
+  rearingParagraph1,
+  rearingParagraph2,
+  rearingCapabilities,
+  rearingImage,
+  dashboardBadge,
+  dashboardTitle,
+  dashboardParagraph1,
+  dashboardParagraph2,
+  dashboardFeatures,
+  dashboardImage,
+  esgBadge,
+  esgTitle,
+  esgParagraph1,
+  esgParagraph2,
+  esgCapabilities,
+  esgImage,
+  partnerBadge,
+  partnerTitle,
+  partnerParagraph1,
+  partnerParagraph2,
+  partnerDemoText,
+  partnerDemoLink,
+  partnerSubtitle,
+  partnerLoginText,
+  partnerLoginLink
 }`
 
 export const PRODUCTS_PAGE_QUERY = `*[_type == "productsPage"][0]{
+  heroBadge,
   heroHeadline,
   heroSubheadline,
+  heroVideoUrl,
   heroImage,
+  proteinBadge,
   proteinSectionTitle,
   proteinSectionSubheadline,
   fullFatTitle,
@@ -98,34 +282,68 @@ export const PRODUCTS_PAGE_QUERY = `*[_type == "productsPage"][0]{
   defattedDescription,
   defattedBenefits,
   defattedImage,
+  lipidsBadge,
   lipidsTitle,
   lipidsDescription,
+  lipidsFeatureTitle,
+  lipidsFeatureDescription,
   lipidsBenefits,
   lipidsImage,
+  fertilizerBadge,
   fertilizerTitle,
   fertilizerDescription,
   fertilizerBenefits,
-  fertilizerImage
+  fertilizerImage,
+  ctaBadge,
+  ctaTitle,
+  ctaDescription,
+  ctaButtonText,
+  ctaButtonLink,
+  faqTitle,
+  faqs[]{
+    question,
+    answer
+  },
+  contactTitle,
+  contactDescription,
+  contactButtonText,
+  contactButtonLink
 }`
 
 export const SERVICES_PAGE_QUERY = `*[_type == "servicesPage"][0]{
+  heroBadge,
   heroHeadline,
   heroSubheadline,
+  heroVideoUrl,
   heroImage,
   bioManufacturingTitle,
   bioManufacturingDescription,
-  bioManufacturingFeatures,
+  bioManufacturingSubdescription,
+  bioManufacturingBenefits,
   bioManufacturingImage,
   wasteSolutionsTitle,
   wasteSolutionsDescription,
   wasteSolutionsBenefits,
   wasteSolutionsImage,
+  whoWeServeBadge,
   whoWeServeTitle,
   whoWeServeDescription,
+  whoWeServeCards[]{
+    title,
+    description,
+    icon
+  },
+  ctaTitle,
+  ctaDescription,
+  ctaButtonText,
+  ctaButtonLink,
+  partnershipsBadge,
   partnershipsTitle,
   partnershipsDescription,
-  partnershipsImage
+  partnershipsPoints,
+  partnershipsImage,
+  finalCtaTitle,
+  finalCtaDescription,
+  finalCtaButtonText,
+  finalCtaButtonLink
 }`
-
-
-

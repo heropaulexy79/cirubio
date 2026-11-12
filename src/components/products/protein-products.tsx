@@ -1,9 +1,12 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import Image from "next/image"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { PRODUCTS_PAGE_QUERY } from "@/sanity/lib/queries"
+import type { ProductsPageDoc } from "@/sanity/lib/types"
 
 function KeyBenefitsIcon() {
   return (
@@ -14,7 +17,53 @@ function KeyBenefitsIcon() {
   )
 }
 
+const DEFAULT_PROTEIN = {
+  badge: "Protein Products",
+  sectionTitle: "Black Soldier Fly Larvae\nMeal",
+  sectionSubheadline: "A sustainable, locally produced protein ingredient designed to support the growing demand for high-performance animal nutrition.",
+  fullFatTitle: "Full-Fat BSF Larvae Meal",
+  fullFatDescription: "A nutrient-dense protein and energy source for poultry, aquaculture, and livestock feed formulations.",
+  fullFatBenefits: [
+    "High-quality protein with natural energy-rich lipids",
+    "Supports growth performance and feed efficiency",
+    "Sustainable alternative to imported protein ingredients",
+    "Produced through a resource-efficient circular process"
+  ],
+  fullFatImage: "/full-fat-protein-meal.jpg",
+  defattedTitle: "Defatted BSF Larvae Meal",
+  defattedDescription: "A concentrated protein ingredient developed for advanced feed formulations requiring higher protein inclusion levels.",
+  defattedBenefits: [
+    "High protein concentration for optimized feed performance",
+    "Excellent digestibility and nutrient availability",
+    "Suitable for poultry, aquaculture, and livestock applications",
+    "Helps reduce dependence on conventional protein sources"
+  ],
+  defattedImage: "/Defatted-BSF-Larvae-Meal.jpg"
+}
+
 export function ProteinProducts() {
+  const [content, setContent] = useState(DEFAULT_PROTEIN)
+
+  useEffect(() => {
+    fetchSanityData<ProductsPageDoc | null>(PRODUCTS_PAGE_QUERY, null).then((data) => {
+      if (data) {
+        setContent({
+          badge: data.proteinBadge || DEFAULT_PROTEIN.badge,
+          sectionTitle: data.proteinSectionTitle || DEFAULT_PROTEIN.sectionTitle,
+          sectionSubheadline: data.proteinSectionSubheadline || DEFAULT_PROTEIN.sectionSubheadline,
+          fullFatTitle: data.fullFatTitle || DEFAULT_PROTEIN.fullFatTitle,
+          fullFatDescription: data.fullFatDescription || DEFAULT_PROTEIN.fullFatDescription,
+          fullFatBenefits: data.fullFatBenefits && data.fullFatBenefits.length > 0 ? data.fullFatBenefits : DEFAULT_PROTEIN.fullFatBenefits,
+          fullFatImage: resolveImageUrl(data.fullFatImage, DEFAULT_PROTEIN.fullFatImage),
+          defattedTitle: data.defattedTitle || DEFAULT_PROTEIN.defattedTitle,
+          defattedDescription: data.defattedDescription || DEFAULT_PROTEIN.defattedDescription,
+          defattedBenefits: data.defattedBenefits && data.defattedBenefits.length > 0 ? data.defattedBenefits : DEFAULT_PROTEIN.defattedBenefits,
+          defattedImage: resolveImageUrl(data.defattedImage, DEFAULT_PROTEIN.defattedImage),
+        })
+      }
+    })
+  }, [])
+
   return (
     <section id="protein" className="py-20 bg-[#fafafa]">
       <Container>
@@ -26,16 +75,16 @@ export function ProteinProducts() {
             viewport={{ once: true }}
             className="text-black font-semibold text-sm mb-4"
           >
-            Protein Products
+            {content.badge}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.15] mb-6"
+            className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.15] mb-6 whitespace-pre-line"
           >
-            Black Soldier Fly Larvae<br/>Meal
+            {content.sectionTitle}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -44,106 +93,99 @@ export function ProteinProducts() {
             transition={{ delay: 0.2 }}
             className="text-black/80 text-base md:text-lg leading-[1.5] max-w-2xl"
           >
-            A sustainable, locally produced protein ingredient designed to support the growing demand for high-performance animal nutrition.
+            {content.sectionSubheadline}
           </motion.p>
         </div>
 
-        <div className="flex flex-col gap-12">
-          {/* Card 1: Full-Fat BSF Larvae Meal */}
+        {/* 2-Column Product Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+          
+          {/* Card 1: Full-Fat */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col lg:flex-row bg-white rounded-[32px] overflow-hidden border border-zinc-200/60 shadow-sm"
+            className="bg-white rounded-3xl p-8 md:p-10 border border-zinc-200/80 shadow-sm flex flex-col justify-between"
           >
-            {/* Image Half */}
-            <div className="w-full lg:w-1/2 relative min-h-[240px] lg:min-h-[300px]">
-              <Image
-                src="/full-flat.jpg"
-                alt="Full-Fat BSF Larvae Meal"
-                fill
-                className="object-cover"
-              />
-            </div>
-            
-            {/* Content Half */}
-            <div className="w-full lg:w-1/2 p-5 md:p-6 lg:p-8 flex flex-col justify-center">
-              <p className="text-black font-semibold text-sm mb-3">Protein Products</p>
-              <h3 className="text-3xl md:text-4xl lg:text-[38px] font-bold text-[#0A5024] leading-[1.1] mb-4">
-                Full-Fat BSF Larvae<br/>Meal
-              </h3>
-              <p className="text-black font-medium leading-[1.5] text-sm md:text-base mb-6 max-w-md">
-                A nutrient-dense protein and energy source for poultry, aquaculture, and livestock feed formulations.
-              </p>
-              
-              <div className="flex items-center gap-3 mb-3">
-                <img src="/key features.svg" alt="Key Benefits" className="w-5 h-5 object-contain" />
-                <span className="font-bold text-black text-lg">Key Benefits</span>
+            <div>
+              <div className="relative w-full h-[260px] md:h-[300px] rounded-2xl overflow-hidden mb-8">
+                <Image
+                  src={content.fullFatImage}
+                  alt={content.fullFatTitle}
+                  fill
+                  className="object-cover"
+                />
               </div>
+
+              <h3 className="text-2xl md:text-3xl font-bold text-[#0A5024] mb-4">
+                {content.fullFatTitle}
+              </h3>
               
-              <ul className="list-disc pl-5 space-y-2 ml-1 marker:text-black">
-                {[
-                  "High-quality protein with natural energy-rich lipids",
-                  "Supports growth performance and feed efficiency",
-                  "Sustainable alternative to imported protein ingredients",
-                  "Produced through a resource-efficient circular process"
-                ].map((benefit, idx) => (
-                  <li key={idx} className="text-black text-[15px] md:text-base leading-[1.5] pl-1">
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
+              <p className="text-black/75 text-sm md:text-base leading-[1.5] mb-8">
+                {content.fullFatDescription}
+              </p>
+
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <KeyBenefitsIcon />
+                  <h4 className="font-bold text-black text-base md:text-lg">Key Benefits</h4>
+                </div>
+                <ul className="space-y-3">
+                  {content.fullFatBenefits.map((benefit, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0A5024] mt-2 flex-shrink-0" />
+                      <span className="text-black/80 text-sm md:text-[15px] leading-relaxed">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </motion.div>
 
-          {/* Card 2: Defatted BSF Larvae Meal */}
+          {/* Card 2: Defatted */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex flex-col-reverse lg:flex-row bg-white rounded-[32px] overflow-hidden border border-zinc-200/60 shadow-sm"
+            className="bg-white rounded-3xl p-8 md:p-10 border border-zinc-200/80 shadow-sm flex flex-col justify-between"
           >
-            {/* Content Half */}
-            <div className="w-full lg:w-1/2 p-5 md:p-6 lg:p-8 flex flex-col justify-center">
-              <p className="text-black font-semibold text-sm mb-3">Protein Products</p>
-              <h3 className="text-3xl md:text-4xl lg:text-[38px] font-bold text-[#0A5024] leading-[1.1] mb-4">
-                Defatted BSF Larvae<br/>Meal
-              </h3>
-              <p className="text-black font-medium leading-[1.5] text-sm md:text-base mb-6 max-w-md">
-                A concentrated protein ingredient developed for advanced feed formulations requiring higher protein inclusion levels.
-              </p>
-              
-              <div className="flex items-center gap-3 mb-3">
-                <img src="/key features.svg" alt="Key Benefits" className="w-5 h-5 object-contain" />
-                <span className="font-bold text-black text-lg">Key Benefits</span>
+            <div>
+              <div className="relative w-full h-[260px] md:h-[300px] rounded-2xl overflow-hidden mb-8">
+                <Image
+                  src={content.defattedImage}
+                  alt={content.defattedTitle}
+                  fill
+                  className="object-cover"
+                />
               </div>
-              
-              <ul className="list-disc pl-5 space-y-2 ml-1 marker:text-black">
-                {[
-                  "High protein concentration for optimized feed performance",
-                  "Excellent digestibility and nutrient availability",
-                  "Suitable for poultry, aquaculture, and livestock applications",
-                  "Helps reduce dependence on conventional protein sources"
-                ].map((benefit, idx) => (
-                  <li key={idx} className="text-black text-[15px] md:text-base leading-[1.5] pl-1">
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
 
-            {/* Image Half */}
-            <div className="w-full lg:w-1/2 relative min-h-[240px] lg:min-h-[300px]">
-              <Image
-                src="/defatted.jpg"
-                alt="Defatted BSF Larvae Meal"
-                fill
-                className="object-cover"
-              />
+              <h3 className="text-2xl md:text-3xl font-bold text-[#0A5024] mb-4">
+                {content.defattedTitle}
+              </h3>
+              
+              <p className="text-black/75 text-sm md:text-base leading-[1.5] mb-8">
+                {content.defattedDescription}
+              </p>
+
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <KeyBenefitsIcon />
+                  <h4 className="font-bold text-black text-base md:text-lg">Key Benefits</h4>
+                </div>
+                <ul className="space-y-3">
+                  {content.defattedBenefits.map((benefit, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0A5024] mt-2 flex-shrink-0" />
+                      <span className="text-black/80 text-sm md:text-[15px] leading-relaxed">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </motion.div>
+
         </div>
       </Container>
     </section>

@@ -5,9 +5,12 @@ import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import { fetchSanityData } from "@/sanity/lib/client"
 import { ABOUT_QUERY } from "@/sanity/lib/queries"
+import type { AboutDoc } from "@/sanity/lib/types"
 
 export function MissionVision() {
   const [data, setData] = useState({
+    badge: "Mission and Vision",
+    headline: "Bridging the Gap\nBetween Waste and\nLife",
     missionTitle: "Mission",
     missionText: "To bridge the gap between industrial waste and life through world-class bio-manufacturing — enabling partners to transition from linear, extractive supply chains to circular, value-generating systems.",
     visionTitle: "Vision",
@@ -15,10 +18,12 @@ export function MissionVision() {
   })
 
   useEffect(() => {
-    fetchSanityData(ABOUT_QUERY, null).then((res: any) => {
+    fetchSanityData<AboutDoc | null>(ABOUT_QUERY, null).then((res) => {
       if (res) {
         setData((prev) => ({
           ...prev,
+          badge: res.missionVisionBadge || prev.badge,
+          headline: res.missionVisionHeadline || prev.headline,
           missionTitle: res.missionTitle || prev.missionTitle,
           missionText: res.missionText || prev.missionText,
           visionTitle: res.visionTitle || prev.visionTitle,
@@ -41,9 +46,9 @@ export function MissionVision() {
             transition={{ duration: 0.6 }}
             className="lg:w-[45%] xl:w-[48%]"
           >
-            <p className="text-black font-semibold text-sm mb-4">Mission and Vision</p>
-            <h3 className="text-3xl md:text-5xl font-bold text-[#0A5024] leading-[1.2] lg:text-[38px] lg:whitespace-nowrap">
-              Bridging the Gap<br/>Between Waste and<br/>Life
+            <p className="text-black font-semibold text-sm mb-4">{data.badge}</p>
+            <h3 className="text-3xl md:text-5xl font-bold text-[#0A5024] leading-[1.2] lg:text-[38px] whitespace-pre-line">
+              {data.headline}
             </h3>
           </motion.div>
 

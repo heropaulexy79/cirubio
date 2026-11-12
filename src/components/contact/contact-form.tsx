@@ -1,12 +1,34 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { CONTACT_INFO_QUERY } from "@/sanity/lib/queries"
+import type { ContactInfoDoc } from "@/sanity/lib/types"
 
 export function ContactForm() {
+  const [content, setContent] = useState({
+    formBadge: "Contact Form",
+    formTitle: "Send Us a Message",
+    formDescription: "Have a question or project in mind? Complete the form below and a member of our team will get back to you as soon as possible.",
+    formImage: "/contact-form-img.jpg"
+  })
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    fetchSanityData<ContactInfoDoc | null>(CONTACT_INFO_QUERY, null).then((data) => {
+      if (data) {
+        setContent((prev) => ({
+          formBadge: data.formBadge || prev.formBadge,
+          formTitle: data.formTitle || prev.formTitle,
+          formDescription: data.formDescription || prev.formDescription,
+          formImage: resolveImageUrl(data.formImage, prev.formImage)
+        }))
+      }
+    })
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,7 +38,6 @@ export function ContactForm() {
     const formData = new FormData(form);
     formData.append("access_key", "35c57619-bf1f-42f6-8743-9fba80b4317b"); 
 
-    const object = Object.fromEntries(formData);
     const json = JSON.stringify(Object.fromEntries(formData));
 
     try {
@@ -36,10 +57,10 @@ export function ContactForm() {
         setStatus("error");
         setErrorMessage(data.message || "Something went wrong.");
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
       setStatus("error");
-      setErrorMessage(err.message || "Network error. Please try again later.");
+      setErrorMessage(err instanceof Error ? err.message : "Network error. Please try again later.");
     }
   };
 
@@ -56,13 +77,13 @@ export function ContactForm() {
             transition={{ duration: 0.6 }}
           >
             <p className="text-[14px] md:text-[15px] font-semibold text-zinc-800 mb-4">
-              Contact Form
+              {content.formBadge}
             </p>
             <h2 className="text-[32px] sm:text-[36px] md:text-5xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.1] mb-6 whitespace-nowrap">
-              Send Us a Message
+              {content.formTitle}
             </h2>
             <p className="text-[15px] md:text-base text-[#1B1B1B] leading-[1.5] mb-12 max-w-lg">
-              Have a question or project in mind? Complete the form below and a member of our team will get back to you as soon as possible.
+              {content.formDescription}
             </p>
           </motion.div>
 
@@ -174,7 +195,7 @@ export function ContactForm() {
           {/* Right Column: Image */}
           <div 
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: 'url("/contact-form-img.jpg")' }}
+            style={{ backgroundImage: `url("${content.formImage}")` }}
           />
         </motion.div>
 

@@ -1,17 +1,45 @@
 "use client"
 
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import { CheckCircle2 } from "lucide-react"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { SUSTAINABILITY_QUERY } from "@/sanity/lib/queries"
+import type { SustainabilityDoc } from "@/sanity/lib/types"
 
-export function ClimateAction() {
-  const benefits = [
+const DEFAULT_CLIMATE = {
+  badge: "Climate-Smart Agriculture",
+  title: "Supporting Climate\nAction Through Bio-\nManufacturing",
+  p1: "Our solutions contribute to climate resilience by reducing emissions associated with organic waste decomposition and by providing sustainable alternatives to resource-intensive agricultural inputs.",
+  p2: "Through waste diversion and nutrient recovery, we help avoid methane emissions that would otherwise occur when organic waste is disposed of in landfills or unmanaged environments. Our products also support regenerative agricultural practices that improve soil health and reduce dependence on carbon-intensive inputs.",
+  benefits: [
     "Methane-emission avoidance through organic waste recovery",
     "Reduced reliance on imported protein ingredients",
     "Lower environmental footprint compared to conventional feed sources",
     "Improved soil health and regenerative agriculture outcomes",
     "Support for carbon-emission avoidance and resource efficiency"
-  ]
+  ],
+  image: "/supporting-climate.jpeg"
+}
+
+export function ClimateAction() {
+  const [content, setContent] = useState(DEFAULT_CLIMATE)
+
+  useEffect(() => {
+    fetchSanityData<SustainabilityDoc | null>(SUSTAINABILITY_QUERY, null).then((res) => {
+      if (res) {
+        setContent({
+          badge: res.climateBadge || DEFAULT_CLIMATE.badge,
+          title: res.climateTitle || DEFAULT_CLIMATE.title,
+          p1: res.climateParagraph1 || DEFAULT_CLIMATE.p1,
+          p2: res.climateParagraph2 || DEFAULT_CLIMATE.p2,
+          benefits: res.climatePoints && res.climatePoints.length > 0 ? res.climatePoints : DEFAULT_CLIMATE.benefits,
+          image: resolveImageUrl(res.climateImage, DEFAULT_CLIMATE.image),
+        })
+      }
+    })
+  }, [])
 
   return (
     <section className="py-16 md:py-24 bg-white border-t border-zinc-200">
@@ -27,8 +55,8 @@ export function ClimateAction() {
           >
             <div className="relative aspect-square rounded-[2rem] overflow-hidden">
               <img
-                src="/supporting-climate.jpeg"
-                alt="Climate Action"
+                src={content.image}
+                alt={content.title}
                 className="absolute inset-0 w-full h-full object-contain p-8"
               />
             </div>
@@ -43,31 +71,21 @@ export function ClimateAction() {
             className="order-1 md:order-2"
           >
             <span className="text-sm font-bold tracking-wider text-black mb-4 block">
-              Climate-Smart Agriculture
+              {content.badge}
             </span>
-            <h2 className="text-3xl md:text-[40px] lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.1] mb-6">
-              Supporting Climate<br />Action Through Bio-<br />Manufacturing
+            <h2 className="text-3xl md:text-[40px] lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.1] mb-6 whitespace-pre-line">
+              {content.title}
             </h2>
             
             <div className="space-y-4 text-black/80 leading-[1.5] mb-8">
-              <p>
-                Our solutions contribute to climate resilience by reducing emissions
-                associated with organic waste decomposition and by providing sustainable
-                alternatives to resource-intensive agricultural inputs.
-              </p>
-              <p>
-                Through waste diversion and nutrient recovery, we help avoid methane
-                emissions that would otherwise occur when organic waste is disposed of in
-                landfills or unmanaged environments. Our products also support regenerative
-                agricultural practices that improve soil health and reduce dependence on
-                carbon-intensive inputs.
-              </p>
+              <p>{content.p1}</p>
+              <p>{content.p2}</p>
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-black mb-4">Climate Benefits</h3>
               <ul className="space-y-3">
-                {benefits.map((benefit, i) => (
+                {content.benefits.map((benefit, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-black shrink-0 mt-0.5" strokeWidth={1.5} />
                     <span className="text-black/80 text-sm md:text-base">{benefit}</span>

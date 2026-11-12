@@ -209,24 +209,43 @@ function ExpandableCard({
   )
 }
 
-import { fetchSanityData, urlFor } from "@/sanity/lib/client"
-import { PRODUCTS_QUERY } from "@/sanity/lib/queries"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { PRODUCTS_QUERY, HOMEPAGE_QUERY } from "@/sanity/lib/queries"
+import type { HomePageDoc, ProductDoc } from "@/sanity/lib/types"
 
 export function ProductsSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number>(0)
   const [productList, setProductList] = useState(products)
+  const [header, setHeader] = useState({
+    label: "Products",
+    title: "What we produce",
+    description: "Sustainable outputs from our circular process"
+  })
 
   React.useEffect(() => {
-    fetchSanityData(PRODUCTS_QUERY, products).then((data) => {
-      if (data && data.length > 0) {
-        const formatted = data.map((item: any) => ({
-          category: item.category || "Product",
-          icon: "/insect protein meal.svg",
-          title: item.title,
-          description: item.shortDescription || item.description || "",
-          image: item.image ? urlFor(item.image).url() : "/Insect-Protein-Meal.jpg",
-          link: item.slug ? `/products#${item.slug}` : "/products",
+    fetchSanityData<HomePageDoc | null>(HOMEPAGE_QUERY, null).then((res) => {
+      if (res) {
+        setHeader((prev) => ({
+          label: res.productsLabel || prev.label,
+          title: res.productsTitle || prev.title,
+          description: res.productsDescription || prev.description
         }))
+      }
+    })
+
+    fetchSanityData<ProductDoc[] | null>(PRODUCTS_QUERY, null).then((data) => {
+      if (data && data.length > 0) {
+        const formatted = data.map((item, idx) => {
+          const fallback = products[idx % products.length]
+          return {
+            category: item.category || fallback.category,
+            icon: fallback.icon,
+            title: item.title || fallback.title,
+            description: item.shortDescription || fallback.description,
+            image: resolveImageUrl(item.image, fallback.image),
+            link: item.slug ? `/products#${item.slug}` : fallback.link,
+          }
+        })
         setProductList(formatted)
       }
     })
@@ -236,9 +255,9 @@ export function ProductsSection() {
     <section className="border-t border-zinc-200 bg-white py-16 md:py-20">
       <Container>
         <SectionHeading
-          label="Products"
-          title="What we produce"
-          description="Sustainable outputs from our circular process"
+          label={header.label}
+          title={header.title}
+          description={header.description}
           className="mb-16 md:mb-20"
         />
 

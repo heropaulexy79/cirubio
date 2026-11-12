@@ -1,12 +1,24 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Container } from "@/components/ui/container"
 import { Button } from "@/components/ui/button"
+import { fetchSanityData } from "@/sanity/lib/client"
+import { PRODUCTS_PAGE_QUERY } from "@/sanity/lib/queries"
+import type { ProductsPageDoc } from "@/sanity/lib/types"
 
 export function ContactUsSection() {
+  const [heading, setHeading] = useState("Contact us")
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    fetchSanityData<ProductsPageDoc | null>(PRODUCTS_PAGE_QUERY, null).then((data) => {
+      if (data && data.contactTitle) {
+        setHeading(data.contactTitle)
+      }
+    })
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,10 +47,10 @@ export function ContactUsSection() {
         setStatus("error");
         setErrorMessage(data.message || "Something went wrong.");
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
       setStatus("error");
-      setErrorMessage(err.message || "Network error. Please try again later.");
+      setErrorMessage(err instanceof Error ? err.message : "Network error. Please try again later.");
     }
   };
 
@@ -47,7 +59,7 @@ export function ContactUsSection() {
       <Container>
         <div className="max-w-3xl mx-auto flex flex-col items-center">
           <h2 className="mb-10 text-4xl md:text-[42px] font-bold text-[#0A5024] leading-[1.2]">
-            Contact us
+            {heading}
           </h2>
           
           {status === "success" ? (

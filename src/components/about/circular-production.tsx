@@ -1,10 +1,44 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { ABOUT_QUERY } from "@/sanity/lib/queries"
+import type { AboutDoc } from "@/sanity/lib/types"
+
+const DEFAULT_CIRCULAR = {
+  badge: "Our Bio-Manufacturing Facility",
+  title: "Demonstrating the Future of Circular Production",
+  description: "Our bio-manufacturing facility serves as the foundation for Grub Bio's scalable growth strategy. Designed as a modern bio-refinery, the facility utilizes Black Soldier Fly technology to convert organic waste into high-value products through a resource-efficient production process.\nThe facility also serves as a proving ground for our digital sustainability systems, operational excellence framework, and future expansion model across agricultural and industrial clusters.",
+  image: "/about-intro-img2.jpeg",
+  features: [
+    "Organic waste upcycling and nutrient recovery",
+    "Production of sustainable protein, functional oils, and organic fertilisers",
+    "Technology-enabled monitoring and process optimization",
+    "Real time sustainability and impact measurement"
+  ]
+}
 
 export function CircularProduction() {
+  const [content, setContent] = useState(DEFAULT_CIRCULAR)
+
+  useEffect(() => {
+    fetchSanityData<AboutDoc | null>(ABOUT_QUERY, null).then((data) => {
+      if (data) {
+        setContent({
+          badge: data.circularBadge || DEFAULT_CIRCULAR.badge,
+          title: data.circularTitle || DEFAULT_CIRCULAR.title,
+          description: data.circularDescription || DEFAULT_CIRCULAR.description,
+          image: resolveImageUrl(data.circularImage, DEFAULT_CIRCULAR.image),
+          features: data.circularFeatures && data.circularFeatures.length > 0
+            ? data.circularFeatures
+            : DEFAULT_CIRCULAR.features
+        })
+      }
+    })
+  }, [])
+
   return (
     <section className="py-20 bg-[#E8F5E8]">
       <Container>
@@ -19,7 +53,7 @@ export function CircularProduction() {
             className="w-full lg:w-[420px] xl:w-[460px] flex-shrink-0 flex"
           >
              <div className="w-full h-full min-h-[450px] rounded-[24px] overflow-hidden shadow-xl relative">
-               <img src="/about-intro-img2.jpeg" alt="Circular Production Facility" className="w-full h-full object-cover absolute inset-0" />
+               <img src={content.image} alt={content.title} className="w-full h-full object-cover absolute inset-0" />
              </div>
           </motion.div>
 
@@ -31,16 +65,13 @@ export function CircularProduction() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex-1 lg:max-w-[640px]"
           >
-            <p className="text-[#000] text-sm font-bold tracking-wide mb-4">Our Bio-Manufacturing Facility</p>
+            <p className="text-[#000] text-sm font-bold tracking-wide mb-4">{content.badge}</p>
             <h2 className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.2] mb-8">
-              Demonstrating the Future of Circular Production
+              {content.title}
             </h2>
             
-            <div className="space-y-6 text-black/90 font-medium leading-[1.5] text-[15px] md:text-[16px] mb-8">
-              <p>
-                Our bio-manufacturing facility serves as the foundation for Grub Bio's scalable growth strategy. Designed as a modern bio-refinery, the facility utilizes Black Soldier Fly technology to convert organic waste into high-value products through a resource-efficient production process.<br />
-                The facility also serves as a proving ground for our digital sustainability systems, operational excellence framework, and future expansion model across agricultural and industrial clusters.
-              </p>
+            <div className="space-y-6 text-black/90 font-medium leading-[1.5] text-[15px] md:text-[16px] mb-8 whitespace-pre-line">
+              <p>{content.description}</p>
             </div>
 
             {/* Key Features List */}
@@ -50,12 +81,7 @@ export function CircularProduction() {
                 <h3 className="text-[20px] font-bold text-black">Key Features</h3>
               </div>
               <ul className="list-disc pl-5 space-y-2">
-                {[
-                  "Organic waste upcycling and nutrient recovery",
-                  "Production of sustainable protein, functional oils, and organic fertilisers",
-                  "Technology-enabled monitoring and process optimization",
-                  "Real time sustainability and impact measurement"
-                ].map((item, idx) => (
+                {content.features.map((item, idx) => (
                   <li key={idx} className="text-black/90 text-[15px] md:text-[16px] font-medium pl-1">
                     {item}
                   </li>

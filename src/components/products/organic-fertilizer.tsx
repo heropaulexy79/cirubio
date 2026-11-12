@@ -1,9 +1,12 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import Image from "next/image"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { PRODUCTS_PAGE_QUERY } from "@/sanity/lib/queries"
+import type { ProductsPageDoc } from "@/sanity/lib/types"
 
 function KeyBenefitsIcon() {
   return (
@@ -14,7 +17,36 @@ function KeyBenefitsIcon() {
   )
 }
 
+const DEFAULT_FERTILIZER = {
+  badge: "Organic Fertilizer",
+  title: "BSF Frass",
+  description: "A nutrient-rich organic fertiliser produced through the natural bioconversion process of Black Soldier Fly larvae.",
+  benefits: [
+    "Rich in organic matter and essential nutrients",
+    "Improves soil structure and water retention",
+    "Enhances microbial activity for healthier crops",
+    "100% natural and eco-friendly soil conditioner"
+  ],
+  image: "/Organic-fertilizers.jpg"
+}
+
 export function OrganicFertilizer() {
+  const [content, setContent] = useState(DEFAULT_FERTILIZER)
+
+  useEffect(() => {
+    fetchSanityData<ProductsPageDoc | null>(PRODUCTS_PAGE_QUERY, null).then((data) => {
+      if (data) {
+        setContent({
+          badge: data.fertilizerBadge || DEFAULT_FERTILIZER.badge,
+          title: data.fertilizerTitle || DEFAULT_FERTILIZER.title,
+          description: data.fertilizerDescription || DEFAULT_FERTILIZER.description,
+          benefits: data.fertilizerBenefits && data.fertilizerBenefits.length > 0 ? data.fertilizerBenefits : DEFAULT_FERTILIZER.benefits,
+          image: resolveImageUrl(data.fertilizerImage, DEFAULT_FERTILIZER.image)
+        })
+      }
+    })
+  }, [])
+
   return (
     <section id="fertiliser" className="py-20 bg-white">
       <Container>
@@ -26,7 +58,7 @@ export function OrganicFertilizer() {
             viewport={{ once: true }}
             className="text-black font-semibold text-sm mb-4"
           >
-            Organic Fertilizer
+            {content.badge}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
@@ -35,7 +67,7 @@ export function OrganicFertilizer() {
             transition={{ delay: 0.1 }}
             className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.15] mb-6"
           >
-            BSF Frass
+            {content.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -44,59 +76,53 @@ export function OrganicFertilizer() {
             transition={{ delay: 0.2 }}
             className="text-black/80 text-base md:text-lg leading-[1.5] max-w-2xl"
           >
-            A nutrient-rich organic fertiliser produced through the natural bioconversion process of Black Soldier Fly larvae.
+            {content.description}
           </motion.p>
         </div>
 
-        <div className="flex flex-col gap-12">
-          {/* Card 1: Regenerative Agriculture Solutions */}
+        {/* 2-Column Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          
+          {/* Left: Image Card */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col lg:flex-row bg-white rounded-[32px] overflow-hidden border border-zinc-200/60 shadow-sm"
+            className="relative w-full h-[380px] md:h-[450px] rounded-3xl overflow-hidden shadow-sm"
           >
-            {/* Image Half */}
-            <div className="w-full lg:w-1/2 relative min-h-[240px] lg:min-h-[300px]">
-              <Image
-                src="/Organic-fertilizers.jpg"
-                alt="Regenerative Agriculture Solutions"
-                fill
-                className="object-cover"
-              />
-            </div>
-            
-            {/* Content Half */}
-            <div className="w-full lg:w-1/2 p-5 md:p-6 lg:p-8 flex flex-col justify-center">
-              <p className="text-black font-semibold text-sm mb-3">Organic Fertilizer</p>
-              <h3 className="text-3xl md:text-4xl lg:text-[38px] font-bold text-[#0A5024] leading-[1.1] mb-4">
-                Regenerative<br/>Agriculture Solutions
-              </h3>
-              <p className="text-black font-medium leading-[1.5] text-sm md:text-base mb-6 max-w-md">
-                Designed to improve soil health, support crop productivity, and enhance long-term agricultural sustainability.
-              </p>
-              
-              <div className="flex items-center gap-3 mb-3">
-                <img src="/key features.svg" alt="Key Benefits" className="w-5 h-5 object-contain" />
-                <span className="font-bold text-black text-lg">Key Benefits</span>
+            <Image
+              src={content.image}
+              alt={content.title}
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+
+          {/* Right: Details & Benefits */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex flex-col justify-center"
+          >
+            <div className="bg-[#FAF9F5] rounded-2xl p-6 md:p-8 border border-zinc-200/80 shadow-sm">
+              <div className="flex items-center gap-3 mb-6">
+                <KeyBenefitsIcon />
+                <h4 className="font-bold text-black text-base md:text-lg">Key Benefits</h4>
               </div>
-              
-              <ul className="list-disc pl-5 space-y-2 ml-1 marker:text-black">
-                {[
-                  "Improves soil structure and biological activity",
-                  "Enhances nutrient availability and plant performance",
-                  "Supports regenerative and climate-smart agriculture",
-                  "Reduces dependence on synthetic fertilizers",
-                  "Contributes to carbon-emission avoidance through circular nutrient recovery"
-                ].map((benefit, idx) => (
-                  <li key={idx} className="text-black text-[15px] md:text-base leading-[1.5] pl-1">
-                    {benefit}
+              <ul className="space-y-4">
+                {content.benefits.map((benefit, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0A5024] mt-2 flex-shrink-0" />
+                    <span className="text-black/80 text-sm md:text-[15px] leading-relaxed">{benefit}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </motion.div>
+
         </div>
       </Container>
     </section>

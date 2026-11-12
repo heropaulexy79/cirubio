@@ -1,10 +1,40 @@
 "use client"
 
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import Link from "next/link"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { HOMEPAGE_QUERY } from "@/sanity/lib/queries"
+import type { HomePageDoc } from "@/sanity/lib/types"
+
+const DEFAULT_INTRO = {
+  badge: "About Us",
+  headline: "Driving Innovation at the Intersection of Organic Waste Management, Sustainable Agriculture and Climate Resilience",
+  description: "We are building a new generation of bio-refineries that combine Black Soldier Fly biotechnology, automated production systems, and real-time environmental intelligence to upcycle organic waste into high-value resources for agriculture and industry. Our goal is to unlock the value trapped in organic waste while supporting sustainable agriculture, reducing carbon emissions, providing transparent ESG insights, and fostering a truly circular economy across Africa.",
+  buttonText: "Discover our story",
+  buttonLink: "/about",
+  image: "/ABout Us img.jpg"
+}
 
 export function IntroSection() {
+  const [content, setContent] = useState(DEFAULT_INTRO)
+
+  useEffect(() => {
+    fetchSanityData<HomePageDoc | null>(HOMEPAGE_QUERY, null).then((data) => {
+      if (data) {
+        setContent({
+          badge: data.introBadge || DEFAULT_INTRO.badge,
+          headline: data.introHeadline || DEFAULT_INTRO.headline,
+          description: data.introDescription || DEFAULT_INTRO.description,
+          buttonText: data.introButtonText || DEFAULT_INTRO.buttonText,
+          buttonLink: data.introButtonLink || DEFAULT_INTRO.buttonLink,
+          image: resolveImageUrl(data.introImage, DEFAULT_INTRO.image)
+        })
+      }
+    })
+  }, [])
+
   return (
     <section id="about" className="py-12 md:py-20 bg-white">
       {/* Full-width Divider */}
@@ -19,10 +49,10 @@ export function IntroSection() {
             transition={{ duration: 0.6 }}
           >
             <p className="text-sm font-bold tracking-wider text-black mb-4 xl:mb-6">
-              About Us
+              {content.badge}
             </p>
-            <h2 className="text-3xl md:text-[40px] lg:text-[40px] xl:text-[44px] tracking-tight font-bold tracking-tight text-[#0A5024] leading-[1.2] max-w-[1300px]">
-              Driving Innovation at the Intersection of Organic Waste Management, Sustainable Agriculture and Climate Resilience
+            <h2 className="text-3xl md:text-[40px] lg:text-[40px] xl:text-[44px] font-bold tracking-tight text-[#0A5024] leading-[1.2] max-w-[1300px]">
+              {content.headline}
             </h2>
           </motion.div>
         </div>
@@ -38,11 +68,14 @@ export function IntroSection() {
           >
             <div className="flex flex-col h-full justify-between">
               <p className="text-sm md:text-base text-black leading-[1.5] mb-8">
-                We are building a new generation of bio-refineries that combine Black Soldier Fly biotechnology, automated production systems, and real-time environmental intelligence to upcycle organic waste into high-value resources for agriculture and industry. Our goal is to unlock the value trapped in organic waste while supporting sustainable agriculture, reducing carbon emissions, providing transparent ESG insights, and fostering a truly circular economy across Africa.
+                {content.description}
               </p>
               <div>
-                <Link href="/about" className="inline-flex items-center justify-center bg-[#0A5C19] hover:bg-[#074612] text-white transition-colors h-[48px] px-8 text-sm md:text-base font-semibold rounded-full cursor-pointer">
-                  Discover our story
+                <Link
+                  href={content.buttonLink}
+                  className="inline-flex items-center justify-center bg-[#0A5C19] hover:bg-[#074612] text-white transition-colors h-[48px] px-8 text-sm md:text-base font-semibold rounded-full cursor-pointer"
+                >
+                  {content.buttonText}
                 </Link>
               </div>
             </div>
@@ -53,15 +86,14 @@ export function IntroSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="group relative overflow-hidden rounded-2xl bg-zinc-100 shadow-md h-full"
+            className="group relative overflow-hidden rounded-2xl bg-zinc-100 shadow-md h-full min-h-[300px]"
           >
             <div className="h-full w-full overflow-hidden relative">
               <img
-                src="/ABout Us img.jpg"
+                src={content.image}
                 alt="Sustainable agriculture facility"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              
             </div>
           </motion.div>
         </div>

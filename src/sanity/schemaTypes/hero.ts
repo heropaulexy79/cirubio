@@ -2,50 +2,132 @@ import { defineField, defineType } from 'sanity'
 
 export const heroSchema = defineType({
   name: 'hero',
-  title: 'Homepage Hero',
+  title: 'Homepage Hero & Slider',
   type: 'document',
   fields: [
     defineField({
+      name: 'slides',
+      title: 'Hero Slides',
+      type: 'array',
+      description: 'Add and reorder slides for the homepage hero carousel.',
+      of: [
+        {
+          type: 'object',
+          name: 'heroSlide',
+          title: 'Hero Slide',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Slide Headline',
+              type: 'text',
+              rows: 2,
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'subtext',
+              title: 'Slide Subtext',
+              type: 'text',
+              rows: 3,
+            }),
+            defineField({
+              name: 'videoUrl',
+              title: 'Background Video URL',
+              type: 'url',
+              description: 'Direct MP4 video URL (e.g. from Cloudflare R2, CDN, or hosting).',
+            }),
+            defineField({
+              name: 'fallbackImage',
+              title: 'Fallback Poster Image',
+              type: 'image',
+              options: { hotspot: true },
+            }),
+            defineField({
+              name: 'buttons',
+              title: 'Slide Buttons',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  name: 'slideButton',
+                  fields: [
+                    defineField({
+                      name: 'text',
+                      title: 'Button Label',
+                      type: 'string',
+                    }),
+                    defineField({
+                      name: 'href',
+                      title: 'Button Link',
+                      type: 'string',
+                    }),
+                    defineField({
+                      name: 'variant',
+                      title: 'Button Variant',
+                      type: 'string',
+                      options: {
+                        list: [
+                          { title: 'Solid Green', value: 'solid' },
+                          { title: 'Outline White', value: 'outline' },
+                        ],
+                      },
+                      initialValue: 'solid',
+                    }),
+                  ],
+                },
+              ],
+            }),
+          ],
+          preview: {
+            select: {
+              title: 'title',
+              subtitle: 'subtext',
+            },
+          },
+        },
+      ],
+    }),
+    // Backward-compatible individual slide 1 fields
+    defineField({
       name: 'badgeText',
-      title: 'Badge Text',
+      title: 'Badge Text (Legacy)',
       type: 'string',
-      initialValue: 'Advancing Africa\'s transition to a bio-circular economy',
+      hidden: true,
     }),
     defineField({
       name: 'headline',
-      title: 'Main Headline',
+      title: 'Main Headline (Legacy)',
       type: 'string',
-      initialValue: 'Advancing Africa\'s transition to a bio-circular economy',
+      hidden: true,
     }),
     defineField({
       name: 'subheadline',
-      title: 'Sub-headline / Description',
+      title: 'Sub-headline (Legacy)',
       type: 'text',
-      initialValue: 'Transforming organic waste into sustainable resources that power agriculture, strengthen food systems, and accelerate climate action across Africa.',
+      hidden: true,
     }),
     defineField({
       name: 'primaryCtaText',
-      title: 'Primary Button Text',
+      title: 'Primary CTA Text (Legacy)',
       type: 'string',
-      initialValue: 'Explore our solution',
+      hidden: true,
     }),
     defineField({
       name: 'primaryCtaLink',
-      title: 'Primary Button Link',
+      title: 'Primary CTA Link (Legacy)',
       type: 'string',
-      initialValue: '/services',
+      hidden: true,
     }),
     defineField({
       name: 'secondaryCtaText',
-      title: 'Secondary Button Text',
+      title: 'Secondary CTA Text (Legacy)',
       type: 'string',
-      initialValue: 'Partner With Us',
+      hidden: true,
     }),
     defineField({
       name: 'secondaryCtaLink',
-      title: 'Secondary Button Link',
+      title: 'Secondary CTA Link (Legacy)',
       type: 'string',
-      initialValue: '/contact',
+      hidden: true,
     }),
   ],
 })

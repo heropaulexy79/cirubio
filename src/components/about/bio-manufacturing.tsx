@@ -1,10 +1,43 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { ABOUT_QUERY } from "@/sanity/lib/queries"
+import type { AboutDoc } from "@/sanity/lib/types"
 
 export function BioManufacturing() {
+  const [content, setContent] = useState({
+    title: "Bio-Manufacturing\nfor a Circular\nEconomy",
+    icon: "/bio-manufacturing-icon.svg",
+    facilityImage: "/about-intro-img1.png",
+    challengeTitle: "The Challenge",
+    challengeText1: "Across Africa, millions of tonnes of organic waste are generated annually from agricultural activities, food processing facilities, markets, livestock operations, and municipal sources. Much of this waste is improperly managed, contributing to greenhouse gas emissions, environmental degradation, and lost economic value.",
+    challengeText2: "At the same time, the continent faces growing demand for sustainable protein and resilient agricultural inputs, while many organisations struggle to transparently measure and audit their environmental impact in line with evolving global ESG reporting requirements.",
+    solutionTitle: "Our Solution",
+    solutionText1: "Our approach addresses a critical structural gap: Africa’s protein supply remains heavily exposed to import dependency, climate volatility, and resource-intensive production systems. Grub Bio provides a locally anchored alternative—one that is resilient, cost-efficient, and environmentally responsible.",
+    solutionText2: "Through our integrated model, we enable partners to transition from linear, extractive supply chains to circular, value-generating systems—turning waste into productive assets while strengthening food security, improving farmer economics, and advancing measurable ESG outcomes."
+  })
+
+  useEffect(() => {
+    fetchSanityData<AboutDoc | null>(ABOUT_QUERY, null).then((data) => {
+      if (data) {
+        setContent((prev) => ({
+          title: data.bioTitle || prev.title,
+          icon: resolveImageUrl(data.bioIcon, prev.icon),
+          facilityImage: resolveImageUrl(data.bioFacilityImage, prev.facilityImage),
+          challengeTitle: data.challengeTitle || prev.challengeTitle,
+          challengeText1: data.challengeText1 || prev.challengeText1,
+          challengeText2: data.challengeText2 || prev.challengeText2,
+          solutionTitle: data.solutionTitle || prev.solutionTitle,
+          solutionText1: data.solutionText1 || prev.solutionText1,
+          solutionText2: data.solutionText2 || prev.solutionText2
+        }))
+      }
+    })
+  }, [])
+
   return (
     <section className="py-20 bg-[#ffffff]">
       <Container>
@@ -17,17 +50,17 @@ export function BioManufacturing() {
             transition={{ duration: 0.6 }}
             className="flex flex-col"
           >
-            <h2 className="order-2 md:order-1 text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] mb-8 leading-[1.2]">
-              Bio-Manufacturing<br className="hidden md:block"/>for a Circular<br className="hidden md:block"/>Economy
+            <h2 className="order-2 md:order-1 text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] mb-8 leading-[1.2] whitespace-pre-line">
+              {content.title}
             </h2>
             {/* Logo/Icon */}
             <div className="order-1 md:order-2 w-24 h-24 rounded-full mb-6 md:mb-8 flex items-start">
-               <img src="/bio-manufacturing-icon.svg" alt="Bio-Manufacturing Icon" className="w-full h-full object-contain" />
+               <img src={content.icon} alt="Bio-Manufacturing Icon" className="w-full h-full object-contain" />
             </div>
             
             {/* Facility Image */}
             <div className="order-3 w-full aspect-[4/3] rounded-2xl overflow-hidden relative">
-              <img src="/about-intro-img1.png" alt="Bio-Manufacturing Facility" className="w-full h-full object-contain" />
+              <img src={content.facilityImage} alt="Bio-Manufacturing Facility" className="w-full h-full object-contain" />
             </div>
           </motion.div>
 
@@ -40,22 +73,22 @@ export function BioManufacturing() {
             className="flex flex-col space-y-10"
           >
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-[#0A5024] mb-4">The Challenge</h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-[#0A5024] mb-4">{content.challengeTitle}</h3>
               <p className="text-black/80 font-medium leading-[1.5] mb-4 text-sm md:text-base">
-                Across Africa, millions of tonnes of organic waste are generated annually from agricultural activities, food processing facilities, markets, livestock operations, and municipal sources. Much of this waste is improperly managed, contributing to greenhouse gas emissions, environmental degradation, and lost economic value.
+                {content.challengeText1}
               </p>
               <p className="text-black/80 font-medium leading-[1.5] text-sm md:text-base">
-                At the same time, the continent faces growing demand for sustainable protein and resilient agricultural inputs, while many organisations struggle to transparently measure and audit their environmental impact in line with evolving global ESG reporting requirements.
+                {content.challengeText2}
               </p>
             </div>
 
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-[#0A5024] mb-4">Our Solution</h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-[#0A5024] mb-4">{content.solutionTitle}</h3>
               <p className="text-black/80 font-medium leading-[1.5] mb-4 text-sm md:text-base">
-                Our approach addresses a critical structural gap: Africa’s protein supply remains heavily exposed to import dependency, climate volatility, and resource-intensive production systems. Grub Bio provides a locally anchored alternative—one that is resilient, cost-efficient, and environmentally responsible.
+                {content.solutionText1}
               </p>
               <p className="text-black/80 font-medium leading-[1.5] text-sm md:text-base">
-                Through our integrated model, we enable partners to transition from linear, extractive supply chains to circular, value-generating systems—turning waste into productive assets while strengthening food security, improving farmer economics, and advancing measurable ESG outcomes.
+                {content.solutionText2}
               </p>
             </div>
           </motion.div>

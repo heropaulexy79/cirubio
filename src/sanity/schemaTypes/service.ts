@@ -29,6 +29,12 @@ export const serviceSchema = defineType({
       rows: 4,
     }),
     defineField({
+      name: 'image',
+      title: 'Service Image',
+      type: 'image',
+      options: { hotspot: true },
+    }),
+    defineField({
       name: 'iconName',
       title: 'Icon Name',
       type: 'string',
@@ -39,6 +45,12 @@ export const serviceSchema = defineType({
       title: 'Key Highlights',
       type: 'array',
       of: [{ type: 'string' }],
+    }),
+    defineField({
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+      initialValue: 0,
     }),
   ],
 })

@@ -1,10 +1,14 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import { SectionHeading } from "@/components/ui/section-heading"
-const features = [
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { HOMEPAGE_QUERY } from "@/sanity/lib/queries"
+import type { HomePageDoc } from "@/sanity/lib/types"
+
+const DEFAULT_FEATURES = [
   {
     icon: "/waste management.svg",
     title: "Waste\nManagement",
@@ -28,6 +32,33 @@ const features = [
 ]
 
 export function FeaturesSection() {
+  const [header, setHeader] = useState({
+    label: "Our Impact Pillars",
+    title: "How we create change",
+    description: "Four pillars driving sustainable transformation"
+  })
+  const [featureList, setFeatureList] = useState(DEFAULT_FEATURES)
+
+  useEffect(() => {
+    fetchSanityData<HomePageDoc | null>(HOMEPAGE_QUERY, null).then((data) => {
+      if (data) {
+        setHeader((prev) => ({
+          label: data.featuresLabel || prev.label,
+          title: data.featuresTitle || prev.title,
+          description: data.featuresDescription || prev.description
+        }))
+        if (data.pillars && Array.isArray(data.pillars) && data.pillars.length > 0) {
+          const mapped = data.pillars.map((p, idx) => ({
+            icon: resolveImageUrl(p.icon, DEFAULT_FEATURES[idx % DEFAULT_FEATURES.length].icon),
+            title: p.title || DEFAULT_FEATURES[idx % DEFAULT_FEATURES.length].title,
+            description: p.description || DEFAULT_FEATURES[idx % DEFAULT_FEATURES.length].description
+          }))
+          setFeatureList(mapped)
+        }
+      }
+    })
+  }, [])
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -52,9 +83,9 @@ export function FeaturesSection() {
       <Container>
         <div className="mb-20">
           <SectionHeading
-            label="Our Impact Pillars"
-            title="How we create change"
-            description="Four pillars driving sustainable transformation"
+            label={header.label}
+            title={header.title}
+            description={header.description}
           />
         </div>
 
@@ -65,7 +96,7 @@ export function FeaturesSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid gap-x-12 gap-y-10 md:gap-y-16 sm:grid-cols-2 lg:grid-cols-4"
         >
-          {features.map((feature, idx) => {
+          {featureList.map((feature, idx) => {
             return (
               <motion.div
                 key={idx}

@@ -1,10 +1,13 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Container } from "@/components/ui/container"
+import { fetchSanityData } from "@/sanity/lib/client"
+import { PRODUCTS_PAGE_QUERY } from "@/sanity/lib/queries"
+import type { ProductsPageDoc } from "@/sanity/lib/types"
 
-const faqs = [
+const DEFAULT_FAQS = [
   {
     question: "What types of organic waste does Grub Bio accept?",
     answer: "We primarily work with agricultural residues, food processing by-products, market waste, slaughterhouse by-products, and other suitable organic waste streams."
@@ -63,12 +66,12 @@ function FaqItem({ question, answer, isOpen, onClick }: { question: string, answ
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="pb-6 text-black/80 text-sm md:text-base leading-[1.5] pr-8">
+            <p className="pb-6 text-black/80 text-sm md:text-base leading-[1.5]">
               {answer}
-            </div>
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -77,30 +80,48 @@ function FaqItem({ question, answer, isOpen, onClick }: { question: string, answ
 }
 
 export function ProductsFaq() {
-  const [openIndex, setOpenIndex] = useState<number>(0)
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
+  const [faqTitle, setFaqTitle] = useState("Frequently Asked Questions")
+  const [faqList, setFaqList] = useState(DEFAULT_FAQS)
+
+  useEffect(() => {
+    fetchSanityData<ProductsPageDoc | null>(PRODUCTS_PAGE_QUERY, null).then((data) => {
+      if (data) {
+        if (data.faqTitle) setFaqTitle(data.faqTitle)
+        if (data.faqs && Array.isArray(data.faqs) && data.faqs.length > 0) {
+          setFaqList(data.faqs.map((f, idx) => ({
+            question: f.question || DEFAULT_FAQS[idx % DEFAULT_FAQS.length].question,
+            answer: f.answer || DEFAULT_FAQS[idx % DEFAULT_FAQS.length].answer
+          })))
+        }
+      }
+    })
+  }, [])
 
   return (
-    <section className="py-20 md:py-24 bg-white">
+    <section className="py-20 bg-white">
       <Container>
-        <motion.h2
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.15] mb-12"
-        >
-          Frequently Asked Questions
-        </motion.h2>
+        <div className="max-w-4xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl lg:text-[40px] xl:text-[44px] tracking-tight font-bold text-[#0A5024] leading-[1.2] mb-12"
+          >
+            {faqTitle}
+          </motion.h2>
 
-        <div className="flex flex-col border-t border-zinc-200">
-          {faqs.map((faq, index) => (
-            <FaqItem
-              key={index}
-              question={faq.question}
-              answer={faq.answer}
-              isOpen={openIndex === index}
-              onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-            />
-          ))}
+          <div className="flex flex-col">
+            {faqList.map((faq, idx) => (
+              <FaqItem
+                key={idx}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={openIndex === idx}
+                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+              />
+            ))}
+          </div>
         </div>
       </Container>
     </section>

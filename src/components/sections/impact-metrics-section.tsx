@@ -3,6 +3,9 @@
 import * as React from "react"
 import { motion, useInView } from "framer-motion"
 import { Container } from "@/components/ui/container"
+import { fetchSanityData } from "@/sanity/lib/client"
+import { METRICS_QUERY, HOMEPAGE_QUERY } from "@/sanity/lib/queries"
+import type { HomePageDoc, MetricDoc } from "@/sanity/lib/types"
 
 interface CounterProps {
   value: string
@@ -32,9 +35,6 @@ function MetricCard({ value, suffix = "", label }: CounterProps) {
   )
 }
 
-import { fetchSanityData } from "@/sanity/lib/client"
-import { METRICS_QUERY } from "@/sanity/lib/queries"
-
 const DEFAULT_METRICS = [
   { value: "0.5", suffix: "T", label: "CO2e per metric tonne on Organic Waste diverted from land fills" },
   { value: "90", suffix: "%", label: "Less Water Required Compared to Traditional Protein Source" },
@@ -44,12 +44,27 @@ const DEFAULT_METRICS = [
 
 export function ImpactMetricsSection() {
   const [metrics, setMetrics] = React.useState(DEFAULT_METRICS)
+  const [header, setHeader] = React.useState({
+    badge: "Impact",
+    headline: "Measurable\noutcomes\nfrom our work",
+    description: "Real data demonstrating the scale of our contribution to Africa's circular bio-economy."
+  })
 
   React.useEffect(() => {
-    fetchSanityData(METRICS_QUERY, null).then((res: any) => {
+    fetchSanityData<HomePageDoc | null>(HOMEPAGE_QUERY, null).then((res) => {
+      if (res) {
+        setHeader((prev) => ({
+          badge: res.metricsBadge || prev.badge,
+          headline: res.metricsHeadline || prev.headline,
+          description: res.metricsDescription || prev.description,
+        }))
+      }
+    })
+
+    fetchSanityData<MetricDoc[] | null>(METRICS_QUERY, null).then((res) => {
       if (res && Array.isArray(res) && res.length > 0) {
         setMetrics(
-          res.map((m: any) => ({
+          res.map((m) => ({
             value: m.value || "",
             suffix: m.suffix || "",
             label: m.label || m.subtext || "",
@@ -65,13 +80,13 @@ export function ImpactMetricsSection() {
         <div className="grid gap-12 lg:gap-16 lg:grid-cols-12 items-center">
           <div className="lg:col-span-5 max-w-lg">
             <span className="text-sm font-bold tracking-wide text-black mb-6 block">
-              Impact
+              {header.badge}
             </span>
-            <h2 className="text-4xl md:text-[42px] font-bold tracking-tight text-[#0A5024] leading-[1.2]">
-              Measurable<br/>outcomes<br/>from our work
+            <h2 className="text-4xl md:text-[42px] font-bold tracking-tight text-[#0A5024] leading-[1.2] whitespace-pre-line">
+              {header.headline}
             </h2>
             <p className="mt-8 text-base text-black max-w-sm">
-              Real data demonstrating the scale of our contribution to Africa's circular bio-economy.
+              {header.description}
             </p>
           </div>
           

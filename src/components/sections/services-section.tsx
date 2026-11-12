@@ -1,10 +1,14 @@
-﻿"use client"
+"use client"
 
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import { SectionHeading } from "@/components/ui/section-heading"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
+import { HOMEPAGE_QUERY, SERVICES_QUERY } from "@/sanity/lib/queries"
+import type { HomePageDoc, ServiceDoc } from "@/sanity/lib/types"
 
-const services = [
+const DEFAULT_SERVICES = [
   {
     title: "Organic Waste Upcycling",
     description: "Converting agricultural, food processing, and market waste into valuable resources.",
@@ -28,13 +32,53 @@ const services = [
 ]
 
 export function ServicesSection() {
+  const [header, setHeader] = useState({
+    label: "Our Services",
+    title: "What we deliver",
+    description: "Four integrated solutions for sustainable transformation"
+  })
+  const [services, setServices] = useState(DEFAULT_SERVICES)
+
+  useEffect(() => {
+    fetchSanityData<HomePageDoc | null>(HOMEPAGE_QUERY, null).then((data) => {
+      if (data) {
+        setHeader((prev) => ({
+          label: data.servicesLabel || prev.label,
+          title: data.servicesTitle || prev.title,
+          description: data.servicesDescription || prev.description
+        }))
+        if (data.servicesCards && Array.isArray(data.servicesCards) && data.servicesCards.length > 0) {
+          const mapped = data.servicesCards.map((c, idx) => ({
+            title: c.title || DEFAULT_SERVICES[idx % DEFAULT_SERVICES.length].title,
+            description: c.description || DEFAULT_SERVICES[idx % DEFAULT_SERVICES.length].description,
+            image: resolveImageUrl(c.image, DEFAULT_SERVICES[idx % DEFAULT_SERVICES.length].image)
+          }))
+          setServices(mapped)
+          return
+        }
+      }
+
+      // Check if services collection has items
+      fetchSanityData<ServiceDoc[] | null>(SERVICES_QUERY, null).then((res) => {
+        if (res && Array.isArray(res) && res.length > 0) {
+          const mapped = res.map((s, idx) => ({
+            title: s.title || DEFAULT_SERVICES[idx % DEFAULT_SERVICES.length].title,
+            description: s.description || s.tagline || DEFAULT_SERVICES[idx % DEFAULT_SERVICES.length].description,
+            image: resolveImageUrl(s.image, DEFAULT_SERVICES[idx % DEFAULT_SERVICES.length].image)
+          }))
+          setServices(mapped)
+        }
+      })
+    })
+  }, [])
+
   return (
     <section id="services" className="border-t border-b border-zinc-200 bg-white py-16 md:py-20">
       <Container>
         <SectionHeading
-          label="Our Services"
-          title="What we deliver"
-          description="Four integrated solutions for sustainable transformation"
+          label={header.label}
+          title={header.title}
+          description={header.description}
           className="mb-16"
         />
 

@@ -2,22 +2,26 @@
 
 import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { fetchSanityData } from "@/sanity/lib/client"
+import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
 import { TECHNOLOGY_QUERY } from "@/sanity/lib/queries"
+import type { TechnologyDoc } from "@/sanity/lib/types"
 
 export function TechnologyHero() {
   const [data, setData] = useState({
+    heroBadge: "Our Technology",
     heroHeadline: "Where Biotechnology Meets\nSustainability Intelligence",
     heroSubheadline: "Grub Bio combines advanced Black Soldier Fly biotechnology, automated production systems, and digital sustainability solutions to create a smarter approach to waste recovery and resource transformation. Our technology platform is designed to maximize biological performance, optimize operational efficiency, and generate measurable environmental impact.",
+    heroImage: "/Environmental-Intelligence.jpg"
   })
 
   useEffect(() => {
-    fetchSanityData(TECHNOLOGY_QUERY, null).then((res: any) => {
+    fetchSanityData<TechnologyDoc | null>(TECHNOLOGY_QUERY, null).then((res) => {
       if (res) {
         setData((prev) => ({
-          ...prev,
+          heroBadge: res.heroBadge || prev.heroBadge,
           heroHeadline: res.heroHeadline || prev.heroHeadline,
           heroSubheadline: res.heroSubheadline || prev.heroSubheadline,
+          heroImage: resolveImageUrl(res.heroImage, prev.heroImage)
         }))
       }
     })
@@ -31,7 +35,7 @@ export function TechnologyHero() {
           {/* Background Image */}
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center"
-            style={{ backgroundImage: 'url("/Environmental-Intelligence.jpg")' }}
+            style={{ backgroundImage: `url("${data.heroImage}")` }}
           />
           
           {/* Dark Overlay */}
@@ -45,7 +49,7 @@ export function TechnologyHero() {
               transition={{ duration: 0.6 }}
               className="text-[15px] font-semibold mb-6 text-white"
             >
-              Our Technology
+              {data.heroBadge}
             </motion.p>
 
             <motion.h1
