@@ -8,6 +8,7 @@ import Link from "next/link"
 import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
 import { SITE_SETTINGS_QUERY, CONTACT_INFO_QUERY } from "@/sanity/lib/queries"
 import type { SiteSettingsDoc, ContactInfoDoc } from "@/sanity/lib/types"
+import { TERRABASE_URL } from "@/lib/links"
 
 export function NewsletterSection() {
   const pathname = usePathname()
@@ -203,6 +204,7 @@ export function SiteFooter() {
                 <li><Link href="/services#partnerships" className="hover:text-white/80 transition-colors">Partnerships</Link></li>
                 <li><Link href="/about" className="hover:text-white/80 transition-colors">About us</Link></li>
                 <li><Link href="/contact" className="hover:text-white/80 transition-colors">Contact us</Link></li>
+                <li><a href={TERRABASE_URL} className="hover:text-white/80 transition-colors">Open TerraBASE</a></li>
               </ul>
             </div>
 

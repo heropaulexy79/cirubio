@@ -8,6 +8,7 @@ import Link from "next/link"
 import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
 import { HOMEPAGE_QUERY } from "@/sanity/lib/queries"
 import type { HomePageDoc } from "@/sanity/lib/types"
+import { TERRABASE_URL } from "@/lib/links"
 
 const DEFAULT_DATA = {
   badge: "Technology Dashboard",
@@ -56,13 +57,19 @@ export function DataSustainabilitySection() {
               {content.description}
             </p>
             
-            <div className="mt-10">
+            <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href={content.buttonLink}
                 className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 shadow h-10 bg-[#0A5024] text-white hover:bg-[#0A5024]/90 rounded-full px-8 py-6"
               >
                 {content.buttonText}
               </Link>
+              <a
+                href={TERRABASE_URL}
+                className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors h-10 ring-1 ring-inset ring-[#0A5024] text-[#0A5024] hover:bg-[#0A5024]/5 rounded-full px-8 py-6"
+              >
+                Open TerraBASE
+              </a>
             </div>
           </motion.div>
 

@@ -7,6 +7,7 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-
 import { fetchSanityData, resolveImageUrl } from "@/sanity/lib/client"
 import { SITE_SETTINGS_QUERY } from "@/sanity/lib/queries"
 import type { SiteSettingsDoc } from "@/sanity/lib/types"
+import { TERRABASE_URL } from "@/lib/links"
 
 function ChevronDownIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -319,6 +320,9 @@ export function FloatingNav() {
 
         {/* Right Side: CTA Button & Mobile Menu Toggle */}
         <div className="flex items-center gap-4 h-full">
+          <a href={TERRABASE_URL} className="hidden h-[42px] px-6 text-[15px] font-medium border border-[#0A5024] text-[#0A5024] hover:bg-[#0A5024]/5 min-[1400px]:inline-flex items-center justify-center rounded-full transition-colors">
+            Open TerraBASE
+          </a>
           <Link href="/contact" className="hidden h-[42px] px-6 text-[15px] font-medium bg-[#0A5024] hover:bg-[#073A1A] lg:inline-flex items-center justify-center rounded-full text-white transition-colors">
             Contact Us
           </Link>
@@ -402,7 +406,10 @@ export function FloatingNav() {
                   </AnimatePresence>
                 </div>
               ))}
-              <div className="mt-4 pt-4 border-t border-zinc-100">
+              <div className="mt-4 pt-4 border-t border-zinc-100 flex flex-col gap-3">
+                <a href={TERRABASE_URL} className="w-full h-11 inline-flex items-center justify-center rounded-lg border border-[#0A5024] text-[#0A5024] hover:bg-[#0A5024]/5 transition-colors">
+                  Open TerraBASE
+                </a>
                 <Link href="/contact" className="w-full h-11 inline-flex items-center justify-center rounded-lg bg-[#0A5024] hover:bg-[#073A1A] text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                   Contact Us
                 </Link>

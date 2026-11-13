@@ -6,6 +6,7 @@ import Link from "next/link"
 import { fetchSanityData } from "@/sanity/lib/client"
 import { TECHNOLOGY_QUERY } from "@/sanity/lib/queries"
 import type { TechnologyDoc } from "@/sanity/lib/types"
+import { TERRABASE_URL } from "@/lib/links"
 
 const DEFAULT_PARTNER = {
   badge: "Partner Dashboard Access",
@@ -15,8 +16,8 @@ const DEFAULT_PARTNER = {
   demoText: "Request A Demo",
   demoLink: "/contact",
   subtitle: "Monitor. Measure. Report. Improve.",
-  loginText: "Partner Login",
-  loginLink: "/contact"
+  loginText: "Log in to TerraBASE",
+  loginLink: TERRABASE_URL
 }
 
 export function PartnerDashboard() {
